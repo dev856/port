@@ -6,8 +6,10 @@ def home():
     # Page configs (tab title, favicon)
     st.set_page_config(
         page_title="Dev Kotak's Portfolio",
-        page_icon="🍕",
+        page_icon="👨‍💻",
     )
+    st.sidebar.success("Select a page above.")
+
 
     # CSS styles file
     with open("styles/main.css") as f:
@@ -32,7 +34,7 @@ def home():
             <div class="spin-container">
                 <div class="shape">
                     <div class="bd">
-                        <img src="{img}" alt="Enric Domingo">
+                        <img src="{img}" alt="Dev Kotak">
                     </div>
                 </div>
             </div>
@@ -49,17 +51,15 @@ def home():
     # """, unsafe_allow_html=True)
 
     # Subtitle
-    st.write(f"""<div class="subtitle" style="text-align: center;">Machine Learning and Software Engineer</div>""", unsafe_allow_html=True)
+    st.write(f"""<div class="subtitle" style="text-align: center;">Machine Learning and Deep Learning Enthusiast</div>""", unsafe_allow_html=True)
 
     # Social Icons
     social_icons_data = {
         # Platform: [URL, Icon]
-        "Kaggle": ["https://www.kaggle.com/edomingo", "https://www.kaggle.com/static/images/site-logo.svg"],
-        "LinkedIn": ["https://www.linkedin.com/in/e-domingo", "https://cdn-icons-png.flaticon.com/512/174/174857.png"],
-        "GitHub": ["https://github.com/enricd", "https://icon-library.com/images/github-icon-white/github-icon-white-6.jpg"],
-        "Twitter": ["https://twitter.com/mad_enrico", "https://cdn-icons-png.flaticon.com/512/733/733579.png"],
-        "YouTube": ["https://www.youtube.com/@enricd", "https://cdn-icons-png.flaticon.com/512/1384/1384060.png"],
-        "Medium": ["https://medium.com/@enricdomingo", "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Medium_logo_Monogram.svg/1200px-Medium_logo_Monogram.svg.png"]
+        "Kaggle": ["https://www.kaggle.com/devkotak", "https://www.kaggle.com/static/images/site-logo.svg"],
+        "LinkedIn": ["https://www.linkedin.com/in/dev-kotak", "https://cdn-icons-png.flaticon.com/512/174/174857.png"],
+        "GitHub": ["https://github.com/dev856", "https://icon-library.com/images/github-icon-white/github-icon-white-6.jpg"],
+        "Googl Cloud":["https://www.cloudskillsboost.google/public_profiles/2ea83866-2659-422e-955c-2b92e671aac2", "https://icon-library.com/images/google-cloud-platform-icon/google-cloud-platform-icon-9.jpg"]            
     }
 
     social_icons_html = [f"<a href='{social_icons_data[platform][0]}' target='_blank' style='margin-right: 10px;'><img class='social-icon' src='{social_icons_data[platform][1]}' alt='{platform}'></a>" for platform in social_icons_data]
@@ -75,26 +75,28 @@ def home():
     # About me section
     st.subheader("About Me")
     st.write("""
-    - 🧑‍💻 I am a **Senior ML and Software Engineer** @ [ERNI](https://www.betterask.erni/) working on a [Boehringer Ingelheim](https://www.boehringer-ingelheim.com)'s pharma project 
-    - 🛩️ prev: Co-founder, Flight Ops Manager and UAS Developer Pilot @ [Venturi Unmanned Technologies](https://www.youtube.com/@venturiunmannedtechnologie2518/featured)
-    - ❤️ I am passionate about **Machine Learning/Deep Learning, MLOps, Data, Software Engineering, Computer Vision, Bioinformatics, UAVs, Optimization, Automation**, and more!
+    - 🧑‍💻 I am a **Computer Science Engineering Graduate** working on a Deep Learning project 
     
-    - 🤖 I enojoy developing projects such as [SpeedClimbing.AI](https://www.instagram.com/speedclimbing.ai) (🏗️under construction) and participating at platforms like [Kaggle](https://www.kaggle.com/edomingo) 📈
+    - ❤️ I am passionate about **Machine Learning/Deep Learning, MLOps, Data, Software Engineering, Computer Vision, Bioinformatics, UAVs, Optimization, Automation**, and more!
     
     - 🏂 Also practicing sports such as snowboard, wakeboard and climbing 🧗
     
-    - 📫 How to reach me: contact.enricd@gmail.com
+    - 📫 How to reach me: devhkotak@gmail.com
     
-    - 🏠 Barcelona
+    - 🏠 Gujarat, India
     """)
-
+    
     st.write("##")
+    st.subheader("Experience")
+    st.write("""
+    - 
 
+    """)
     # Download CV button
     st.download_button(
         label="📄 Download my CV",
         data=pdf_bytes,
-        file_name="Enric_linkedin_cv.pdf",
+        file_name="Profile.pdf",
         mime="application/pdf",
     )
 
