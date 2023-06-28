@@ -75,23 +75,44 @@ def home():
     # About me section
     st.subheader("About Me")
     st.write("""
-    - 🧑‍💻 I am a **Computer Science Engineering Graduate** working on a Deep Learning project 
+    - 🧑‍💻 Self-motivated and hardworking Computer Science and Engineering student eager to work in the field of Data
+         Science, Machine Learning, and Deep Learning. Bringing forth a motivated attitude and a variety of powerful
+         skills to become an excellent computer science engineer by polishing technical and analytical abilities for
+         personal development and making a valuable contribution to the institute and the technological field. 
     
-    - ❤️ I am passionate about **Machine Learning/Deep Learning, MLOps, Data, Software Engineering, Computer Vision, Bioinformatics, UAVs, Optimization, Automation**, and more!
-    
-    - 🏂 Also practicing sports such as snowboard, wakeboard and climbing 🧗
+    - ❤️ I am passionate about **Machine Learning/Deep Learning, MLOps, Data, Software Engineering, Computer Vision, UAVs, Optimization, Automation**, and more!
     
     - 📫 How to reach me: devhkotak@gmail.com
-    
-    - 🏠 Gujarat, India
+
     """)
     
     st.write("##")
-    st.subheader("Experience")
+    st.subheader("Education")
+    st.subheader("Bachelor of Technology in Computer Science and Engineering")
+    st.subheader("Charotar University of Science and Technology")
     st.write("""
-    - 
+    - CGPA - **9.25**
+    - Recipient of Mukhyamantri Yuva Swavalamban Scholarship Yojana.
+    - Courses: 
+    - Java Programming, Object-oriented Programming with C++, Programming in Python, Data Struc-ture & Algorithms, 
+      Design & Analysis of algorithms, Machine learning, Artificial Intelligence, Software Engineering, 
+      Theory of Computation, Data Communication & Networking, Computer Networks, Modern Net-works
 
     """)
+    st.subheader("Higher Secondary Education (Class- XI, XII)")
+    st.subheader("Hiramohan Vidhyalaya")
+    st.write("""
+    - Percentage - **82"%"** Grade- **A2**
+    - Specialised in Physics , Chemistry and Mathematics
+    """)
+    st.subheader("Secondary Education (Class - X)")
+    st.subheader("Ultra Vision Academy")
+    st.write("""
+    - Percentage - **92"%"** Grade- **A1**
+    - Activities-  Reached the second round of Quiz on Digital India: Digital Gujarat held at LDRP organized by GUJCOST. 
+      Participated in Science Competition organized by Institute for Plasma Research, Gandhinagar.
+    """)
+
     # Download CV button
     st.download_button(
         label="📄 Download my CV",
@@ -102,7 +123,7 @@ def home():
 
     st.write("##")
     
-    st.write(f"""<div class="subtitle" style="text-align: center;">⬅️ Check out my Projects in the navigation menu! (Coming soon...)</div>""", unsafe_allow_html=True)
+    st.write(f"""<div class="subtitle" style="text-align: center;">⬅️ Check out my Projects and other details in the navigation menu! )</div>""", unsafe_allow_html=True)
 
 
 if __name__=="__main__":
