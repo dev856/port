@@ -1,5 +1,6 @@
 import streamlit as st
 import base64
+from annotated_text import annotated_text
 
 
 def home():
@@ -116,13 +117,13 @@ def home():
     - 📫 How to reach me: devhkotak@gmail.com
 
     """)
-    
+    st.divider()
     st.write("##")
     st.subheader("Education")
     txt("Bachelor of Technology in Computer Science and Engineering","July 2019 to May 2023")
     txt("**Charotar University of Science and Technology**","Anand,Gujarat")
     st.markdown("""
-    - CGPA - **9.25**
+    - :green[CGPA - **9.25/10.00** -**WES ICAP Evluation - 3.92/4.00**]
     - Recipient of Mukhyamantri Yuva Swavalamban Scholarship Yojana.
     - Courses: 
     - Java Programming, Object-oriented Programming with C++, Programming in Python, Data Struc-ture & Algorithms, 
@@ -130,12 +131,14 @@ def home():
       Theory of Computation, Data Communication & Networking, Computer Networks, Modern Net-works
 
     """)
+    st.divider()
     txt("Higher Secondary Education (Class- XI, XII)","2017 to 2019")
     txt("**Hiramohan Vidhyalaya**", "Gujarat")
     st.markdown("""
     - Percentage - **82%** Grade- **A2**
     - Specialised in Physics , Chemistry and Mathematics
     """)
+    st.divider()
     txt("Secondary Education (Class - X)","2016 to 2017")
     txt("**Ultra Vision Academy**","Gujarat")
     st.markdown("""
@@ -143,8 +146,31 @@ def home():
     - Activities-  Reached the second round of Quiz on Digital India: Digital Gujarat held at LDRP organized by GUJCOST. 
       Participated in Science Competition organized by Institute for Plasma Research, Gandhinagar.
     """)
+    st.divider() 
 
+    st.subheader('''Skills''')
+    txt3('Programming', '`Python`, `C/C++`, `Linux`,`Java`')
+    txt3('Data processing/wrangling', '`SQL`, `pandas`, `numpy`')
+    txt3('Data visualization', '`matplotlib`, `seaborn`, `plotly`')
+    txt3('Machine Learning', '`scikit-learn`,`PyTorch`,`Keras`')
+    txt3('Deep Learning', '`TensorFlow`')
+    txt3('Web development', '`JavaScript`, `HTML`, `CSS`,`NodeJS`,`ExpressJs`')
+    txt3('Model deployment', '`streamlit`, `Heroku`')
+    txt3('Tools & Technologies','`Google Cloud Platform`,`MATLAB`,`Git`,`GitLab`')
+    txt3('Industry Knowledge','`Database Management System`,`Object Oriented Programming`,`Competitive Programming`,`Cloud Computing`,`Computer Vision`,`Machine Learning`')
+    txt3('Interpersonal Skills', '`Problem Solving`,`Leadership`,`Teamwork`')
+    
+    #st.balloons()
+    #st.spinner(text="In progress...")
     # Download CV button
+    st.divider()
+
+    st.subheader('''Social Media''')
+    txt2('LinkedIn', 'https://www.linkedin.com/in/dev-kotak')
+    txt2('GitHub', 'https://github.com/dev856/')
+    
+    st.divider()
+
     st.download_button(
         label="📄 Download my CV",
         data=pdf_bytes,
