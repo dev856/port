@@ -4,6 +4,7 @@ import base64
 
 def home():
     # Page configs (tab title, favicon)
+   
     st.set_page_config(
         page_title="Dev Kotak's Portfolio",
         page_icon="👨‍💻",
@@ -49,6 +50,36 @@ def home():
     #    <img src="{img}" alt="Enric Domingo" width="300" height="300" style="border-radius: 50%; object-fit: cover; margin-top: 40px; margin-bottom: 40px;">
     # </div>
     # """, unsafe_allow_html=True)
+       # Custom function for printing text
+    def txt(a, b):
+        col1, col2 = st.columns([4,1])
+        with col1:
+            st.markdown(a)
+        with col2:
+            st.markdown(b)
+
+    def txt2(a, b):
+        col1, col2 = st.columns([1,4])
+        with col1:
+            st.markdown(f'`{a}`')
+        with col2:
+            st.markdown(b)
+
+    def txt3(a, b):
+        col1, col2 = st.columns([1,2])
+        with col1:
+            st.markdown(a)
+        with col2:
+            st.markdown(b)
+    
+    def txt4(a, b, c):
+        col1, col2, col3 = st.columns([1.5,2,2])
+        with col1:
+            st.markdown(f'`{a}`')
+        with col2:
+            st.markdown(b)
+        with col3:
+            st.markdown(c)
 
     # Subtitle
     st.write(f"""<div class="subtitle" style="text-align: center;">Machine Learning and Deep Learning Enthusiast</div>""", unsafe_allow_html=True)
@@ -74,13 +105,13 @@ def home():
 
     # About me section
     st.subheader("About Me")
-    st.write("""
+    st.info("""
     - 🧑‍💻 Self-motivated and hardworking Computer Science and Engineering student eager to work in the field of Data
          Science, Machine Learning, and Deep Learning. Bringing forth a motivated attitude and a variety of powerful
          skills to become an excellent computer science engineer by polishing technical and analytical abilities for
          personal development and making a valuable contribution to the institute and the technological field. 
     
-    - ❤️ I am passionate about **Machine Learning/Deep Learning, MLOps, Data, Software Engineering, Computer Vision, UAVs, Optimization, Automation**, and more!
+    - ❤️ I am passionate about **Machine Learning/Deep Learning, MLOps, Data, Software Engineering, Computer Vision, Optimization, Automation**, and more!
     
     - 📫 How to reach me: devhkotak@gmail.com
 
@@ -88,9 +119,9 @@ def home():
     
     st.write("##")
     st.subheader("Education")
-    st.subheader("Bachelor of Technology in Computer Science and Engineering")
-    st.subheader("Charotar University of Science and Technology")
-    st.write("""
+    txt("Bachelor of Technology in Computer Science and Engineering","July 2019 to May 2023")
+    txt("**Charotar University of Science and Technology**","Anand,Gujarat")
+    st.markdown("""
     - CGPA - **9.25**
     - Recipient of Mukhyamantri Yuva Swavalamban Scholarship Yojana.
     - Courses: 
@@ -99,16 +130,16 @@ def home():
       Theory of Computation, Data Communication & Networking, Computer Networks, Modern Net-works
 
     """)
-    st.subheader("Higher Secondary Education (Class- XI, XII)")
-    st.subheader("Hiramohan Vidhyalaya")
-    st.write("""
-    - Percentage - **82"%"** Grade- **A2**
+    txt("Higher Secondary Education (Class- XI, XII)","2017 to 2019")
+    txt("**Hiramohan Vidhyalaya**", "Gujarat")
+    st.markdown("""
+    - Percentage - **82%** Grade- **A2**
     - Specialised in Physics , Chemistry and Mathematics
     """)
-    st.subheader("Secondary Education (Class - X)")
-    st.subheader("Ultra Vision Academy")
-    st.write("""
-    - Percentage - **92"%"** Grade- **A1**
+    txt("Secondary Education (Class - X)","2016 to 2017")
+    txt("**Ultra Vision Academy**","Gujarat")
+    st.markdown("""
+    - Percentage - **92%** Grade- **A1**
     - Activities-  Reached the second round of Quiz on Digital India: Digital Gujarat held at LDRP organized by GUJCOST. 
       Participated in Science Competition organized by Institute for Plasma Research, Gandhinagar.
     """)
