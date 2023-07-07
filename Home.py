@@ -1,6 +1,5 @@
 import streamlit as st
 import base64
-from annotated_text import annotated_text
 
 def home():
     # Page configs (tab title, favicon)
