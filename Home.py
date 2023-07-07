@@ -2,7 +2,6 @@ import streamlit as st
 import base64
 from annotated_text import annotated_text
 
-
 def home():
     # Page configs (tab title, favicon)
    
@@ -91,7 +90,9 @@ def home():
         "Kaggle": ["https://www.kaggle.com/devkotak", "https://www.kaggle.com/static/images/site-logo.svg"],
         "LinkedIn": ["https://www.linkedin.com/in/dev-kotak", "https://cdn-icons-png.flaticon.com/512/174/174857.png"],
         "GitHub": ["https://github.com/dev856", "https://icon-library.com/images/github-icon-white/github-icon-white-6.jpg"],
-        "Googl Cloud":["https://www.cloudskillsboost.google/public_profiles/2ea83866-2659-422e-955c-2b92e671aac2", "https://icon-library.com/images/google-cloud-platform-icon/google-cloud-platform-icon-9.jpg"]            
+        "Googl Cloud":["https://www.cloudskillsboost.google/public_profiles/2ea83866-2659-422e-955c-2b92e671aac2", "https://icon-library.com/images/google-cloud-platform-icon/google-cloud-platform-icon-9.jpg"],
+        "Gmail": ["devhkotak@gmail.com","https://icon-library.com/images/gmail-icon-circle/gmail-icon-circle-7.jpg"],
+        "Hackerrank": ["https://www.hackerrank.com/anonymous_0001","https://cdn.icon-icons.com/icons2/2389/PNG/512/hackerrank_logo_icon_145206.png"]            
     }
 
     social_icons_html = [f"<a href='{social_icons_data[platform][0]}' target='_blank' style='margin-right: 10px;'><img class='social-icon' src='{social_icons_data[platform][1]}' alt='{platform}'></a>" for platform in social_icons_data]
@@ -105,8 +106,9 @@ def home():
     st.write("##")
 
     # About me section
+    #st.markdown(":information_source:")
     st.subheader("About Me")
-    st.info("""
+    st.info('''
     - 🧑‍💻 Self-motivated and hardworking Computer Science and Engineering student eager to work in the field of Data
          Science, Machine Learning, and Deep Learning. Bringing forth a motivated attitude and a variety of powerful
          skills to become an excellent computer science engineer by polishing technical and analytical abilities for
@@ -115,22 +117,20 @@ def home():
     - ❤️ I am passionate about **Machine Learning/Deep Learning, MLOps, Data, Software Engineering, Computer Vision, Optimization, Automation**, and more!
     
     - 📫 How to reach me: devhkotak@gmail.com
+    ''')
 
-    """)
     st.divider()
     st.write("##")
+    #st.markdown(''':school:''')
     st.subheader("Education")
-    txt("Bachelor of Technology in Computer Science and Engineering","July 2019 to May 2023")
+    txt("**Bachelor of Technology in Computer Science and Engineering**","July 2019 to May 2023")
     txt("**Charotar University of Science and Technology**","Anand,Gujarat")
-    st.markdown("""
+    st.markdown('''
     - :green[CGPA - **9.25/10.00** -**WES ICAP Evluation - 3.92/4.00**]
     - Recipient of Mukhyamantri Yuva Swavalamban Scholarship Yojana.
     - Courses: 
-    - Java Programming, Object-oriented Programming with C++, Programming in Python, Data Struc-ture & Algorithms, 
-      Design & Analysis of algorithms, Machine learning, Artificial Intelligence, Software Engineering, 
-      Theory of Computation, Data Communication & Networking, Computer Networks, Modern Net-works
-
-    """)
+    - Java Programming, Object-oriented Programming with C++, Programming in Python, Data Struc-ture & Algorithms,Design & Analysis of algorithms, Machine learning, Artificial Intelligence, Software Engineering, Theory of Computation, Data Communication & Networking, Computer Networks, Modern Net-works
+    ''')
     st.divider()
     txt("Higher Secondary Education (Class- XI, XII)","2017 to 2019")
     txt("**Hiramohan Vidhyalaya**", "Gujarat")
@@ -185,3 +185,5 @@ def home():
 
 if __name__=="__main__":
     home()
+
+
