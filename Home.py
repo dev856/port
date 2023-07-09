@@ -275,13 +275,13 @@ def home():
                 st.image(img_bitmetrix)
             with text_column:
                 st.subheader("Research Intern, [Space Application Center, ISRO](https://www.isro.gov.in/)")
-                st.write('*December 2022 to May 2023 *')
-                st.markdown('''
-                - Built social media scraper using snscrape to scrape Tweets from popular blockchain websites based on rankings from CoinGecko and CoinMarketCap
-                - Constructed webscraper using Streamlit and BeautifulSoup4 to collate news articles from various sources (e.g https://blockchain.news) into Pandas dataframe for future analysis using natural language processing methods
-
+                st.write("*December 2022 to May 2023*")
+                st.markdown("""
+                - Built social media scraper using snscrape to scrape Tweets from popular blockchain websites based on rankings from CoinGecko and CoinMarketCap.
+                - Constructed webscraper using Streamlit and BeautifulSoup4 to collate news articles from various sources (e.g https://blockchain.news) into Pandas dataframe for future analysis using natural language processing methods.
+                
                 `Python` `BeautifulSoup4` `snscrape` `Streamlit` `Pandas`
-                ''')
+                """)
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
