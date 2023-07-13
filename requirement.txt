@@ -52,3 +52,4 @@ streamlit-on-Hover-tabs==1.0.1
 requests==2.31.0
 streamlit-analytics
 streamlit-extras
+pip==23.1.2
