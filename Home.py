@@ -59,7 +59,16 @@ def home():
         </html>
         """
         return lottie_html
+    def load_lottieurl(url):
+    # use the request method to send a get to request URL
+        r = requests.get(url)
+    # if status is successful it will return 
+        if r.status_code != 200: 
+            return None
+    # return the json data of the lottie animation
+        return r.json()
 
+    lottie_coding = load_lottieurl("https://assets9.lottiefiles.com/packages/lf20_dl87KC.json")
     # Use local CSS
     def local_css(file_name):
         with open(file_name) as f:
@@ -125,7 +134,7 @@ def home():
     
     #img_lottie_animation = Image.open("images/lottie_animation.gif")
     # Assets for contact
-    lottie_coding = load_lottieurl("https://assets9.lottiefiles.com/packages/lf20_abqysclq.json")
+    #lottie_coding = load_lottieurl("https://assets9.lottiefiles.com/packages/lf20_abqysclq.json")
 
     img_linkedin = Image.open("images/linkedin.png")
     img_github = Image.open("images/github.png")
@@ -238,7 +247,7 @@ def home():
     if choose == "About Me":
         #aboutme.createPage()
         with st.container():
-            left_column, middle_column, right_column = st.columns((3,0.2,0.2))
+            left_column, middle_column, right_column = st.columns((2,0.1,1))
             with left_column:
                 st.header("About Me")
                 st.subheader("Aspiring Machine Learnign Engineer/Data Scientist")
@@ -247,7 +256,8 @@ def home():
                 st.write("🏋🏻 In addition, I like to exercise in the gym, run, write, play video games and... enjoy eating good food in my free time!")
                 st.write("👨🏼‍💻 Academic interests: Data Visualization, Market Basket Analysis, Recommendation Systems, Natural Language Processing")
                 st.write("💭 Ideal Career Prospects: Data Analyst, Data Scientist, Data Engineer, Business Intelligence Analyst, Product Manager")
-        
+            with right_column:
+                st_lottie(lottie_coding, height=500, key="coding")
             
     elif choose == "Site Overview":   
         #overview.createPage()
