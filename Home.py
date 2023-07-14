@@ -122,6 +122,10 @@ def home():
     img_ifg = Image.open("images/lh.jpeg")
     #Assets for internship
     img_bitmetrix = Image.open("images/isro.png")
+    img_scor = Image.open("images/jupiter.png")
+    img_zummit = Image.open("images/zummit.png")
+    img_dep = Image.open("images/depstar.png")
+    img_kintu = Image.open("images/kintu.jpeg")
     
     # Assets for education
     img_sji = Image.open("images/charusat.jpg")
@@ -251,7 +255,7 @@ def home():
             with left_column:
                 st.header("About Me")
                 st.subheader("Aspiring Machine Learnign Engineer/Data Scientist")
-                st.write("👋🏻 Hi, I'm Harry! I'm a data science and analytics undergraduate based in Singapore. Having prior relevant experiences in tech, reinsurance and consulting sectors, I am constantly seeking unique internships to broaden my horizons before embarking on my data career upon graduation.")
+                st.write("👋🏻 Hi, I'm Dev! I'm a data science and analytics undergraduate based in Singapore. Having prior relevant experiences in tech, reinsurance and consulting sectors, I am constantly seeking unique internships to broaden my horizons before embarking on my data career upon graduation.")
                 st.write("💼 With the COVID-19 pandemic behind us, I believe there is potential for data science to be applied in the retail industry. In response to the increasing demand for data analytics from both online and brick-and-mortar sales, I am thus aiming to enter this industry for my first full-time job.")
                 st.write("🏋🏻 In addition, I like to exercise in the gym, run, write, play video games and... enjoy eating good food in my free time!")
                 st.write("👨🏼‍💻 Academic interests: Data Visualization, Market Basket Analysis, Recommendation Systems, Natural Language Processing")
@@ -263,7 +267,7 @@ def home():
         #overview.createPage()
         st.header("Site Overview")
         st.markdown("""
-        - Originally, I started developing this website as a portfolio, essentially an extended resume. During the process, I realized the distinctive qualities of Streamlit compared to traditional front-end frameworks like Angular and Bootstrap. While Streamlit is primarily used for creating web application dashboards, its extensive features make it more visually appealing to explore than alternatives such as Plotly and Shiny.
+        - Originally, I started developing this website as a portfolio, essentially an extended resume. During the process, I realized the distinctive qualities of Streamlit compared to traditional front-end frameworks. While Streamlit is primarily used for creating web application dashboards, its extensive features make it more visually appealing to explore than alternatives such as Plotly and Shiny.
         """)
         with st.container():
                 col1, col2, col3 = st.columns((1,3,1))
@@ -287,62 +291,66 @@ def home():
                 st.subheader("Research Intern, [Space Application Center, ISRO](https://www.isro.gov.in/)")
                 st.write("*December 2022 to May 2023*")
                 st.markdown("""
-                - Built social media scraper using snscrape to scrape Tweets from popular blockchain websites based on rankings from CoinGecko and CoinMarketCap.
-                - Constructed webscraper using Streamlit and BeautifulSoup4 to collate news articles from various sources (e.g https://blockchain.news) into Pandas dataframe for future analysis using natural language processing methods.
+                - Worked on Machine learning techniques to estimate hydrological flues over different river basins of India.
+                - Performed Analysis on Indian river basins dataset.
+                - Analysis of Rainfall, Evapotranspiration, Groundwater Recharge helped to manage water resources across rivers.
+                - Technical Skills: `Python` `Google Earth Engine` `JavaScript` `Google Colab, Git`.
+                - Soft Skills: `Presentation` `problem solving` `Time management` `Communication skills`.
                 
-                `Python` `BeautifulSoup4` `snscrape` `Streamlit` `Pandas`
                 """)
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
                 st.image(img_scor)
             with text_column:
-                st.subheader("Actuarial Intern, [SCOR](https://scor.com)")
-                st.write("*May to August 2022* | [*Testimonial*](https://drive.google.com/file/d/1seUP5OcXV5irA1Y1qt0cKnd7uQnLJLzw/view?usp=share_link)")
+                st.subheader("Machine Learning Intern, [Jupiter AI Labs Pvt. Ltd.](https://juppiterailabs.com/)")
+                st.write("*Dec 2022 to Feb 2023* | [*Certificate*](https://drive.google.com/file/d/1VYHlbY-K7cDr96Mv-6pRR6ev3idHyPeA/view?usp=sharing)")
                 st.markdown("""
-                - Performed actuarial analysis of reinsurance treaties in various APAC markets, including entry of client portfolio and loss data into xAct (treaty pricing system)
-                - Regularly updated and analysed risk profiles and claims databases for insurance markets in Pakistan, Thailand and Vietnam
-                - Trained machine learning models (logistic regression, random forest) to predict insurance claims, with an average accuracy of 80% for each model
+                - Created End to End Machine Learning solutions for Knowledge hut Client.
+                - Worked on integration of ChatGpt and Chrome extensions.
+                - Worked on AI Prompt Engineering project.
+                - Technical Skills: `Python` `OpenAI` `TensorFlow` `Scikit-learn` `Git`
+                - Soft Skills: `Innovation` `Detail oriented` `Decision-making` `Prioritization`
 
-                `Excel` `Python` `R` `xAct` `VBA`
                 """)
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
-                st.image(img_sshsph)
+                st.image(img_zummit)
             with text_column:
-                st.subheader("Public Health Intern, [Saw Swee Hock School of Public Health](https://sph.nus.edu.sg/)")
-                st.write("*January to May 2021*")
+                st.subheader("Data Science Intern, [Zummit Infolabs Pvt. Ltd.](https://zummitlabs.com/)")
+                st.write("*June 2022 to Sept 2022*")
                 st.markdown("""
-                - Conducted literature reviews and summarized papers related to public health
-                - Drafted case study report on British population health system, including impacts from COVID-19
-                - Collaborated with other students to compare successes and challenges of Britain, Canada and New Zealand’s healthcare systems
+                - Completed learning path containing python programming concepts.
+                - Facial Features Detection using Dlib.
+                - Worked on Emotion detection classifier model for Kaggle FER Dataset.
+                - Performed Object Detection using YOLO.
+                - Technical Skills: `Python` `NumPy` `Matplotlib` `Pandas` `TensorFlow` `Scikit-learn` `Git`
+                - Soft Skills: `Teamwork` `Presentation skills` `Decision-making` `Dedication`
                 """)
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
-                st.image(img_iasg)
+                st.image(img_dep)
             with text_column:
-                st.subheader("Data Migration Intern, [Immigration@SG LLP](https://iasg.com.sg/)")
-                st.write("*October 2020 to January 2021* | [*Testimonial*](https://drive.google.com/file/d/11qFI-9TMfjOk1OxuyQ9ho9A7D6KuIsXp/view?usp=sharing)")
+                st.subheader("Machine Learning Intern, [Devang Patel Institute of Advance Technology and Research(CHARUSAT)](https://charusat.ac.in/)")
+                st.write("*May 2022 to June 2022* | [*Certificate*]()")
                 st.markdown("""
-                - Cleaned over 30,000 records using Pandas to facilitate smooth data migration into new CRM system
-                - Derived customer segmentation models using regression models and market basket analysis (association rule mining) to improve company’s marketing strategies
-                - Completed time series analysis using past sales data to forecast future monthly revenue
-
-                `Excel` `ggplot2` `Python` `pandas` `R`
+                - Produced a lightweight solution for Yoga Pose estimation which predicts the yoga asanas using MediaPipe.
+                - Classified Yoga poses using angle heuristic approach by detecting human poses and also worked on Research paper.
+                - Worked on Deep Learning based solution for classification of Yoga asanas for the best results.
+                - Technical Skills: `Python` `NumPy` `MediaPipe` `Pose Detection` `Pose Estimation` `OpenCV` `Git`
+                - Soft Skills: `Research skills` `Time Management` `Writing Skills` `punctuality`
                 """)
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
-                st.image(img_yll)
+                st.image(img_kintu)
             with text_column:
                 st.subheader("Temporary Management Support Staff, [Yong Loo Lin School of Medicine](https://medicine.nus.edu.sg/)")
                 st.write("*February to June 2019*")
                 st.markdown("""
-                - Answered up to 100 different queries daily regarding undergraduate admissions
-                - Managed venue preparations for admissions interviews involving over 1,000 candidates over the span of 2 weeks
-                - Supported set-up of faculty booth for NUS Open House, with an estimated attendance of 30,000 visitors in one day
+                
                 """)
         with st.container():
             image_column, text_column = st.columns((1,5))
@@ -859,11 +867,11 @@ def home():
                 st.image(images_projects[12])
    
     
-    #st.divider()
+    st.divider()
 
     st.write("##")
     
-    st.write(f"""<div class="subtitle" style="text-align: center;">⬅️ Check out my Projects and other details in the navigation menu! )</div>""", unsafe_allow_html=True)
+    st.write(f"""<div class="subtitle" style="text-align: center;">⬅️ Check out my Projects and other details in the navigation menu!</div>""", unsafe_allow_html=True)
 
 
 if __name__=="__main__":
