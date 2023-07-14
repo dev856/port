@@ -1,6 +1,5 @@
 import streamlit as st
 import base64
-!pip install streamlit_option_menu
 from streamlit_option_menu import option_menu
 from streamlit.components.v1 import html
 from st_on_hover_tabs import on_hover_tabs
