@@ -859,7 +859,7 @@ def home():
                 st.image(images_projects[12])
    
     
-    st.divider()
+    #st.divider()
 
     st.write("##")
     
