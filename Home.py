@@ -120,16 +120,19 @@ def home():
     img_utown = Image.open("images/lh.jpeg")
     img_lh = Image.open("images/lh.jpeg")
     img_ifg = Image.open("images/lh.jpeg")
+
     #Assets for internship
     img_bitmetrix = Image.open("images/isro.png")
     img_scor = Image.open("images/jupiter.png")
     img_zummit = Image.open("images/zummit.png")
     img_dep = Image.open("images/depstar.png")
     img_kintu = Image.open("images/kintu.jpeg")
-    
+    img_spark = Image.open("images/spark.png")
     # Assets for education
-    img_sji = Image.open("images/charusat.jpg")
+    
     img_nus = Image.open("images/charusat.jpg")
+    img_poc = Image.open("images/hira.jpg")
+    img_tpjc = Image.open("images/ultra.jpeg")
     # Assets for projects
     
     #images_projects = [Image.open(f"images/{name}.{'jpg' if name not in ('map', 'gephi', 'health') else 'png'}") for name in image_names_projects]
@@ -298,6 +301,7 @@ def home():
                 - Soft Skills: `Presentation` `problem solving` `Time management` `Communication skills`.
                 
                 """)
+        st.divider()        
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
@@ -313,6 +317,7 @@ def home():
                 - Soft Skills: `Innovation` `Detail oriented` `Decision-making` `Prioritization`
 
                 """)
+        st.divider()
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
@@ -328,6 +333,7 @@ def home():
                 - Technical Skills: `Python` `NumPy` `Matplotlib` `Pandas` `TensorFlow` `Scikit-learn` `Git`
                 - Soft Skills: `Teamwork` `Presentation skills` `Decision-making` `Dedication`
                 """)
+        st.divider()
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
@@ -342,29 +348,37 @@ def home():
                 - Technical Skills: `Python` `NumPy` `MediaPipe` `Pose Detection` `Pose Estimation` `OpenCV` `Git`
                 - Soft Skills: `Research skills` `Time Management` `Writing Skills` `punctuality`
                 """)
+        st.divider()
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
                 st.image(img_kintu)
             with text_column:
-                st.subheader("Temporary Management Support Staff, [Yong Loo Lin School of Medicine](https://medicine.nus.edu.sg/)")
-                st.write("*February to June 2019*")
+                st.subheader("NodeJS and Botpress.io Intern, [Kintu Designs Pvt. Ltd.](https://kintudesigns.com/public/)")
+                st.write("*June 2021 to September 2021*")
                 st.markdown("""
+                - Completed Node.JS course as a learning path for internship.
+                - Worked on ChatBot using Botpress for Zipply - delivery Application.
+                - Configured google maps API and other live tasks during the internship.
+                - Technical Skills: `Botpress.io` `Node.js` `Express.Js` `MySql`
+                - Soft Skills: `Cooperation` `Communication` `Problem Solving` `Logical Thinking`
                 
                 """)
+        st.divider()
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
-                st.image(img_saf)
+                st.image(img_spark)
             with text_column:
-                st.subheader("Administrative Support Assistant, [Singapore Armed Forces](https://www.mindef.gov.sg/web/portal/mindef/home)")
-                st.write("*January 2017 to January 2019* | [*Testimonial*](https://drive.google.com/file/d/1O6Yu0P65dU8LCSDuXkf9BvlQJoz_5mRW/view?usp=sharing)")
+                st.subheader("Data Science and Business Analytics Intern, [The Sparks Foundation](https://www.thesparksfoundationsingapore.org/)")
+                st.write("*Jan 2021 to Feb 2021* | [*Testimonial*](https://drive.google.com/file/d/1O6Yu0P65dU8LCSDuXkf9BvlQJoz_5mRW/view?usp=sharing)")
                 st.markdown("""
-                - Assisted in organising division-level In-Camp Trainings, conferences and welfare events
-                - Handled daily administration of Operations Branch, including indentation of office equipment, budget management and food rations
-                - Promoted to Corporal First Class (CFC) for outstanding efforts
+                - Predicted the study hours of students using Supervised Machine Learning algorithms.
+                - Worked on Iris dataset and predicted the optimum number of clusters and represented it visually.
+                - Used supervised and Unsupervised Machine learning algorithms for prediction tasks
+                - Technical Skills: `Python` `Machine Learning`
+                - Soft Skills: `Adaptability` `Work ethic` `Honesty`
                 
-                `Excel` `GeBiz` `GIS` `Outlook` `PowerPoint` `Word`
                 """)
         st.markdown('''
         <style>
@@ -378,18 +392,18 @@ def home():
     elif choose == "Technical Skills":
     #st.write("---")
         st.header("Technical Skills")
-        txt3("Programming Languages","`R`, `Python`, `SQL`, `Java`, `Stata`, `MATLAB`")
-        txt3("Academic Interests","`Data Visualization`, `Market Basket Analysis`, `Recommendation Systems`, `Natural Language Processing`")
-        txt3("Data Visualization", "`ggplot2`, `matplotlib`, `seaborn`, `Plotly`, `Folium`, `Gephi`, `GIS`, `Tableau`, `Power BI`, `Google Data Studio`, `Domo`, `Google Analytics`")
-        txt3("Database Systems", "`MySQL`, `PostgreSQL`, `SQLite`, `NoSQL`, `Google BigQuery`, `Cloud Firestore`")
-        txt3("Cloud Platforms", "`Google Cloud Platform`, `Amazon Web Services`, `Heroku`, `Streamlit Cloud`, `Render`, `Hugging Face`")
+        txt3("Programming Languages","`C/C++`, `Python`, `SQL`, `Java`, `MATLAB`")
+        txt3("Academic Interests","`Data Visualization`, `Recommendation Systems`, `Natural Language Processing`")
+        txt3("Data Visualization", "`matplotlib`, `seaborn`, `Plotly`, `Folium`, `GIS`,`Google Data Studio`")
+        txt3("Database Systems", "`MySQL`, `SQLite`, `NoSQL`")
+        txt3("Cloud Platforms", "`Google Cloud Platform`, `Streamlit Cloud`, `Hugging Face`")
         txt3("Natural Language Processing", "`NLTK`, `Word2Vec`, `TF-IDF`, `TextStat`")
-        txt3("Version Control", "`Git`, `Docker`")
-        txt3("Design and Front-end Development", "`Canva`, `Figma`, `HTML`, `CSS`, `Streamlit`, `Wordpress`")
-        txt3("Data Science Techniques", "`Regression`, `Clustering`, `Association Rules Mining`, `Random Forest`, `Decison Trees`, `Principal Components Analysis`, `Text Classification`, `Sentiment Analysis`, `Matrix Factorisation`, `Collaborative Filtering`")
-        txt3("Machine Learning Frameworks", "`Numpy`, `Pandas`, `Scikit-Learn`, `TensorFlow`, `Keras`, `JAX`")
-        txt3("Task Management Tools", "`Asana`, `Notion`, `ClickUp`, `Slack`, `Jira`, `Confluence`")
-        txt3("Miscellaneous", "`Google Firebase`, `Microsoft Office`, `Retool`, `Google Ads`")
+        txt3("Version Control", "`Git`")
+        txt3("Design and Front-end Development", "`Canva`, `HTML`, `CSS`, `Streamlit`, `Wordpress`")
+        txt3("Data Science Techniques", "`Regression`, `Clustering`, `Random Forest`, `Decison Trees`, `Text Classification`, `Sentiment Analysis`, `Matrix Factorisation`")
+        txt3("Machine Learning Frameworks", "`Numpy`, `Pandas`, `Scikit-Learn`, `TensorFlow`, `Keras`")
+        txt3("Task Management Tools", "`Notion`, `ClickUp`, `Slack`, `Jira`")
+        txt3("Miscellaneous", "`Microsoft Office`, `Google Ads`")
 
 # Create section for Education
 #st.write("---")
@@ -407,24 +421,22 @@ def home():
                 with image_column:
                     st.image(img_nus)
                 with text_column:
-                    st.subheader("Bachelor of Science - [Data Science and Analytics](https://www.stat.nus.edu.sg/wp-content/uploads/sites/8/2022/12/NUS-CHS-DSA-Print-FA.pdf), [National University of Singapore](https://nus.edu.sg) (2020-2024)")
-                    st.write("Relevant Coursework: Computers and the Humanities, Convex Optimization, Data Science in Practice, Data Structures and Algorithms, Data Visualization, Database Technology and Management, Linear Algebra, Multivariable Calculus, Optimization for Large-Scale Data-Driven Inference, Probability, Programming Tools for Economics, Regression Analysis, Statistical Learning")
+                    st.subheader("Bachelor of Technology - [Computer Science and Engineering], [Charotar University of Science and Technology ](https://www.charusat.ac.in/) (2019-2023)")
+                    st.write("Relevant Coursework: Java Programming, Object-oriented Programming with C++, Programming in Python, Data Structure & Algorithms, Design & Analysis of algorithms, Machine learning, Artificial Intelligence, Software Engineering, Theory of Computation, Data Communication & Networking, Computer Networks, Modern Networks")
                     st.markdown("""
-                    - [NUS Product Club](https://linkedin.com/company/nusproductclub) - Co-founder & President (2023-24)
-                    - [NUS Statistics and Data Science Society](https://sites.google.com/view/nussds/home) - President (2022), Marketing Director (2021-22)
-                    - [Google Developer Student Clubs NUS](https://dsc.comp.nus.edu.sg/) - Deputy Head of Finance (2021-22)
+                    - CGPA - 9.25/10.00 | WES-ICAP-Eveluation- 3.92/4.00
+                    - Recipient of Mukhyamantri Yuva Swavalamban Yojana Scholarship.- 2019-23
+                    
                     """)
             with st.container():
                 image_column, text_column = st.columns((1,2.5))
                 with image_column:
                     st.image(img_poc)
                 with text_column:
-                    st.subheader("Bachelor of Science - Pharmaceutical Science, [National University of Singapore](https://nus.edu.sg) (2019)")
-                    st.write("Coursework: Foundations of Medicinal Chemistry, Pharmaceutical Biochemistry, Statistics for Life Sciences, Human Anatomy and Physiology, Quantitative Reasoning")
+                    st.subheader("Higher Secondary Education, [Hiramohan Vidhyalaya](https://schools.org.in/surendranagar/24080503891/hira-mohan-vidhyalaya.html) (2017-2019)")
+                    st.write("Coursework: Physics, Chemistry, Mathematics")
                     st.markdown("""
-                    Withdrew from course in 2020, before performing a clean slate transfer to pursue a Bachelor's Degree in Data Science and Analytics
-                    - [NUS Students' Science Club](https://www.nussciencelife.com/) - Marketing Executive, Welfare Subcommittee
-                    - Pharmaceutical Science (Class of 2023) - Assistant Class Representative
+                    - Percentage - 82% Grade - A2
                     """)
             with st.container():
                 image_column, text_column = st.columns((1,2.5))
