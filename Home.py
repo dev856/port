@@ -433,7 +433,7 @@ def home():
                 with image_column:
                     st.image(img_poc)
                 with text_column:
-                    st.subheader("Higher Secondary Education, [Hiramohan Vidhyalaya](https://schools.org.in/surendranagar/24080503891/hira-mohan-vidhyalaya.html) (2017-2019)")
+                    st.subheader("Higher Secondary Education (Class- XI,XII) [Hiramohan Vidhyalaya](https://schools.org.in/surendranagar/24080503891/hira-mohan-vidhyalaya.html) (2017-2019)")
                     st.write("Coursework: Physics, Chemistry, Mathematics")
                     st.markdown("""
                     - Percentage - 82% Grade - A2
@@ -443,44 +443,13 @@ def home():
                 with image_column:
                     st.image(img_tpjc)
                 with text_column:
-                    st.subheader("GCE A Level - [Tampines Junior College](https://www.tmjc.moe.edu.sg/our-heritage/tampines-jc/) (2015 - 2016)")
-                    st.write("Coursework: H2 Chemistry, H2 Economics, H2 Mathematics, H1 Project Work, H1 Chinese, H1 History")
+                    st.subheader("Secondary Education (Class- X) [Ultravision Academy](http://www.ultravisionschool.com/) (2016 - 2017)")
+                    st.write("Coursework: ")
                     st.markdown(""" 
                     - Track and Field - 100m (2016 A Division Semi-finalist), 200m, 4x100m
                     - TPJC Economics and Financial Literacy Fair 2015 - Games Facilitator
                     """)
-            with st.container():
-                image_column, text_column = st.columns((1,2.5))
-                with image_column:
-                    st.image(img_sji)
-                with text_column:
-                    st.subheader("GCE O Level - [Saint Joseph's Institution](https://www.sji.edu.sg/) (2012 - 2014)")
-                    st.write("Coursework: English, Mathematics, Additional Mathematics, Physics, Chemistry, History, Geography Elective, Chinese")
-                    st.markdown(""" 
-                    - Track and Field (Long Jump, 100m)
-                    - [Business Design Thinking](https://www.sp.edu.sg/sp/news/sp/Secondary-students-learn-to-innovate)
-                    - Josephian International Experience Programme (Siem Reap, Cambodia)
-                    """)
-            with st.container():
-                image_column, text_column = st.columns((1,2.5))
-                with image_column:
-                    st.image(img_gmss)
-                with text_column:
-                    st.subheader("Secondary One - [Geylang Methodist School (Secondary)](https://www.geylangmethodistsec.moe.edu.sg/) (2011)")
-                    st.write("Coursework: English, Mathematics, Science, History, Geography, Literature, Chinese, Design & Technology, Home Economics")
-                    st.markdown(""" 
-                    - Volleyball
-                    """)
-            with st.container():
-                image_column, text_column = st.columns((1,2.5))
-                with image_column:
-                    st.image(img_sjij)
-                with text_column:
-                    st.subheader("Primary School Leaving Examination - [Saint Joseph's Institution Junior](https://www.sjijunior.moe.edu.sg/) (2005 - 2010)")
-                    st.write("Coursework: English, Mathematics, Science, Chinese, Higher Chinese")
-                    st.markdown(""" 
-                    - Art Club
-                    """)
+            
         elif selected == "Modules":
             st.subheader("Modules")
             st.write("*List of modules taken at National University of Singapore*")
