@@ -452,19 +452,20 @@ def home():
             
         elif selected == "Modules":
             st.subheader("Modules")
-            st.write("*List of modules taken at National University of Singapore*")
+            st.write("*List of courses taken at Charotar University of Science and Technology*")
             with st.container():
                 sem1, mid, sem2 = st.columns((1,0.1,1))
                 with sem1:
                     st.write("**Academic Year 2019/20 Semester 1**")
                     st.markdown("""
-                    |Code|Module Title                       |Workload|
+                    |Code|Module Title                       |Credit|
                     |--------|--------------------------------------|---------|
-                    |AY1130| Human Anatomy and Physiology I       |4 MCs|
-                    |GER1000| Quantitative Reasoning              |4 MCs|
-                    |PR1110A| Foundations for Medicinal Chemistry |4 MCs|
-                    |PR1111A|Pharmaceutical Biochemistry          |4 MCs|
-                    |ST1232| Statistics for Life Sciences         |4 MCs|
+                    |CE143| Computer Concepts and Programming       |5|
+                    |CL142.01| Environmental Sciences              |2|
+                    |EE145| Basics of Electronics and Electrical Engineering  |4|
+                    |HS105.01 A| Liberal Arts - Media and Graphic Design          |2|
+                    |IT144| ICT workshop         |1|
+                    |MA143| Engineering Mathematics- I |4|
                     """)
                     st.write("")
                     st.markdown("""
