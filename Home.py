@@ -469,7 +469,7 @@ def home():
                     """)
                     st.write("")
                     st.markdown("""
-                    Total Workload for Semester: **20 Modular Credits (MCs)**
+                    Total Workload for Semester: **18 Modular Credits (Credit)**
                     """)
                 with mid:
                     st.empty()
