@@ -474,12 +474,12 @@ def home():
                 with mid:
                     st.empty()
                 with sem2:
-                    st.write("**Academic Year 2020/21 Semester 1**")
+                    st.write("**Academic Year 2020/21 Semester 2**")
                     st.markdown("""
-                    |Code|Module Title                       |Workload|
+                    |Code|Module Title                       |Credits|
                     |--------|--------------------------------------|---------|
-                    |CS1010S|Programming Methodology|4 MCs|
-                    |DSA1101|Introduction to Data Science|4 MCs|
+                    |CE144|Object Oriented Programming with C++|5|
+                    |DSA1101|Introduction to Data Science|4|
                     |GER1000|Quantitative Reasoning|4 MCs|
                     |MA1102R|Calculus|4 MCs|
                     |SP1541|Exploring Science Communication Through Popular Science|4 MCs|
@@ -847,7 +847,266 @@ def home():
                 mention(label="Final Report", icon="📄", url="https://github.com/harrychangjr/get1030/blob/main/GET1030%20Final%20Project.pdf",)
             with image_column:
                 st.image(images_projects[12])
-   
+    elif choose == "Volunteering":
+        st.header("Volunteering")
+        with st.container():
+            text_column, mid, image_column = st.columns((3,0.4,1))
+            with text_column:
+                st.subheader("NUS Product Club")
+                st.write("*April 2023 to April 2024*")
+                st.markdown("""
+                Co-founder & President
+
+                - Spearheaded design of club's logo
+                - Drafted publicity posters on Canva to drive publicity and outreach efforts for recruitment
+                - Oversaw committee of 24 members in carrying out operations, partnerships efforts and curriculum workshops for NUS students
+                """)
+            with mid:
+                st.empty()
+            with image_column:
+                st.image(images_vol[9])
+        with st.container():
+            text_column, mid, image_column = st.columns((3,0.4,1))
+            with text_column:
+                st.subheader("NUS Statistics and Data Science Society")
+                st.write("*May 2021 to November 2022*")
+                st.markdown("""
+                - President (2022) - Increased recruitment of student club by 50% while overseeing execution of career-related events and technical workshops organised by 56 members
+                - Marketing Director (2021-22) - Led 10 students to secure over $19,000 worth of sponsorships for 850 participants in annual Data Analytics Competition and increase society's merchandise sales revenue by over 50% compared to previous year
+                """)
+            with mid:
+                st.empty()
+            with image_column:
+                st.image(images_vol[0])
+        with st.container():
+            text_column, mid, image_column = st.columns((3,0.4,1))
+            with text_column:
+                st.subheader("NUS Students' Sports Club")
+                st.write("*February to August 2022*")
+                st.markdown("""
+                Publicity Executive, NUS Inter-Faculty Games
+
+                - Designed storyboard for publicity videos to hype up school-wide event
+                - Increased publicity of event through extended outreach to over 5,000 students in various Telegram groups
+                """)
+            with mid:
+                st.empty()
+            with image_column:
+                st.image(images_vol[1])
+        with st.container():
+            text_column, mid, image_column = st.columns((3,0.4,1))
+            with text_column:
+                st.subheader("Google Developer Student Clubs NUS")
+                st.write("*September 2021 to April 2022*")
+                st.markdown("""
+                Deputy Head of Finance
+
+                - Managed budget of student club alongside Core Team to ensure sufficient funds for technical workshops, hackathon and external projects
+                - Liaised with staff advisors and administrative staff to seek funding approvals and process financial claims for other student members
+                """)
+            with mid:
+                st.empty()
+            with image_column:
+                st.image(images_vol[2])
+        with st.container():
+            text_column, mid, image_column = st.columns((3,0.4,1))
+            with text_column:
+                st.subheader("NUS Students' Community Service Club")
+                st.write("*March to July 2021*")
+                st.markdown("""
+                Organising Committee, Project Safe Space
+
+                - Organised weekly sessions to empower individuals from Anglican Care Centre (Yishun) with important life skills (e.g Zumba, cooking)
+                - Drafted write-ups on psychiatric conditions to raise awareness on debunked mental health myths and promote mental welness
+                """)
+            with mid:
+                st.empty()
+            with image_column:
+                st.image(images_vol[3])
+        with st.container():
+            text_column, mid, image_column = st.columns((3,0.4,1))
+            with text_column:
+                st.subheader("NUS Students' Union")
+                st.write("*January to March 2021*")
+                st.markdown("""
+                Public Relations Executive, Open Day Student Village
+
+                - Liaised with participating student residences and clubs to increase awareness of event to prospective students
+                - Enforced rules and regulations imposed by school administrative staff to ensure smooth execution of event
+                """)
+            with mid:
+                st.empty()
+            with image_column:
+                st.image(images_vol[4])
+        with st.container():
+            text_column, mid, image_column = st.columns((3,0.4,1))
+            with text_column:
+                st.subheader("Saturday Kids")
+                st.write("*October 2020 to December 2021 - Seasonal*")
+                st.markdown("""
+                Python Instructor, Code in the Community
+
+                - Conducted weekly lessons for classes of 3-4 secondary school students on Python programming 
+                - Customised curriculum structure to suit the learning needs of students
+                """)
+            with mid:
+                st.empty()
+            with image_column:
+                st.image(images_vol[5])
+        with st.container():
+            text_column, mid, image_column = st.columns((3,0.4,1))
+            with text_column:
+                st.subheader("Singapore Institiute of Management - University of London")
+                st.write("*November 2017*")
+                st.markdown("""
+                Fundraising Volunteer, SIM-UOL Transformers
+
+                - Collected unwanted items from residents in heartland areas
+                - Successfully raised $8000 from sale of items to refurbish the homes of the less fortunate
+                """)
+            with mid:
+                st.empty()
+            with image_column:
+                st.image(images_vol[6])
+        with st.container():
+            text_column, mid, image_column = st.columns((3,0.4,1))
+            with text_column:
+                st.subheader("Tampines Junior College")
+                st.write("*March 2015 to January 2016 - Seasonal*")
+                st.markdown("""
+                Values in Action (VIA) Projects
+
+                - Climb for A Cause - Organised and participated in games and activities with members of Singapore Disability Sports Council
+                - Project Ohana - Collaborated with Kwong Wai Shiu Hospital to engage patients in handicraft and games
+                """)
+            with mid:
+                st.empty()
+            with image_column:
+                st.image(images_vol[7])
+        with st.container():
+            text_column, mid, image_column = st.columns((3,0.4,1))
+            with text_column:
+                st.subheader("Saint Joseph's Institution")
+                st.write("*June 2012 to June 2013 - Seasonal*")
+                st.markdown("""
+                Values in Action (VIA) Projects
+
+                - Josephian International Experience Programme - Conducted English lessons at orphanage in Siem Reap, Cambodia
+                - SJIJ Primary 4 Chinese Language Camp - Acted as group facilitator to orientate primary four students in Chinese lessons
+                """)
+            with mid:
+                st.empty()
+            with image_column:
+                st.image(images_vol[8])
+    elif choose == "Contact":
+    # Create section for Contact
+        #st.write("---")
+        st.header("Contact")
+        def social_icons(width=24, height=24, **kwargs):
+            icon_template = '''
+            <a href="{url}" target="_blank" style="margin-right: 10px;">
+                <img src="{icon_src}" alt="{alt_text}" width="{width}" height="{height}">
+            </a>
+            '''
+
+            icons_html = ""
+            for name, url in kwargs.items():
+                icon_src = {
+                    "linkedin": "https://cdn-icons-png.flaticon.com/512/174/174857.png",
+                    "github": "https://cdn-icons-png.flaticon.com/512/25/25231.png",
+                    "email": "https://cdn-icons-png.flaticon.com/512/561/561127.png"
+                }.get(name.lower())
+
+                if icon_src:
+                    icons_html += icon_template.format(url=url, icon_src=icon_src, alt_text=name.capitalize(), width=width, height=height)
+
+            return icons_html
+        with st.container():
+            text_column, mid, image_column = st.columns((1,0.2,0.5))
+            with text_column:
+                st.write("Let's connect! You may either reach out to me at devhkotak@gmail.com or use the form below!")
+                #with st.form(key='columns_in_form2',clear_on_submit=True): #set clear_on_submit=True so that the form will be reset/cleared once it's submitted
+                    #st.write('Please help us improve!')
+                    #Name=st.text_input(label='Your Name',
+                                        #max_chars=100, type="default") #Collect user feedback
+                    #Email=st.text_input(label='Your Email', 
+                                        #max_chars=100,type="default") #Collect user feedback
+                    #Message=st.text_input(label='Your Message',
+                                            #max_chars=500, type="default") #Collect user feedback
+                    #submitted = st.form_submit_button('Submit')
+                    #if submitted:
+                        #st.write('Thanks for your contacting us. We will respond to your questions or inquiries as soon as possible!')
+                def create_database_and_table():
+                    conn = sqlite3.connect('contact_form.db')
+                    c = conn.cursor()
+                    c.execute('''CREATE TABLE IF NOT EXISTS contacts
+                                (name TEXT, email TEXT, message TEXT)''')
+                    conn.commit()
+                    conn.close()
+                create_database_and_table()
+
+                st.subheader("Contact Form")
+                if "name" not in st.session_state:
+                    st.session_state["name"] = ""
+                if "email" not in st.session_state:
+                    st.session_state["email"] = ""
+                if "message" not in st.session_state:
+                    st.session_state["message"] = ""
+                st.session_state["name"] = st.text_input("Name", st.session_state["name"])
+                st.session_state["email"] = st.text_input("Email", st.session_state["email"])
+                st.session_state["message"] = st.text_area("Message", st.session_state["message"])
+
+
+                column1, column2= st.columns([1,5])
+                if column1.button("Submit"):
+                    conn = sqlite3.connect('contact_form.db')
+                    c = conn.cursor()
+                    c.execute("INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)",
+                            (st.session_state["name"], st.session_state["email"], st.session_state["message"]))
+                    conn.commit()
+                    conn.close()
+                    st.success("Your message has been sent!")
+                    # Clear the input fields
+                    st.session_state["name"] = ""
+                    st.session_state["email"] = ""
+                    st.session_state["message"] = ""
+                def fetch_all_contacts():
+                    conn = sqlite3.connect('contact_form.db')
+                    c = conn.cursor()
+                    c.execute("SELECT * FROM contacts")
+                    rows = c.fetchall()
+                    conn.close()
+                    return rows
+                
+                if "show_contacts" not in st.session_state:
+                    st.session_state["show_contacts"] = False
+                if column2.button("View Submitted Forms"):
+                    st.session_state["show_contacts"] = not st.session_state["show_contacts"]
+                
+                if st.session_state["show_contacts"]:
+                    all_contacts = fetch_all_contacts()
+                    if len(all_contacts) > 0:
+                        table_header = "| Name | Email | Message |\n| --- | --- | --- |\n"
+                        table_rows = "".join([f"| {contact[0]} | {contact[1]} | {contact[2]} |\n" for contact in all_contacts])
+                        markdown_table = f"**All Contact Form Details:**\n\n{table_header}{table_rows}"
+                        st.markdown(markdown_table)
+                    else:
+                        st.write("No contacts found.")
+
+
+                st.write("Alternatively, feel free to check out my social accounts below!")
+                linkedin_url = "https://www.linkedin.com/in/dev-kotak/"
+                github_url = "https://github.com/dev856"
+                email_url = "mailto:devhkotak@gmail.com"
+                st.markdown(
+                    social_icons(32, 32, LinkedIn=linkedin_url, GitHub=github_url, Email=email_url),
+                    unsafe_allow_html=True)
+                st.markdown("")
+                
+            with mid:
+                st.empty()
+            with image_column:
+                st.image(img_ifg)
     
     st.divider()
 
