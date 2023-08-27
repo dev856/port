@@ -479,38 +479,38 @@ def home():
                     |Code|Module Title                       |Credits|
                     |--------|--------------------------------------|---------|
                     |CE144|Object Oriented Programming with C++|5|
-                    |DSA1101|Introduction to Data Science|4|
-                    |GER1000|Quantitative Reasoning|4 MCs|
-                    |MA1102R|Calculus|4 MCs|
-                    |SP1541|Exploring Science Communication Through Popular Science|4 MCs|
+                    |HS126.01A|Communication Skills - I|2|
+                    |MA144|Engineering Mathematics - II|4|
+                    |ME145|Elements of Engineering |4|
+                    |PY141.01|Engineering Physics|4|
                     """)
                     st.write("")
                     st.markdown("""
-                    Total Workload for Semester: **20 Modular Credits (MCs)**
+                    Total Workload for Semester: **19 Modular Credits (MCs)**
                     """)
             with st.container():
                 sem1, mid, sem2 = st.columns((1,0.1,1))
                 with sem1:
-                    st.write("**Academic Year 2020/21 Semester 2**")
+                    st.write("**Academic Year 2020/21 Semester 3**")
                     st.markdown("""
                     |Code|Module Title                       |Workload|
                     |--------|--------------------------------------|---------|
-                    |CFG1002|Career Catalyst|2 MCs|
-                    |EC1301|Principles of Economics|4 MCs|
-                    |GEQ1000|Asking Questions|4 MCs|
-                    |GES1010|Nation-Building in Singapore|4 MCs|
-                    |GET1030|Computers and the Humanities|4 MCs|
-                    |MA1101R|Linear Algebra I|4 MCs|
-                    |ST2131|Probability|4 MCs|
+                    |CE244|Software Group Project - I|2|
+                    |CE251|Java Programming|5|
+                    |CE252|Digital Electronics|4|
+                    |CE257|Data Communications and Networking|5|
+                    |EC281.01|Introduction to Matlab Programming|2|
+                    |HS121.02A|Creativity, Problem Solving and Innovation|2|
+                    |MA253|Discrete Mathematics and Algebra|4|
                     """)
                     st.write("")
                     st.markdown("""
-                    Total Workload for Semester: **26 Modular Credits (MCs)**
+                    Total Workload for Semester: **24 Modular Credits (MCs)**
                     """)
                 with mid:
                     st.empty()
                 with sem2:
-                    st.write("**Academic Year 2020/21 Special Term (Part II)**")
+                    st.write("**Academic Year 2020/21 Semester3**")
                     st.markdown("""
                     |Code|Module Title                       |Workload|
                     |--------|--------------------------------------|---------|
