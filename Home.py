@@ -446,8 +446,8 @@ def home():
                     st.subheader("Secondary Education (Class- X) [Ultravision Academy](http://www.ultravisionschool.com/) (2016 - 2017)")
                     st.write("Coursework: ")
                     st.markdown(""" 
-                    - Track and Field - 100m (2016 A Division Semi-finalist), 200m, 4x100m
-                    - TPJC Economics and Financial Literacy Fair 2015 - Games Facilitator
+                    - 
+                    - 
                     """)
             
         elif selected == "Modules":
@@ -510,11 +510,17 @@ def home():
                 with mid:
                     st.empty()
                 with sem2:
-                    st.write("**Academic Year 2020/21 Semester3**")
+                    st.write("**Academic Year 2020/21 Semester4**")
                     st.markdown("""
                     |Code|Module Title                       |Workload|
                     |--------|--------------------------------------|---------|
-                    |CS2040|Data Structures and Algorithms|4 MCs|
+                    |CS245|Data Structures and Algorithms|4|
+                    |CE246|DataBase Management System|6|
+                    |CE255|Software Group Project- II|2|
+                    |CE258|Microprocessor and Computer Organization|5|
+                    |CE259|Programming in Python|1|
+                    |EC282.01|Prototyping Electronics with Arduino|2|
+                    |HS111.02A|Human Values and Professional Ethics|2|
                     """)
                     st.write("")
                     st.markdown("""
@@ -523,7 +529,7 @@ def home():
             with st.container():
                 sem1, mid, sem2 = st.columns((1,0.1,1))
                 with sem1:
-                    st.write("**Academic Year 2021/22 Semester 1**")
+                    st.write("**Academic Year 2021/22 Semester **")
                     st.markdown("""
                     |Code|Module Title                       |Workload|
                     |--------|--------------------------------------|---------|
