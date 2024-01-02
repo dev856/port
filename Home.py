@@ -129,7 +129,8 @@ def home():
     img_kintu = Image.open("images/kintu.jpeg")
     img_spark = Image.open("images/spark.png")
     # Assets for education
-    
+
+    img_carleton = Image.open("images/carleton.jpg")
     img_nus = Image.open("images/charusat.jpg")
     img_poc = Image.open("images/hira.jpg")
     img_tpjc = Image.open("images/ultra.jpeg")
@@ -419,25 +420,11 @@ def home():
             with st.container():
                 image_column, text_column = st.columns((1,2.5))
                 with image_column:
-                    st.image(img_nus)
+                    st.image(img_carleton)
                 with text_column:
                     st.subheader("Master of Engineering - [Electrical and Computer Engineering with collaborative specialization in Data Science], [Carleton University](https://carleton.ca/discover/) (2023-2025)")
                     st.write("Relevant Coursework: Pattern Classification and Experiment design , Applied Programming , Design Secure Network and Computer System")
                     st.markdown("""
-                    - CGPA - 9.25/10.00 | WES-ICAP-Eveluation- 3.92/4.00
-                    - Recipient of Mukhyamantri Yuva Swavalamban Yojana Scholarship.- 2019-23
-                    
-                    """)
-            with st.container():
-                image_column, text_column = st.columns((1,2.5))
-                with image_column:
-                    st.image(img_nus)
-                with text_column:
-                    st.subheader("Bachelor of Technology - [Computer Science and Engineering], [Charotar University of Science and Technology ](https://www.charusat.ac.in/) (2019-2023)")
-                    st.write("Relevant Coursework: Java Programming, Object-oriented Programming with C++, Programming in Python, Data Structure & Algorithms, Design & Analysis of algorithms, Machine learning, Artificial Intelligence, Software Engineering, Theory of Computation, Data Communication & Networking, Computer Networks, Modern Networks")
-                    st.markdown("""
-                    - CGPA - 9.25/10.00 | WES-ICAP-Eveluation- 3.92/4.00
-                    - Recipient of Mukhyamantri Yuva Swavalamban Yojana Scholarship.- 2019-23
                     
                     """)
             with st.container():
