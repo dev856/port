@@ -540,12 +540,12 @@ def home():
             with st.container():
                 sem1, mid, sem2 = st.columns((1,0.1,1))
                 with sem1:
-                    st.write("**Academic Year 2021/22 Semester **")
+                    st.write("**Academic Year 2021/22 Semester5 **")
                     st.markdown("""
                     |Code|Module Title                       |Workload|
                     |--------|--------------------------------------|---------|
-                    |DSA2102|Essential Data Analytics Tools: Numerical Computation|4 MCs|
-                    |EC2101|Microeconomic Analysis I|4 MCs|
+                    |CS341|Artificial Intelligence|4|
+                    |CS343|Summer Internship I|3|
                     |EC2102|Macroeconomic Analysis I|4 MCs|
                     |EC2204|Financial Accounting for Economists|4 MCs|
                     |EC3305|Programming Tools for Economics|4 MCs|
