@@ -136,7 +136,9 @@ def home():
     img_tpjc = Image.open("images/ultra.jpeg")
     # Assets for projects
     
-    #images_projects = [Image.open(f"images/{name}.{'jpg' if name not in ('map', 'gephi', 'health') else 'png'}") for name in image_names_projects]
+    image_names_projects = ["Tadasana"]
+
+    images_projects = [Image.open(f"images/{name}.{'jpg' if name not in ('map', 'gephi', 'health') else 'png'}") for name in image_names_projects]
     # Assets for volunteering
     
     
@@ -540,7 +542,7 @@ def home():
             with st.container():
                 sem1, mid, sem2 = st.columns((1,0.1,1))
                 with sem1:
-                    st.write("**Academic Year 2021/22 Semester5 **")
+                    st.write("**Academic Year 2021/22 Semester5**")
                     st.markdown("""
                     |Code|Module Title                       |Workload|
                     |--------|--------------------------------------|---------|
@@ -553,97 +555,96 @@ def home():
                     """)
                     st.write("")
                     st.markdown("""
-                    Total Workload for Semester: **24 Modular Credits (MCs)**
+                    Total Workload for Semester: **23 Modular Credits (MCs)**
                     """)
                 with mid:
                     st.empty()
                 with sem2:
-                    st.write("**Academic Year 2021/22 Semester 2**")
+                    st.write("**Academic Year 2021/22 Semester 6**")
                     st.markdown("""
                     |Code|Module Title                       |Workload|
                     |--------|--------------------------------------|---------|
-                    |ALS1010|Learning to Learn Better|2 MCs|
-                    |DSA2101|Essential Data Analytics Tools: Data Visualization|4 MCs|
-                    |GES1037|A History of Singapore in Ten Objects|4 MCs|
-                    |IS1103|Ethics in Computing|4 MCs|
-                    |IT2002|Database Technology and Management|4 MCs|
-                    |MA2104|Multivariable Calculus|4 MCs|
-                    |ST2132|Mathematical Statistics|4 MCs|
+                    |CS344|Machine Learning|4|
+                    |CS345|Cryptography and Network Security|5|
+                    |CS346|Software Engineering|4|
+                    |CS353|Theory of Computation|3|
+                    |CS357|Software Group Project-IV|1|
+                    |CS374|Modern Networks|4|
+                    |HS132.02A|Contributing Personality Development|2|
                     """)
                     st.write("")
                     st.markdown("""
-                    Total Workload for Semester: **26 Modular Credits (MCs)**
+                    Total Workload for Semester: **23 Modular Credits (MCs)**
                     """)
             with st.container():
                 sem1, mid, sem2 = st.columns((1,0.1,1))
                 with sem1:
-                    st.write("**Academic Year 2022/23 Semester 1**")
+                    st.write("**Academic Year 2022/23 Semester 7**")
                     st.markdown("""
                     |Code|Module Title                       |Workload|
                     |--------|--------------------------------------|---------|
-                    |CFG1003|Financial Wellbeing - Introduction|0 MCs|
-                    |CS3244|Machine Learning|4 MCs|
-                    |DSA3101|Data Science in Practice|4 MCs|
-                    |DSA3102|Essential Data Analytics Tools: Convex Optimization|4 MCs|
-                    |ST3131|Regression Analysis|4 MCs|
-                    |ST3248|Statistical Learning I|4 MCs|
+                    |CS442|Data Science and Analytics|5|
+                    |CS446|Summer Internship-II|3|
+                    |CS449|Internet of Things|4|
+                    |CS450|Design of Langugage Processor|4|
+                    |CS451|Advanced Computing|4|
+                    |CS452|Software Group Project-V|1|
+                    |CS474|Image Processing and Computer Vision|5|
                     """)
                     st.write("")
                     st.markdown("""
-                    Total Workload for Semester: **20 Modular Credits (MCs)**
+                    Total Workload for Semester: **22 Modular Credits (MCs)**
                     """)
                 with mid:
                     st.empty()
                 with sem2:
-                    st.write("**Academic Year 2022/23 Semester 2**")
+                    st.write("**Academic Year 2022/23 Semester 8**")
                     st.markdown("""
                     |Code|Module Title                       |Workload|
                     |--------|--------------------------------------|---------|
-                    |DSA4212|Optimization for Large-Scale Data-Driven Inference|4 MCs|
-                    |LSM1301|General Biology|4 MCs|
-                    |ST4248|Statistical Learning II|4 MCs|
+                    |CS453|Software Project Major|18|
                     """)
                     st.write("")
                     st.markdown("""
-                    Total Workload for Semester: **12 Modular Credits (MCs)**
+                    Total Workload for Semester: **18 Modular Credits (MCs)**
                     """)
-            with st.container():
-                sem1, mid, sem2 = st.columns((1,0.1,1))
-                with sem1:
-                    st.write("**Academic Year 2023/24 Semester 1 (Expected)**")
-                    st.markdown("""
-                    |Code|Module Title                       |Workload|
-                    |--------|--------------------------------------|---------|
-                    |CS4225|Big Data Systems for Data Science|4 MCs|
-                    |DSA4299|Applied Project in Data Science and Analytics|16 MCs|
-                    """)
-                    st.write("")
-                    st.markdown("""
-                    Total Workload for Semester: **20 Modular Credits (MCs)**
-                    """)
-                with mid:
-                    st.empty()
-                with sem2:
-                    st.write("**Academic Year 2022/23 Semester 2 (Expected)**")
-                    st.markdown("""
-                    |Code|Module Title                       |Workload|
-                    |--------|--------------------------------------|---------|
-                    |DSA426X|Sense-Making Case Analysis|4 MCs|
-                    |ST4234|Bayesian Statistics|4 MCs|
-                    """)
-                    st.write("")
-                    st.markdown("""
-                    Total Workload for Semester: **8 Modular Credits (MCs)**
-                    """)
-            with st.container():
-                left, mid, right = st.columns((0.1,1,0.1))
-                with left:
-                    st.empty()
-                with mid:
-                    st.write("**Graduation Requirements**")
-                    st.image(img_dsa)
-                with right:
-                    st.empty()
+            # with st.container():
+            #     sem1, mid, sem2 = st.columns((1,0.1,1))
+            #     with sem1:
+            #         st.write("**Academic Year 2023/24 Semester 1 (Expected)**")
+            #         st.markdown("""
+            #         |Code|Module Title                       |Workload|
+            #         |--------|--------------------------------------|---------|
+            #         |CS4225|Big Data Systems for Data Science|4 MCs|
+            #         |DSA4299|Applied Project in Data Science and Analytics|16 MCs|
+            #         """)
+            #         st.write("")
+            #         st.markdown("""
+            #         Total Workload for Semester: **20 Modular Credits (MCs)**
+            #         """)
+            #     with mid:
+            #         st.empty()
+            #     with sem2:
+            #         st.write("**Academic Year 2022/23 Semester 2 (Expected)**")
+            #         st.markdown("""
+            #         |Code|Module Title                       |Workload|
+            #         |--------|--------------------------------------|---------|
+            #         |DSA426X|Sense-Making Case Analysis|4 MCs|
+            #         |ST4234|Bayesian Statistics|4 MCs|
+            #         """)
+            #         st.write("")
+            #         st.markdown("""
+            #         Total Workload for Semester: **8 Modular Credits (MCs)**
+            #         """)
+            # with st.container():
+            #     left, mid, right = st.columns((0.1,1,0.1))
+            #     with left:
+            #         st.empty()
+            #     with mid:
+            #         st.write("**Graduation Requirements**")
+            #         st.image(img_dsa)
+            #     with right:
+            #         st.empty()
         #elif selected == "Module Reviews":
             #st.subheader("Module Reviews")
             #st.write("*Reviews for selected modules taken in university*")
@@ -656,16 +657,17 @@ def home():
         with st.container():
             text_column, image_column = st.columns((3,1))
             with text_column:
-                st.subheader("Blockchain Social Media Webscraper")
-                st.write("*Project for US-based stealth startup, Bitmetrix.ai (in progress)*")
+                st.subheader("Digital Trainer for Yoga Pose Estimation")
+                st.write("*Python, NumPy, MediaPipe, Matplotlib, Pandas, OpenCV, VS Code*")
                 st.markdown("""
-                - Utilised snscrape to scrape tweets from top blockchain websites such as CoinGecko and CoinMarketCap
-                - Built webscraper using BeautifulSoup4 to scrape content from fintech news websites such as https://blockchain.news
+                - Developed a solution for detecting and predicting yoga asana by analysing various methodologies for pose detection and estimation. 
+                - Studied different topologies for better results.
+                - Used MediaPipe lightweight library for landmark detection which accurately identifies more keypoints as compared to existing solutions.
                 """)
                 # st.write("[Github Repo](https://github.com/harrychangjr/sales-prediction)")
-                mention(label="Github Repo", icon="github", url="https://github.com/harrychangjr/blockchain-webscraping",)
+                mention(label="Github Repo", icon="github", url="https://github.com/dev856",)
             with image_column:
-                st.image(images_projects[14])
+                st.image(images_projects[0])
         with st.container():
             text_column, image_column = st.columns((3,1))
             with text_column:
@@ -677,10 +679,10 @@ def home():
                 - Performed hashtag analysis using Word2Vec to calculate cosine similarity scores and deduce correlation with average performance scores of each hashtag
                 """)
                 # st.write("[Github Repo](https://github.com/harrychangjr/sales-prediction)")
-                mention(label="Streamlit App", icon="streamlit", url="https://huggingface.co/spaces/harrychangjr/tiktok_analytics",)
-                mention(label="Github Repo", icon="github", url="https://github.com/harrychangjr/tiktok-analytics",)
+                #mention(label="Streamlit App", icon="streamlit", url="https://huggingface.co/spaces/harrychangjr/tiktok_analytics",)
+                mention(label="Github Repo", icon="github", url="https://github.com/dev856",)
             with image_column:
-                st.image(images_projects[13])
+                st.image(images_projects[1])
         with st.container():
             text_column, image_column = st.columns((3,1))
             with text_column:
@@ -694,7 +696,7 @@ def home():
                 # st.write("[Github Repo](https://github.com/harrychangjr/sales-prediction)")
                 mention(label="Github Repo", icon="github", url="https://github.com/harrychangjr/sales-prediction",)
             with image_column:
-                st.image(images_projects[0])
+                st.image(images_projects[3])
         with st.container():
             text_column, image_column = st.columns((3,1))
             with text_column:
@@ -724,7 +726,7 @@ def home():
                 #st.write("[Github Repo](https://github.com/harrychangjr/st4248-termpaper) | [Term Paper](https://github.com/harrychangjr/st4248-termpaper/blob/main/ST4248%20Term%20Paper%20(A0201825N)%20v5.pdf)")
                 mention(label="Github Repo", icon="github", url="https://github.com/harrychangjr/st4248-termpaper",)
             with image_column:
-                st.image(images_projects[2])
+                st.image(images_projects[4])
         with st.container():
             text_column, image_column = st.columns((3,1))
             with text_column:
