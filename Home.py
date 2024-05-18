@@ -116,7 +116,15 @@ def home():
     # </div>
     # """, unsafe_allow_html=True)
        # Custom function for printing text
+    def show_pdf(file_path):
+        with open(file_path,"rb") as f:
+            base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+        pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="400" height="600" type="application/pdf"></iframe>'
+        st.markdown(pdf_display, unsafe_allow_html=True)
 
+    def pdf_link(pdf_url, link_text="Click here to view PDF"):
+        href = f'<a href="{pdf_url}" target="_blank">{link_text}</a>'
+        return href
     img_utown = Image.open("images/lh.jpeg")
     img_lh = Image.open("images/lh.jpeg")
     img_ifg = Image.open("images/lh.jpeg")
@@ -260,7 +268,7 @@ def home():
             left_column, middle_column, right_column = st.columns((2,0.1,1))
             with left_column:
                 st.header("About Me")
-                st.subheader("Aspiring Machine Learnign Engineer/Data Scientist")
+                st.subheader("Aspiring Software Engineer")
                 st.write("👋🏻 Hi, I'm Dev! I'm a data science and analytics undergraduate based in Singapore. Having prior relevant experiences in tech, reinsurance and consulting sectors, I am constantly seeking unique internships to broaden my horizons before embarking on my data career upon graduation.")
                 st.write("💼 With the COVID-19 pandemic behind us, I believe there is potential for data science to be applied in the retail industry. In response to the increasing demand for data analytics from both online and brick-and-mortar sales, I am thus aiming to enter this industry for my first full-time job.")
                 st.write("🏋🏻 In addition, I like to exercise in the gym, run, write, play video games and... enjoy eating good food in my free time!")
@@ -671,7 +679,7 @@ def home():
         with st.container():
             text_column, image_column = st.columns((3,1))
             with text_column:
-                st.subheader("Enhanced TikTok Analytics Dashboard")
+                st.subheader("Student Grievance Redressal Portal ")
                 st.write("*Self-initiated project*")
                 st.markdown("""
                 - Provided options to plot Tiktok user overview data using 3D lineplots, 3D scatterplots, 3D surfaceplots and radar chart from Plotly
@@ -1017,6 +1025,20 @@ def home():
                 st.empty()
             with image_column:
                 st.image(images_vol[8])
+    elif choose == "Resume":   
+        resume_url = "https://drive.google.com/file/d/1UnSVLegQIbSE_GQ-K-DzA1JQQtHb4aNx/view?usp=sharing"
+        st.header("Resume")
+        st.write("*In case your current browser cannot display the PDF documents, do refer to the hyperlink below!*")
+
+        st.markdown(pdf_link(resume_url, "**Resume**"), unsafe_allow_html=True)
+        show_pdf("Resume-Dev.pdf")
+        with open("Resume-Dev.pdf", "rb") as file:
+            btn = st.download_button(
+                label="Download Resume (1 page)",
+                data=file,
+                file_name="Resume-Dev.pdf",
+                mime="application/pdf"
+            )
     elif choose == "Contact":
     # Create section for Contact
         #st.write("---")
