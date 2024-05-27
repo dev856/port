@@ -130,16 +130,16 @@ def home():
     img_ifg = Image.open("images/lh.jpeg")
 
     #Assets for internship
-    img_bitmetrix = Image.open("images/isro.png")
+    img_bitmetrix = Image.open("images/isro1.jpeg")
     img_scor = Image.open("images/jupiter.png")
-    img_zummit = Image.open("images/zummit.png")
+    img_zummit = Image.open("images/zummit1.png")
     img_dep = Image.open("images/depstar.png")
     img_kintu = Image.open("images/kintu.jpeg")
     img_spark = Image.open("images/spark.png")
     # Assets for education
 
-    img_carleton = Image.open("images/carleton.jpg")
-    img_nus = Image.open("images/charusat.jpg")
+    img_carleton = Image.open("images/clogo.png")
+    img_nus = Image.open("images/images (1).png")
     img_poc = Image.open("images/hira.jpg")
     img_tpjc = Image.open("images/ultra.jpeg")
     # Assets for projects
@@ -414,14 +414,13 @@ def home():
         txt3("Data Science Techniques", "`Regression`, `Clustering`, `Random Forest`, `Decison Trees`, `Text Classification`, `Sentiment Analysis`, `Matrix Factorisation`")
         txt3("Machine Learning Frameworks", "`Numpy`, `Pandas`, `Scikit-Learn`, `TensorFlow`, `Keras`")
         txt3("Task Management Tools", "`Notion`, `ClickUp`, `Slack`, `Jira`")
-        txt3("Miscellaneous", "`Microsoft Office`, `Google Ads`")
+        txt3("Miscellaneous", "`Microsoft Office`, `Google Ads`,`Libre Officce`")
 
 # Create section for Education
 #st.write("---")
     elif choose == "Education":
         st.header("Education")
-        selected_options = ["Summary", "Modules"
-                            ]
+        selected_options = ["Summary", "Modules"]
         selected = st.selectbox("Which section would you like to read?", options = selected_options)
         st.write("Current selection:", selected)
         if selected == "Summary":
@@ -433,7 +432,7 @@ def home():
                     st.image(img_carleton)
                 with text_column:
                     st.subheader("Master of Engineering - [Electrical and Computer Engineering with collaborative specialization in Data Science], [Carleton University](https://carleton.ca/discover/) (2023-2025)")
-                    st.write("Relevant Coursework: Pattern Classification and Experiment design , Applied Programming , Design Secure Network and Computer System")
+                    st.write("Relevant Coursework: Pattern Classification and Experiment design , Applied Programming , Design Secure Network and Computer System, Interactive networked system and Telemedicine, Data Science Seminar, Cryptographic Implementations")
                     st.markdown("""
                     
                     """)
