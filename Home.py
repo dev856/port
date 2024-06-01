@@ -109,12 +109,7 @@ def home():
     """, 
     unsafe_allow_html=True)
 
-    # Alternative image (static and rounded) uncomment it if you prefer this one
-    # st.write(f"""
-    # <div style="display: flex; justify-content: center;">
-    #    <img src="{img}" alt="Enric Domingo" width="300" height="300" style="border-radius: 50%; object-fit: cover; margin-top: 40px; margin-bottom: 40px;">
-    # </div>
-    # """, unsafe_allow_html=True)
+    
        # Custom function for printing text
     def show_pdf(file_path):
         with open(file_path,"rb") as f:
@@ -128,7 +123,7 @@ def home():
     img_utown = Image.open("images/lh.jpeg")
     img_lh = Image.open("images/lh.jpeg")
     img_ifg = Image.open("images/lh.jpeg")
-
+    sidebar_logo = Image.open("images/lh.jpeg")
     #Assets for internship
     img_bitmetrix = Image.open("images/isro1.jpeg")
     img_scor = Image.open("images/jupiter.png")
@@ -148,8 +143,8 @@ def home():
 
     images_projects = [Image.open(f"images/{name}.{'jpg' if name not in ('map', 'gephi', 'health') else 'png'}") for name in image_names_projects]
     # Assets for volunteering
-    
-    
+    image_names_vol = ["crowd2", "csi", "cn","code"]
+    images_vol = [Image.open(f"images/{name}.{'jpg' if name not in ('crowd2', 'csi','cn','code') else 'png'}") for name in image_names_vol]
     #img_lottie_animation = Image.open("images/lottie_animation.gif")
     # Assets for contact
     #lottie_coding = load_lottieurl("https://assets9.lottiefiles.com/packages/lf20_abqysclq.json")
@@ -219,7 +214,8 @@ def home():
             st.markdown(f'<p style="font-size: 25px; color: white;">{a}</p>', unsafe_allow_html=True)
         with col2: #can't seem to change color besides green
             st.markdown(f'<p style="font-size: 25px; color: red;"><code>{b}</code></p>', unsafe_allow_html=True)
-
+    
+    st.logo(sidebar_logo, icon_image=sidebar_logo)
     #####################
 # Sidebar: If using streamlit_option_menu
     with st.sidebar:
@@ -405,7 +401,7 @@ def home():
         st.header("Technical Skills")
         txt3("Programming Languages","`C/C++`, `Python`, `SQL`, `Java`, `MATLAB`")
         txt3("Academic Interests","`Data Visualization`, `Recommendation Systems`, `Natural Language Processing`")
-        txt3("Data Visualization", "`matplotlib`, `seaborn`, `Plotly`, `Folium`, `GIS`,`Google Data Studio`")
+        txt3("Data Visualization", "`matplotlib`, `seaborn`, `Plotly`, `Folium`, `GIS`, `Google Data Studio`")
         txt3("Database Systems", "`MySQL`, `SQLite`, `NoSQL`")
         txt3("Cloud Platforms", "`Google Cloud Platform`, `Streamlit Cloud`, `Hugging Face`")
         txt3("Natural Language Processing", "`NLTK`, `Word2Vec`, `TF-IDF`, `TextStat`")
@@ -414,7 +410,7 @@ def home():
         txt3("Data Science Techniques", "`Regression`, `Clustering`, `Random Forest`, `Decison Trees`, `Text Classification`, `Sentiment Analysis`, `Matrix Factorisation`")
         txt3("Machine Learning Frameworks", "`Numpy`, `Pandas`, `Scikit-Learn`, `TensorFlow`, `Keras`")
         txt3("Task Management Tools", "`Notion`, `ClickUp`, `Slack`, `Jira`")
-        txt3("Miscellaneous", "`Microsoft Office`, `Google Ads`,`Libre Officce`")
+        txt3("Miscellaneous", "`Microsoft Office`, `Libre Officce`")
 
 # Create section for Education
 #st.write("---")
@@ -671,7 +667,6 @@ def home():
                 - Studied different topologies for better results.
                 - Used MediaPipe lightweight library for landmark detection which accurately identifies more keypoints as compared to existing solutions.
                 """)
-                # st.write("[Github Repo](https://github.com/harrychangjr/sales-prediction)")
                 mention(label="Github Repo", icon="github", url="https://github.com/dev856",)
             with image_column:
                 st.image(images_projects[0])
@@ -878,27 +873,11 @@ def home():
         with st.container():
             text_column, mid, image_column = st.columns((3,0.4,1))
             with text_column:
-                st.subheader("NUS Product Club")
-                st.write("*April 2023 to April 2024*")
+                st.subheader("Google Crowdsource")
+                st.write("*Jan 2020 to Present*")
                 st.markdown("""
-                Co-founder & President
-
-                - Spearheaded design of club's logo
-                - Drafted publicity posters on Canva to drive publicity and outreach efforts for recruitment
-                - Oversaw committee of 24 members in carrying out operations, partnerships efforts and curriculum workshops for NUS students
-                """)
-            with mid:
-                st.empty()
-            with image_column:
-                st.image(images_vol[9])
-        with st.container():
-            text_column, mid, image_column = st.columns((3,0.4,1))
-            with text_column:
-                st.subheader("NUS Statistics and Data Science Society")
-                st.write("*May 2021 to November 2022*")
-                st.markdown("""
-                - President (2022) - Increased recruitment of student club by 50% while overseeing execution of career-related events and technical workshops organised by 56 members
-                - Marketing Director (2021-22) - Led 10 students to secure over $19,000 worth of sponsorships for 850 participants in annual Data Analytics Competition and increase society's merchandise sales revenue by over 50% compared to previous year
+            
+                - Level 13 Contributor
                 """)
             with mid:
                 st.empty()
@@ -907,18 +886,29 @@ def home():
         with st.container():
             text_column, mid, image_column = st.columns((3,0.4,1))
             with text_column:
-                st.subheader("NUS Students' Sports Club")
-                st.write("*February to August 2022*")
+                st.subheader("Computer Society of India")
+                st.write("*Jan 2020 to Feb 2020*")
                 st.markdown("""
-                Publicity Executive, NUS Inter-Faculty Games
-
-                - Designed storyboard for publicity videos to hype up school-wide event
-                - Increased publicity of event through extended outreach to over 5,000 students in various Telegram groups
+                - Event Coordinator 
+                - Contributed as Event Volunteer in CSI Regional Student Convention (RSC 2020) organized by CSI Student Branch of CSPIT and DEPSTAR in association with Computer Society of India (CSI).2
                 """)
             with mid:
                 st.empty()
             with image_column:
                 st.image(images_vol[1])
+        with st.container():
+            text_column, mid, image_column = st.columns((3,0.4,1))
+            with text_column:
+                st.subheader("Coding Ninjas")
+                st.write("*Nov 2019 to Apr 2020*")
+                st.markdown("""
+                Campus Ambassador
+                - My responsibility was to spread awarness about various services provided by Coding Ninjas to the student community . Developed campus-specific outreach programs and campaigns.
+                """)
+            with mid:
+                st.empty()
+            with image_column:
+                st.image(images_vol[2])
         with st.container():
             text_column, mid, image_column = st.columns((3,0.4,1))
             with text_column:
@@ -933,97 +923,97 @@ def home():
             with mid:
                 st.empty()
             with image_column:
-                st.image(images_vol[2])
-        with st.container():
-            text_column, mid, image_column = st.columns((3,0.4,1))
-            with text_column:
-                st.subheader("NUS Students' Community Service Club")
-                st.write("*March to July 2021*")
-                st.markdown("""
-                Organising Committee, Project Safe Space
-
-                - Organised weekly sessions to empower individuals from Anglican Care Centre (Yishun) with important life skills (e.g Zumba, cooking)
-                - Drafted write-ups on psychiatric conditions to raise awareness on debunked mental health myths and promote mental welness
-                """)
-            with mid:
-                st.empty()
-            with image_column:
                 st.image(images_vol[3])
-        with st.container():
-            text_column, mid, image_column = st.columns((3,0.4,1))
-            with text_column:
-                st.subheader("NUS Students' Union")
-                st.write("*January to March 2021*")
-                st.markdown("""
-                Public Relations Executive, Open Day Student Village
+        # with st.container():
+        #     text_column, mid, image_column = st.columns((3,0.4,1))
+        #     with text_column:
+        #         st.subheader("NUS Students' Community Service Club")
+        #         st.write("*March to July 2021*")
+        #         st.markdown("""
+        #         Organising Committee, Project Safe Space
 
-                - Liaised with participating student residences and clubs to increase awareness of event to prospective students
-                - Enforced rules and regulations imposed by school administrative staff to ensure smooth execution of event
-                """)
-            with mid:
-                st.empty()
-            with image_column:
-                st.image(images_vol[4])
-        with st.container():
-            text_column, mid, image_column = st.columns((3,0.4,1))
-            with text_column:
-                st.subheader("Saturday Kids")
-                st.write("*October 2020 to December 2021 - Seasonal*")
-                st.markdown("""
-                Python Instructor, Code in the Community
+        #         - Organised weekly sessions to empower individuals from Anglican Care Centre (Yishun) with important life skills (e.g Zumba, cooking)
+        #         - Drafted write-ups on psychiatric conditions to raise awareness on debunked mental health myths and promote mental welness
+        #         """)
+        #     with mid:
+        #         st.empty()
+        #     with image_column:
+        #         st.image(images_vol[3])
+        # with st.container():
+        #     text_column, mid, image_column = st.columns((3,0.4,1))
+        #     with text_column:
+        #         st.subheader("NUS Students' Union")
+        #         st.write("*January to March 2021*")
+        #         st.markdown("""
+        #         Public Relations Executive, Open Day Student Village
 
-                - Conducted weekly lessons for classes of 3-4 secondary school students on Python programming 
-                - Customised curriculum structure to suit the learning needs of students
-                """)
-            with mid:
-                st.empty()
-            with image_column:
-                st.image(images_vol[5])
-        with st.container():
-            text_column, mid, image_column = st.columns((3,0.4,1))
-            with text_column:
-                st.subheader("Singapore Institiute of Management - University of London")
-                st.write("*November 2017*")
-                st.markdown("""
-                Fundraising Volunteer, SIM-UOL Transformers
+        #         - Liaised with participating student residences and clubs to increase awareness of event to prospective students
+        #         - Enforced rules and regulations imposed by school administrative staff to ensure smooth execution of event
+        #         """)
+        #     with mid:
+        #         st.empty()
+        #     with image_column:
+        #         st.image(images_vol[4])
+        # with st.container():
+        #     text_column, mid, image_column = st.columns((3,0.4,1))
+        #     with text_column:
+        #         st.subheader("Saturday Kids")
+        #         st.write("*October 2020 to December 2021 - Seasonal*")
+        #         st.markdown("""
+        #         Python Instructor, Code in the Community
 
-                - Collected unwanted items from residents in heartland areas
-                - Successfully raised $8000 from sale of items to refurbish the homes of the less fortunate
-                """)
-            with mid:
-                st.empty()
-            with image_column:
-                st.image(images_vol[6])
-        with st.container():
-            text_column, mid, image_column = st.columns((3,0.4,1))
-            with text_column:
-                st.subheader("Tampines Junior College")
-                st.write("*March 2015 to January 2016 - Seasonal*")
-                st.markdown("""
-                Values in Action (VIA) Projects
+        #         - Conducted weekly lessons for classes of 3-4 secondary school students on Python programming 
+        #         - Customised curriculum structure to suit the learning needs of students
+        #         """)
+        #     with mid:
+        #         st.empty()
+        #     with image_column:
+        #         st.image(images_vol[5])
+        # with st.container():
+        #     text_column, mid, image_column = st.columns((3,0.4,1))
+        #     with text_column:
+        #         st.subheader("Singapore Institiute of Management - University of London")
+        #         st.write("*November 2017*")
+        #         st.markdown("""
+        #         Fundraising Volunteer, SIM-UOL Transformers
 
-                - Climb for A Cause - Organised and participated in games and activities with members of Singapore Disability Sports Council
-                - Project Ohana - Collaborated with Kwong Wai Shiu Hospital to engage patients in handicraft and games
-                """)
-            with mid:
-                st.empty()
-            with image_column:
-                st.image(images_vol[7])
-        with st.container():
-            text_column, mid, image_column = st.columns((3,0.4,1))
-            with text_column:
-                st.subheader("Saint Joseph's Institution")
-                st.write("*June 2012 to June 2013 - Seasonal*")
-                st.markdown("""
-                Values in Action (VIA) Projects
+        #         - Collected unwanted items from residents in heartland areas
+        #         - Successfully raised $8000 from sale of items to refurbish the homes of the less fortunate
+        #         """)
+        #     with mid:
+        #         st.empty()
+        #     with image_column:
+        #         st.image(images_vol[6])
+        # with st.container():
+        #     text_column, mid, image_column = st.columns((3,0.4,1))
+        #     with text_column:
+        #         st.subheader("Tampines Junior College")
+        #         st.write("*March 2015 to January 2016 - Seasonal*")
+        #         st.markdown("""
+        #         Values in Action (VIA) Projects
 
-                - Josephian International Experience Programme - Conducted English lessons at orphanage in Siem Reap, Cambodia
-                - SJIJ Primary 4 Chinese Language Camp - Acted as group facilitator to orientate primary four students in Chinese lessons
-                """)
-            with mid:
-                st.empty()
-            with image_column:
-                st.image(images_vol[8])
+        #         - Climb for A Cause - Organised and participated in games and activities with members of Singapore Disability Sports Council
+        #         - Project Ohana - Collaborated with Kwong Wai Shiu Hospital to engage patients in handicraft and games
+        #         """)
+        #     with mid:
+        #         st.empty()
+        #     with image_column:
+        #         st.image(images_vol[7])
+        # with st.container():
+        #     text_column, mid, image_column = st.columns((3,0.4,1))
+        #     with text_column:
+        #         st.subheader("Saint Joseph's Institution")
+        #         st.write("*June 2012 to June 2013 - Seasonal*")
+        #         st.markdown("""
+        #         Values in Action (VIA) Projects
+
+        #         - Josephian International Experience Programme - Conducted English lessons at orphanage in Siem Reap, Cambodia
+        #         - SJIJ Primary 4 Chinese Language Camp - Acted as group facilitator to orientate primary four students in Chinese lessons
+        #         """)
+        #     with mid:
+        #         st.empty()
+        #     with image_column:
+        #         st.image(images_vol[8])
     elif choose == "Resume":   
         resume_url = "https://drive.google.com/file/d/1UnSVLegQIbSE_GQ-K-DzA1JQQtHb4aNx/view?usp=sharing"
         st.header("Resume")
