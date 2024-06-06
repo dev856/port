@@ -551,10 +551,12 @@ def home():
                     |--------|--------------------------------------|---------|
                     |CS341|Artificial Intelligence|4|
                     |CS343|Summer Internship I|3|
-                    |EC2102|Macroeconomic Analysis I|4 MCs|
-                    |EC2204|Financial Accounting for Economists|4 MCs|
-                    |EC3305|Programming Tools for Economics|4 MCs|
-                    |GEH1049|Public Health in Action|4 MCs|
+                    |CS348|Software Group Project - III|1|
+                    |CS350|Operating System|4|
+                    |CS351|Design and analysis of Algorithm|4|
+                    |CS352|Computer Networks|4|
+                    |CS377|Mobile Application Development|4|
+                    |HS131.02A|Communication and Soft Skills|2|
                     """)
                     st.write("")
                     st.markdown("""
@@ -673,12 +675,10 @@ def home():
         with st.container():
             text_column, image_column = st.columns((3,1))
             with text_column:
-                st.subheader("Student Grievance Redressal Portal ")
+                st.subheader("Multi-label Dataset Prediction")
                 st.write("*Self-initiated project*")
                 st.markdown("""
-                - Provided options to plot Tiktok user overview data using 3D lineplots, 3D scatterplots, 3D surfaceplots and radar chart from Plotly
-                - Filtered number of hashtags per Tiktok video to investigate relationship between hashtag count and other variables: views, comments, likes and shares
-                - Performed hashtag analysis using Word2Vec to calculate cosine similarity scores and deduce correlation with average performance scores of each hashtag
+                - 
                 """)
                 # st.write("[Github Repo](https://github.com/harrychangjr/sales-prediction)")
                 #mention(label="Streamlit App", icon="streamlit", url="https://huggingface.co/spaces/harrychangjr/tiktok_analytics",)
@@ -688,12 +688,10 @@ def home():
         with st.container():
             text_column, image_column = st.columns((3,1))
             with text_column:
-                st.subheader("Creating Sales Volume Prediction Model with Regression Methods")
-                st.write("*Self-initiated project based on e-commerce case study*")
+                st.subheader("Topic Modeling ")
+                st.write("*")
                 st.markdown("""
-                - Conducted exploratory data analysis (EDA) to identify relationships between variables using correlation heatmaps and histograms
-                - Trained and compared multiple regression, random forest and XGBoost to build optimal model for sales volume prediction
-                - Performed randomized search with cross-validation to increase performance of random forest regressor and reduce MSE
+                - 
                 """)
                 # st.write("[Github Repo](https://github.com/harrychangjr/sales-prediction)")
                 mention(label="Github Repo", icon="github", url="https://github.com/harrychangjr/sales-prediction",)
