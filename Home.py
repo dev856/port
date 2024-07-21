@@ -139,9 +139,9 @@ def home():
     img_tpjc = Image.open("images/ultra.jpeg")
     # Assets for projects
     
-    image_names_projects = ["Tadasana"]
+    image_names_projects = ["Tadasana","screen06"]
 
-    images_projects = [Image.open(f"images/{name}.{'jpg' if name not in ('map', 'gephi', 'health') else 'png'}") for name in image_names_projects]
+    images_projects = [Image.open(f"images/{name}.{'jpg' if name not in ('','') else 'jpg'}") for name in image_names_projects]
     # Assets for volunteering
     image_names_vol = ["crowd2", "csi", "cn","code"]
     images_vol = [Image.open(f"images/{name}.{'jpg' if name not in ('crowd2', 'csi','cn','code') else 'png'}") for name in image_names_vol]
@@ -462,12 +462,30 @@ def home():
                     st.subheader("Secondary Education (Class- X) [Ultravision Academy](http://www.ultravisionschool.com/) (2016 - 2017)")
                     st.write("Coursework: ")
                     st.markdown(""" 
-                    - 
-                    - 
+                    - 2
                     """)
             
         elif selected == "Modules":
             st.subheader("Modules")
+            st.write("*List of courses taken at Carleton University*")
+            with st.container():
+                sem1, mid, sem2 = st.columns((1,0.1,1))
+                with sem1:
+                    st.write("**Academic Year 2023-2024**")
+                    st.markdown("""
+                    |Code|Module Title                       |Credit|
+                    |--------|--------------------------------------|---------|
+                    |ITEC 5010| Applied Programming|0.5|
+                    |SYSC 5405| Pattern Classification and Experiment Design|0.5|
+                    |SYSC 5500| Designing Secure Networking and Computer System|0.5|
+                    |DATA 5000| Data Science Seminar|0.5|
+                    |SYSC 5303| Interactive Networked Systems and Telemedicines|0.5|
+                    |SYSC 5807| Cryptography Implementation|0.5|
+                    """)
+                    st.write("")
+                    st.markdown("""
+                    Total Workload : **6 Credits (Credit)**
+                    """)
             st.write("*List of courses taken at Charotar University of Science and Technology*")
             with st.container():
                 sem1, mid, sem2 = st.columns((1,0.1,1))
@@ -613,48 +631,6 @@ def home():
                     st.markdown("""
                     Total Workload for Semester: **18 Modular Credits (MCs)**
                     """)
-            # with st.container():
-            #     sem1, mid, sem2 = st.columns((1,0.1,1))
-            #     with sem1:
-            #         st.write("**Academic Year 2023/24 Semester 1 (Expected)**")
-            #         st.markdown("""
-            #         |Code|Module Title                       |Workload|
-            #         |--------|--------------------------------------|---------|
-            #         |CS4225|Big Data Systems for Data Science|4 MCs|
-            #         |DSA4299|Applied Project in Data Science and Analytics|16 MCs|
-            #         """)
-            #         st.write("")
-            #         st.markdown("""
-            #         Total Workload for Semester: **20 Modular Credits (MCs)**
-            #         """)
-            #     with mid:
-            #         st.empty()
-            #     with sem2:
-            #         st.write("**Academic Year 2022/23 Semester 2 (Expected)**")
-            #         st.markdown("""
-            #         |Code|Module Title                       |Workload|
-            #         |--------|--------------------------------------|---------|
-            #         |DSA426X|Sense-Making Case Analysis|4 MCs|
-            #         |ST4234|Bayesian Statistics|4 MCs|
-            #         """)
-            #         st.write("")
-            #         st.markdown("""
-            #         Total Workload for Semester: **8 Modular Credits (MCs)**
-            #         """)
-            # with st.container():
-            #     left, mid, right = st.columns((0.1,1,0.1))
-            #     with left:
-            #         st.empty()
-            #     with mid:
-            #         st.write("**Graduation Requirements**")
-            #         st.image(img_dsa)
-            #     with right:
-            #         st.empty()
-        #elif selected == "Module Reviews":
-            #st.subheader("Module Reviews")
-            #st.write("*Reviews for selected modules taken in university*")
-
-
     elif choose == "Projects":
         # Create section for Projects
         #st.write("---")
@@ -670,202 +646,39 @@ def home():
                 - Used MediaPipe lightweight library for landmark detection which accurately identifies more keypoints as compared to existing solutions.
                 """)
                 mention(label="Github Repo", icon="github", url="https://github.com/dev856",)
-            with image_column:
-                st.image(images_projects[0])
+            # with image_column:
+            #     st.image(images_projects[0])
         with st.container():
             text_column, image_column = st.columns((3,1))
             with text_column:
                 st.subheader("Multi-label Dataset Prediction")
-                st.write("*Self-initiated project*")
+                st.write("*Carleton University SYSC 5405*")
                 st.markdown("""
-                - 
+                - Processed 6 feature files with 25k rows and 786-1024 columns each, addressing randomness at the start of the competition. Implemented Randomforest for feature selection and ensured data quality by checking standards like null values and outliers.
+                - Employed Logistic Regression using Multioutput classifier techniques. Incorporated meta-learning by leveraging these three base models and applied  bagging and boosting as the meta-learning algorithm.
+                - Achieved a remarkable 75% accuracy on a blind dataset, securing position under top 5 team in the competition. The strategic combination of preprocessing, diverse models, and meta-learning contributed to the winning solution.
+                
                 """)
                 # st.write("[Github Repo](https://github.com/harrychangjr/sales-prediction)")
                 #mention(label="Streamlit App", icon="streamlit", url="https://huggingface.co/spaces/harrychangjr/tiktok_analytics",)
                 mention(label="Github Repo", icon="github", url="https://github.com/dev856",)
-            with image_column:
-                st.image(images_projects[1])
+            # with image_column:
+            #     st.image(images_projects[1])
         with st.container():
             text_column, image_column = st.columns((3,1))
             with text_column:
-                st.subheader("Topic Modeling ")
-                st.write("*")
+                st.subheader("Tone Topic: Topic Modeling and Labeling in the Streamlit Sea ")
+                st.write("* Carleton University - Applied Programming ITEC5010*")
                 st.markdown("""
-                - 
+                - This project represents the merging of artificial intelligence and user-centric design to ease the gathering of insights from diverse data sources. 
+                - This project presents a tool that uses the LDA(Latent Dirichlet Allocation) algorithm for effective topic modeling and tagging, applied to textual data and CSV files received. 
+                - Along with Streamlit's engaging interface and the Heapq algorithm for detailed topic categorization, this app stands as an important tool for market research and data analysis. 
+                - It is aimed at inspiring analysts and researchers to help users build a flexible and insightful data analysis tool.
                 """)
                 # st.write("[Github Repo](https://github.com/harrychangjr/sales-prediction)")
-                mention(label="Github Repo", icon="github", url="https://github.com/harrychangjr/sales-prediction",)
-            with image_column:
-                st.image(images_projects[3])
-        with st.container():
-            text_column, image_column = st.columns((3,1))
-            with text_column:
-                st.subheader("Optimising Article Quality with ChatGPT and NLP")
-                st.write("*Self-initiated project using past articles written for module SP1541: Exploring Science Communication in Popular Science in Academic Year 2020/21 Semester 1*")
-                st.markdown("""
-                - Preliminary analysis - comparing word counts, readability scores and sentiment (compound) scores of all 6 article variants using NLTK and Textstat
-                - Generated word clouds to highlight frequently used words in each article variant
-                - Identified top 10 most commonly used words between variants of the same article to assess suitability of ChatGPT in enhancing article quality
-                """)
-                #st.write("[Github Repo](https://github.com/harrychangjr/sp1541-nlp)")
-                mention(label="Streamlit App", icon="streamlit", url="https://sp1541-nlp.streamlit.app",)
-                mention(label="Github Repo", icon="github", url="https://github.com/harrychangjr/sp1541-nlp",)
-            with image_column:
-                st.image(images_projects[1])
-        with st.container():
-            text_column, image_column = st.columns((3,1))
-            with text_column:
-                st.subheader("Statistical Learning: Analysis on Video Game Sales")
-                st.write("*Completed project within 48 hours for module ST4248: Statistical Learning II in Academic Year 2022/23 Semester 2*")
-                #st.write("Methods performed on [Kaggle dataset](https://www.kaggle.com/rush4ratio/video-game-sales-with-ratings):")
-                st.markdown("""
-                - Utilised multiple regression to investigate impact of publishers on global sales by regression coefficient, including performing one-hot encoding on 'Publisher' categorical variable
-                - Compared performances of multiple linear regression, random forest and XGBoost to predict global sales using critic scores and user scores from Metacritic
-                - Trained linear mixed-effects model to investigate impact of publishers, platform and genres in global sales
-                """)
-                #st.write("[Github Repo](https://github.com/harrychangjr/st4248-termpaper) | [Term Paper](https://github.com/harrychangjr/st4248-termpaper/blob/main/ST4248%20Term%20Paper%20(A0201825N)%20v5.pdf)")
-                mention(label="Github Repo", icon="github", url="https://github.com/harrychangjr/st4248-termpaper",)
-            with image_column:
-                st.image(images_projects[4])
-        with st.container():
-            text_column, image_column = st.columns((3,1))
-            with text_column:
-                st.subheader("Statistical Learning: Nourish Your Body with Data")
-                st.write("*Completed group project for module ST4248: Statistical Learning II in Academic Year 2022/23 Semester 2*")
-                st.markdown("""
-                - Adapted [previous project](https://drive.google.com/file/d/10ZOdQ8Q7UnevXxODAQs1YOstNSsiKh7G/view?usp=sharing) from DSA3101: Data Science in Practice, with the usage of statistical learning methods instead
-                - Performed random forest classification and clustering methods to identify different consumer segments of grocery shoppers in supermarkets
-                - Built recommendation system using matrix factorisation to recommend healthier food alternatives for grocery shoppers from different backgrounds
-                """)
-                #st.write("[Final Report](https://drive.google.com/file/d/1YuYxSTuDstSvyUa-bn782sLE5kCfbyH8/view?usp=sharing) | [Pitch Deck](https://www.canva.com/design/DAFeSnJeqgM/uXpz0kw8e7If4T1PG2tpaQ/view?utm_content=DAFeSnJeqgM&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink) | [Product Demo](https://www.youtube.com/watch?v=XMlt-kfdC7g)")
-                mention(label="Final Report", icon="📄", url="https://drive.google.com/file/d/1YuYxSTuDstSvyUa-bn782sLE5kCfbyH8/view?usp=sharing",)
-            with image_column:
-                st.image(images_projects[3])
-        with st.container():
-            text_column, image_column = st.columns((3,1))
-            with text_column:
-                st.subheader("Data Science Project on Biopics Dataset from Kaggle")
-                st.write("*Self-initiated project using various machine learning methods on [biopics dataset](https://www.kaggle.com/datasets/fivethirtyeight/fivethirtyeight-biopics-dataset)*")
-                st.markdown("""
-                - Ran regression models to predict box office revenue (linear regression, random forest, support vector machines)
-                - Used k-means clustering with principal components analysis to identify similar types of movies
-                - Built content-based recommendation system using cosine similarity to recommend similar movies based on input title
-                """)
-                #st.write("[Github Repo](https://github.com/harrychangjr/biopics) | [RPubs](https://rpubs.com/harrychangjr/biopics)")
-                mention(label="Github Repo", icon="github", url="https://github.com/harrychangjr/biopics",)
-            with image_column:
-                st.image(images_projects[4])
-        with st.container():
-            text_column, image_column = st.columns((3,1))
-            with text_column:
-                st.subheader("Optimisation for Large-Scale Data-Driven Inference: Anime Recommendation System")
-                st.write("*Completed assignment for module DSA4212: Optimisation for Large-Scale Data-Driven Inference in Academic Year 2022/23 Semester 2*")
-                st.markdown("""
-                - Built recommendation system using various non-factor models, including content-based collaborative filtering and clustering
-                - Utilised matrix factorisation (single value decomposition) to optimise performance of recommendation system with lower test MSE
-                - Provided optional recommendations to further optimise performance e.g scraping additional data, using deep learning methods
-                """)
-                #st.write("[Github Repo](https://github.com/harrychangjr/dsa4212) | [Report](https://github.com/harrychangjr/dsa4212/blob/main/DSA4212%20Assignment%202%20Group%2039%20Report.pdf)")
-                mention(label="Github Repo", icon="github", url="https://github.com/harrychangjr/dsa4212",)
-            with image_column:
-                st.image(images_projects[5])
-        with st.container():
-            text_column, image_column = st.columns((3,1))
-            with text_column:
-                st.subheader("Optimisation for Large-Scale Data-Driven Inference: Word Embedding")
-                st.write("*Completed assigmment for module DSA4212: Optimisation for Large-Scale Data-Driven Inference in Academic Year 2022/23 Semester 2*")
-                st.markdown("""
-                - Trained Word2Vec model on 20 Newsgroups dataset from scikit-learn package in Python, which provides a number of similar words based on input word
-                - Evaluated usefulness of model by applying model to text classification (46% accuracy) and sentiment analysis (86.4% accuracy)
-                """)
-                #st.write("[Github Code](https://github.com/harrychangjr/dsa4212/blob/main/DSA4212%20Assignment%203%20Group%2039.ipynb) | [Report](https://github.com/harrychangjr/dsa4212/blob/main/DSA4212%20Assignment%203%20Group%2039%20Report.pdf)")
-                mention(label="Github Code", icon="github", url="https://github.com/harrychangjr/dsa4212/blob/main/DSA4212%20Assignment%203%20Group%2039.ipynb",)
-            with image_column:
-                st.image(images_projects[6])
-        with st.container():
-            text_column, image_column = st.columns((3,1))
-            with text_column:
-                st.subheader("Data-Driven Marketing: Exploration of cellphone billing and subscriber data")
-                st.write("*Self-initiated project based on past assignment from module BT4211: Data-Driven Marketing*")
-                st.markdown("""
-                - Performed preliminary churn analysis, customer segmentation and descriptive analysis to understand more about dataset
-                - Trained logit and probit models, as well as providing model estimations for duration models
-                - Utilised random forest classifier to predict customer churn
-                """)
-                #st.write("[Github Repo](https://github.com/harrychangjr/cellphone-billing) | [RPubs](https://rpubs.com/harrychangjr/cellphone)")
-                mention(label="Github Repo", icon="github", url="https://github.com/harrychangjr/cellphone-billing",)
-            with image_column:
-                st.image(images_projects[7])
-        with st.container():
-            text_column, image_column = st.columns((3,1))
-            with text_column:
-                st.subheader("Data Visualization: Analysis on Spotify Dataset from [tidytuesday](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-01-21)")
-                st.write("*Completed group project for module DSA2101: Essential Data Analytics Tools: Data Visualization in Academic Year 2021/22 Semester 2*")
-                st.markdown("""
-                - Investigated variables that differentiates songs of different genres, which could be useful in designing recommendation systems
-                - Explored how do the four seasons affect number of songs produced in each period
-                - Visualizations used: ridgeline faceted density plot, boxplot, line chart, faceted donut chart
-                """)
-                #st.write("[Github Code](https://github.com/harrychangjr/dsa2101/blob/main/DSA2101_Group%20B.Rmd) | [RPubs](https://rpubs.com/harrychangjr/dsa2101-groupb)")
-                mention(label="Github Code", icon="github", url="https://github.com/harrychangjr/dsa2101/blob/main/DSA2101_Group%20B.Rmd",)
-            with image_column:
-                st.image(images_projects[8])
-        with st.container():
-            text_column, image_column = st.columns((3,1))
-            with text_column:
-                st.subheader("Computers and the Humanities: Chloropleths using Google Sheets and Folium in Python")
-                st.write("*Completed assignment for module GET1030: Computers and the Humanities in Academic Year 2020/21 Semester 2*")
-                st.markdown("""
-                - Visualized the total number of performances of A Doll's House by country, using a chloropleth from Google Sheets
-                - Drafted scatterplots and boxplots using seaborn to investigate relationship between number of events per country and number of years these plays have been performed
-                - Created chloropleth using Folium in Google Colab to compare total performance counts in China, categorised by province
-                """)
-                #st.write("[Google Sheets](https://docs.google.com/spreadsheets/d/1NBlGM7Sjcybbpl1Esa55qLRJw-Seti1LhC93EhV_68w/edit?usp=sharing) | [Google Colab](https://colab.research.google.com/drive/1RHqtb5XC7PkJDpNEb-BY3tO-8mI2j32E?usp=sharing)")
-                mention(label="Google Drive", icon="🗂️", url="https://drive.google.com/drive/folders/1Iva0oLZim6zJlAndoSzR63pUq4NCznim?usp=share_link",)
-            with image_column:
-                st.image(images_projects[9])
-        with st.container():
-            text_column, image_column = st.columns((3,1))
-            with text_column:
-                st.subheader("Computers and the Humanities: Network Analysis on Harry Potter Film Database")
-                st.write("*Completed assignment for module GET1030: Computers and the Humanities in Academic Year 2020/21 Semester 2*")
-                st.markdown("""
-                - Utilised custom Python file based on NetworkX and Glob to create networks using Harry Potter film database
-                - Drafted visualizations using matplotlib and seaborn to compare densities and weighted degree values of nodes from generated networks
-                - Customised network visualization using Gephi to investigate relationship between various Harry Potter film directors
-                """)
-                #st.write("[Github Code](https://github.com/harrychangjr/get1030/blob/main/A0201825N_GET1030_Tutorial_4.ipynb)")
-                mention(label="Github Code", icon="github", url="https://github.com/harrychangjr/get1030/blob/main/A0201825N_GET1030_Tutorial_4.ipynb",)
-            with image_column:
-                st.image(images_projects[10])
-        with st.container():
-            text_column, image_column = st.columns((3,1))
-            with text_column:
-                st.subheader("Computers and the Humanities: Text Processing and Analysis on Song Lyrics")
-                st.write("*Completed assignment for module GET1030: Computers and the Humanities in Academic Year 2020/21 Semester 2*")
-                st.markdown("""
-                - Utilised custom Python file based on NetworkX and Glob to create networks using Harry Potter film database
-                - Drafted visualizations using matplotlib and seaborn to compare proportions of nouns and verbs between different songs
-                - Analysed type/token ratios of songs from both albums to evaluate which album produced better quality songs based on words used
-                """)
-                #st.write("[Github Code](https://github.com/harrychangjr/get1030/blob/main/A0201825N%20-%20GET1030%20Tutorial%203.ipynb)")
-                mention(label="Github Code", icon="github", url="https://github.com/harrychangjr/get1030/blob/main/A0201825N%20-%20GET1030%20Tutorial%203.ipynb",)
-            with image_column:
-                st.image(images_projects[11])
-        with st.container():
-            text_column, image_column = st.columns((3,1))
-            with text_column:
-                st.subheader("Computers and the Humanities: Spotify in the Covid-19 Era")
-                st.write("*Completed group project for module GET1030: Computers and the Humanities in Academic Year 2020/21 Semester 2*")
-                st.markdown("""
-                - Compiled and scraped Spotify data from [Spotify](https://www.spotifycharts.com), [Kaggle](https://www.kaggle.com/yamaerenay/spotify-dataset-19212020-160k-tracks), and [OWID](https://ourworldindata.org/coronavirus/country/singapore) to analyse top songs played in Singapore during Covid-19
-                - Drafted Tableau dashboard to showcase correlation between various features of top songs, including tempo, acousticness and popularity
-                - Embedded 30-second snippet of featured song on dashboard for increased interactiveness
-                """)
-                #st.write("[Github Code](https://github.com/harrychangjr/get1030/blob/main/A0201825N%20-%20GET1030%20Tutorial%203.ipynb)")
-                mention(label="Final Report", icon="📄", url="https://github.com/harrychangjr/get1030/blob/main/GET1030%20Final%20Project.pdf",)
-            with image_column:
-                st.image(images_projects[12])
+                mention(label="Github Repo", icon="github", url="https://github.com/dev856",)
+            # with image_column:
+            #     st.image(images_projects[1])
     elif choose == "Volunteering":
         st.header("Volunteering")
         with st.container():
