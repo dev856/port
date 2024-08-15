@@ -723,13 +723,12 @@ def home():
         with st.container():
             text_column, mid, image_column = st.columns((3,0.4,1))
             with text_column:
-                st.subheader("Google Developer Student Clubs NUS")
-                st.write("*September 2021 to April 2022*")
+                st.subheader("Codechef CHARUSAT Chapter")
+                st.write("*September 2022 to October 2022*")
                 st.markdown("""
-                Deputy Head of Finance
+                Event Coordinator 
 
-                - Managed budget of student club alongside Core Team to ensure sufficient funds for technical workshops, hackathon and external projects
-                - Liaised with staff advisors and administrative staff to seek funding approvals and process financial claims for other student members
+                - Served as a member of the organizing committee in codepie 2.0 competitive programming contest organized by faculty of technology & engineering in association with codechef.
                 """)
             with mid:
                 st.empty()
