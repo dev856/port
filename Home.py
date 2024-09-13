@@ -265,11 +265,11 @@ def home():
             with left_column:
                 st.header("About Me")
                 st.subheader("Aspiring Software Engineer")
-                st.write("👋🏻 Hi, I'm Dev! I'm a data science and analytics undergraduate based in Singapore. Having prior relevant experiences in tech, reinsurance and consulting sectors, I am constantly seeking unique internships to broaden my horizons before embarking on my data career upon graduation.")
-                st.write("💼 With the COVID-19 pandemic behind us, I believe there is potential for data science to be applied in the retail industry. In response to the increasing demand for data analytics from both online and brick-and-mortar sales, I am thus aiming to enter this industry for my first full-time job.")
-                st.write("🏋🏻 In addition, I like to exercise in the gym, run, write, play video games and... enjoy eating good food in my free time!")
-                st.write("👨🏼‍💻 Academic interests: Data Visualization, Market Basket Analysis, Recommendation Systems, Natural Language Processing")
-                st.write("💭 Ideal Career Prospects: Data Analyst, Data Scientist, Data Engineer, Business Intelligence Analyst, Product Manager")
+                st.write("👋🏻 Hi, I'm Dev! I'm a student of Master of Engineering: Electrical and Computer Engineering with collaborative specialization in Data Science. Having prior relevant experiences in tech, I am constantly seeking unique internships to broaden my horizons before embarking on my data career upon graduation.")
+                st.write("💼 With the COVID-19 pandemic behind us, I believe there is potential for data science to be applied in the retail industry. In response to the increasing demand for data analytics from online, I am thus aiming to enter this industry for my first full-time job.")
+                st.write("🏋🏻 In addition, I like to run, write, watch movies and... enjoy eating good food in my free time!")
+                st.write("👨🏼‍💻 Academic interests: Data Visualization, Deep Learning, Recommendation Systems, Natural Language Processing")
+                st.write("💭 Ideal Career Prospects: Data Analyst, Data Scientist, Data Engineer , Machine Learning Engineer, Software Engineer")
             with right_column:
                 st_lottie(lottie_coding, height=500, key="coding")
             
@@ -277,7 +277,7 @@ def home():
         #overview.createPage()
         st.header("Site Overview")
         st.markdown("""
-        - Originally, I started developing this website as a portfolio, essentially an extended resume. During the process, I realized the distinctive qualities of Streamlit compared to traditional front-end frameworks. While Streamlit is primarily used for creating web application dashboards, its extensive features make it more visually appealing to explore than alternatives such as Plotly and Shiny.
+        - Originally, I started working this website as a portfolio, essentially an extended resume. The distinctive qualities of Streamlit compared to traditional front-end frameworks is that it it primarily used for creating web application dashboards, its extensive features make it more visually appealing to explore than alternatives such as Plotly and Shiny.
         """)
         with st.container():
                 col1, col2, col3 = st.columns((1,3,1))
