@@ -23,7 +23,7 @@ def home():
         page_title="Dev Kotak",
         page_icon="👨‍💻",
         layout="wide",
-        initial_sidebar_state="auto"
+        initial_sidebar_state="collapsed"
     )
     #st.sidebar.success("Select a page above.")
 
@@ -68,8 +68,12 @@ def home():
             return None
     # return the json data of the lottie animation
         return r.json()
+    lottie_coding= load_lottieurl("https://lottie.host/d407ea79-a951-4986-9ee6-d1d91f071918/YNhQKOD8BR.json")
+    lottie_python = load_lottieurl("https://assets6.lottiefiles.com/packages/lf20_2znxgjyt.json")
+    lottie_media = load_lottieurl("https://assets9.lottiefiles.com/packages/lf20_osdxlbqq.json")
+    lottie_github = load_lottieurl("https://assets8.lottiefiles.com/packages/lf20_6HFXXE.json")
+    lottie_internet = load_lottieurl("https://lottie.host/6f966033-0640-4492-aba8-e069b551b6f4/LtF2FH3ttk.json")
 
-    lottie_coding = load_lottieurl("https://assets9.lottiefiles.com/packages/lf20_dl87KC.json")
     # Use local CSS
     def local_css(file_name):
         with open(file_name) as f:
@@ -148,7 +152,7 @@ def home():
     images_vol = [Image.open(f"images/{name}.{'jpg' if name not in ('crowd2', 'csi','cn','code') else 'png'}") for name in image_names_vol]
     #img_lottie_animation = Image.open("images/lottie_animation.gif")
     # Assets for contact
-    #lottie_coding = load_lottieurl("https://assets9.lottiefiles.com/packages/lf20_abqysclq.json")
+    #lottie_coding = load_lottieurl("python_lottie = load_lottieurl("https://assets6.lottiefiles.com/packages/lf20_2znxgjyt.json")")
 
     img_linkedin = Image.open("images/linkedin.png")
     img_github = Image.open("images/github.png")
@@ -231,13 +235,13 @@ def home():
         
         choose = option_menu(
                             "Dev Kotak", 
-                            ["About Me", "Site Overview", "Experience", "Technical Skills", "Education", "Projects", "Volunteering", "Resume", "Contact"],
+                            ["About Me", "Site Overview", "Experience", "Skills", "Education", "Projects", "Volunteering", "Resume", "Contact"],
                             icons=['person fill','globe','clock history', 'tools', 'book half', 'clipboard', 'heart', 'paperclip', 'envelope'],
                             menu_icon="mortarboard", 
                             default_index=0,
                             styles={
             "container": {"padding": "0!important", "background-color": "#181818"},
-            "icon": {"color": "white", "font-size": "20px"}, 
+            "icon": {"color": "white", "font-size": "16px"}, 
             "nav-link": {"font-size": "17px", "text-align": "left", "margin":"0px", "--hover-color": "#192538"},
             "nav-link-selected": {"background-color": "#192538"},
         }
@@ -267,7 +271,7 @@ def home():
         with st.container():
             left_column, middle_column, right_column = st.columns((2,0.1,1))
             with left_column:
-                st.header("About Me")
+                st.header("🙋 :blue[About Me]",divider='rainbow')
                 st.subheader("Aspiring Software Engineer")
                 st.write("👋🏻 Hi, I'm Dev! I'm a student of Master of Engineering: Electrical and Computer Engineering with collaborative specialization in Data Science at Carleton University. Having prior relevant experiences in tech, I am constantly seeking unique internships to broaden my horizons before embarking on my career upon graduation.")
                 st.write("💼 With the COVID-19 pandemic behind us, I believe there is potential for data science to be applied in the retail industry. In response to the increasing demand for data analytics from online, I am thus aiming to enter this industry for my first full-time job.")
@@ -279,24 +283,22 @@ def home():
             
     elif choose == "Site Overview":   
         #overview.createPage()
-        st.header("Site Overview")
-        st.markdown("""
-        - Originally, I started working this website as a portfolio, essentially an extended resume. The distinctive qualities of Streamlit compared to traditional front-end frameworks is that it it primarily used for creating web application dashboards, its extensive features make it more visually appealing to explore than alternatives such as Plotly and Shiny.
-        """)
+        st.header("🌐 Site Overview",divider='rainbow')
+        
         with st.container():
-                col1, col2, col3 = st.columns((1,3,1))
-                with col1:
-                    st.empty()
-                with col2:
-                    st.empty()
-                with col3:
-                    st.empty()
-        st.markdown("""
+                left_column, middle_column, right_column = st.columns((2,0.1,1))
+                with left_column:
+                    st.markdown("""
+                                - Originally, I started working this website as a portfolio, essentially an extended resume. The distinctive qualities of Streamlit compared to traditional front-end frameworks is that it it primarily used for creating web application dashboards, its extensive features make it more visually appealing to explore than alternatives such as Plotly and Shiny.
+                                """)
+                with right_column:
+                    st_lottie(lottie_internet, height=400, key="internet")
+        st.markdown(""" 
         """)
 # Create section for Work Experience
     elif choose == "Experience":
         #st.write("---")
-        st.header("Experience")
+        st.header("🔰 Experience",divider='rainbow')
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
@@ -400,26 +402,32 @@ def home():
         ''', unsafe_allow_html=True)
     # Subtitle
 
-    elif choose == "Technical Skills":
+    elif choose == "Skills":
     #st.write("---")
-        st.header("Technical Skills")
-        txt3("Programming Languages","`C/C++`, `Python`, `SQL`, `Java`, `MATLAB`")
-        txt3("Academic Interests","`Data Visualization`, `Recommendation Systems`, `Natural Language Processing`")
-        txt3("Data Visualization", "`matplotlib`, `seaborn`, `Plotly`, `Folium`, `GIS`, `Google Data Studio`")
-        txt3("Database Systems", "`MySQL`, `SQLite`, `NoSQL`")
-        txt3("Cloud Platforms", "`Google Cloud Platform`, `Streamlit Cloud`, `Hugging Face`")
-        txt3("Natural Language Processing", "`NLTK`, `Word2Vec`, `TF-IDF`, `TextStat`")
-        txt3("Version Control", "`Git`")
-        txt3("Design and Front-end Development", "`Canva`, `HTML`, `CSS`, `Streamlit`, `Wordpress`")
-        txt3("Data Science Techniques", "`Regression`, `Clustering`, `Random Forest`, `Decison Trees`, `Text Classification`, `Sentiment Analysis`, `Matrix Factorisation`")
-        txt3("Machine Learning Frameworks", "`Numpy`, `Pandas`, `Scikit-Learn`, `TensorFlow`, `Keras`")
-        txt3("Task Management Tools", "`Notion`, `ClickUp`, `Slack`, `Jira`")
-        txt3("Miscellaneous", "`Microsoft Office`, `Libre Officce`")
+        st.header(" ⚒️ Skills",divider='rainbow')
+        with st.container():
+                left_column, middle_column, right_column = st.columns((2,0.1,1))
+                with left_column:
+                    txt3("Programming Languages","`C/C++`, `Python`, `SQL`, `Java`, `MATLAB`")
+                    txt3("Academic Interests","`Data Visualization`, `Recommendation Systems`, `Natural Language Processing`")
+                    txt3("Data Visualization", "`matplotlib`, `seaborn`, `Plotly`, `Folium`, `GIS`, `Google Data Studio`")
+                    txt3("Database Systems", "`MySQL`, `SQLite`, `NoSQL`")
+                    txt3("Cloud Platforms", "`Google Cloud Platform`, `Streamlit Cloud`, `Hugging Face`")
+                    txt3("Natural Language Processing", "`NLTK`, `Word2Vec`, `TF-IDF`, `TextStat`")
+                    txt3("Version Control", "`Git`")
+                    txt3("Design and Front-end Development", "`Canva`, `HTML`, `CSS`, `Streamlit`, `Wordpress`")
+                    txt3("Data Science Techniques", "`Regression`, `Clustering`, `Random Forest`, `Decison Trees`, `Text Classification`, `Sentiment Analysis`, `Matrix Factorisation`")
+                    txt3("Machine Learning Frameworks", "`Numpy`, `Pandas`, `Scikit-Learn`, `TensorFlow`, `Keras`")
+                    txt3("Task Management Tools", "`Notion`, `ClickUp`, `Slack`, `Jira`")
+                    txt3("Miscellaneous", "`Microsoft Office`, `Libre Officce`")
+                with right_column:
+                    st_lottie(lottie_python, height=400, key="internet")
+       
 
 # Create section for Education
 #st.write("---")
     elif choose == "Education":
-        st.header("Education")
+        st.header("🏛 Education",divider='rainbow')
         selected_options = ["Summary", "Modules"]
         selected = st.selectbox("Which section would you like to read?", options = selected_options)
         st.write("Current selection:", selected)
@@ -638,7 +646,7 @@ def home():
     elif choose == "Projects":
         # Create section for Projects
         #st.write("---")
-        st.header("Projects")
+        st.header("📚 Projects",divider='rainbow')
         with st.container():
             text_column, image_column = st.columns((3,1))
             with text_column:
@@ -684,7 +692,7 @@ def home():
             # with image_column:
             #     st.image(images_projects[1])
     elif choose == "Volunteering":
-        st.header("Volunteering")
+        st.header("🫴 Volunteering",divider='rainbow')
         with st.container():
             text_column, mid, image_column = st.columns((3,0.4,1))
             with text_column:
@@ -738,99 +746,9 @@ def home():
                 st.empty()
             with image_column:
                 st.image(images_vol[3])
-        # with st.container():
-        #     text_column, mid, image_column = st.columns((3,0.4,1))
-        #     with text_column:
-        #         st.subheader("NUS Students' Community Service Club")
-        #         st.write("*March to July 2021*")
-        #         st.markdown("""
-        #         Organising Committee, Project Safe Space
-
-        #         - Organised weekly sessions to empower individuals from Anglican Care Centre (Yishun) with important life skills (e.g Zumba, cooking)
-        #         - Drafted write-ups on psychiatric conditions to raise awareness on debunked mental health myths and promote mental welness
-        #         """)
-        #     with mid:
-        #         st.empty()
-        #     with image_column:
-        #         st.image(images_vol[3])
-        # with st.container():
-        #     text_column, mid, image_column = st.columns((3,0.4,1))
-        #     with text_column:
-        #         st.subheader("NUS Students' Union")
-        #         st.write("*January to March 2021*")
-        #         st.markdown("""
-        #         Public Relations Executive, Open Day Student Village
-
-        #         - Liaised with participating student residences and clubs to increase awareness of event to prospective students
-        #         - Enforced rules and regulations imposed by school administrative staff to ensure smooth execution of event
-        #         """)
-        #     with mid:
-        #         st.empty()
-        #     with image_column:
-        #         st.image(images_vol[4])
-        # with st.container():
-        #     text_column, mid, image_column = st.columns((3,0.4,1))
-        #     with text_column:
-        #         st.subheader("Saturday Kids")
-        #         st.write("*October 2020 to December 2021 - Seasonal*")
-        #         st.markdown("""
-        #         Python Instructor, Code in the Community
-
-        #         - Conducted weekly lessons for classes of 3-4 secondary school students on Python programming 
-        #         - Customised curriculum structure to suit the learning needs of students
-        #         """)
-        #     with mid:
-        #         st.empty()
-        #     with image_column:
-        #         st.image(images_vol[5])
-        # with st.container():
-        #     text_column, mid, image_column = st.columns((3,0.4,1))
-        #     with text_column:
-        #         st.subheader("Singapore Institiute of Management - University of London")
-        #         st.write("*November 2017*")
-        #         st.markdown("""
-        #         Fundraising Volunteer, SIM-UOL Transformers
-
-        #         - Collected unwanted items from residents in heartland areas
-        #         - Successfully raised $8000 from sale of items to refurbish the homes of the less fortunate
-        #         """)
-        #     with mid:
-        #         st.empty()
-        #     with image_column:
-        #         st.image(images_vol[6])
-        # with st.container():
-        #     text_column, mid, image_column = st.columns((3,0.4,1))
-        #     with text_column:
-        #         st.subheader("Tampines Junior College")
-        #         st.write("*March 2015 to January 2016 - Seasonal*")
-        #         st.markdown("""
-        #         Values in Action (VIA) Projects
-
-        #         - Climb for A Cause - Organised and participated in games and activities with members of Singapore Disability Sports Council
-        #         - Project Ohana - Collaborated with Kwong Wai Shiu Hospital to engage patients in handicraft and games
-        #         """)
-        #     with mid:
-        #         st.empty()
-        #     with image_column:
-        #         st.image(images_vol[7])
-        # with st.container():
-        #     text_column, mid, image_column = st.columns((3,0.4,1))
-        #     with text_column:
-        #         st.subheader("Saint Joseph's Institution")
-        #         st.write("*June 2012 to June 2013 - Seasonal*")
-        #         st.markdown("""
-        #         Values in Action (VIA) Projects
-
-        #         - Josephian International Experience Programme - Conducted English lessons at orphanage in Siem Reap, Cambodia
-        #         - SJIJ Primary 4 Chinese Language Camp - Acted as group facilitator to orientate primary four students in Chinese lessons
-        #         """)
-        #     with mid:
-        #         st.empty()
-        #     with image_column:
-        #         st.image(images_vol[8])
     elif choose == "Resume":   
         resume_url = "https://drive.google.com/file/d/1UnSVLegQIbSE_GQ-K-DzA1JQQtHb4aNx/view?usp=sharing"
-        st.header("Resume")
+        st.header("📄 Resume",divider='rainbow')
         st.write("*In case your current browser cannot display the PDF documents, do refer to the hyperlink below!*")
 
         st.markdown(pdf_link(resume_url, "**Resume**"), unsafe_allow_html=True)
@@ -845,7 +763,7 @@ def home():
     elif choose == "Contact":
     # Create section for Contact
         #st.write("---")
-        st.header("Contact")
+        st.header("Contact",divider='rainbow')
         def social_icons(width=24, height=24, **kwargs):
             icon_template = '''
             <a href="{url}" target="_blank" style="margin-right: 10px;">
@@ -869,17 +787,17 @@ def home():
             text_column, mid, image_column = st.columns((1,0.2,0.5))
             with text_column:
                 st.write("Let's connect! You may either reach out to me at devhkotak@gmail.com or use the form below!")
-                #with st.form(key='columns_in_form2',clear_on_submit=True): #set clear_on_submit=True so that the form will be reset/cleared once it's submitted
-                    #st.write('Please help us improve!')
-                    #Name=st.text_input(label='Your Name',
-                                        #max_chars=100, type="default") #Collect user feedback
-                    #Email=st.text_input(label='Your Email', 
-                                        #max_chars=100,type="default") #Collect user feedback
-                    #Message=st.text_input(label='Your Message',
-                                            #max_chars=500, type="default") #Collect user feedback
-                    #submitted = st.form_submit_button('Submit')
-                    #if submitted:
-                        #st.write('Thanks for your contacting us. We will respond to your questions or inquiries as soon as possible!')
+                # with st.form(key='columns_in_form2',clear_on_submit=True): #set clear_on_submit=True so that the form will be reset/cleared once it's submitted
+                #     st.write('Please help us improve!')
+                #     Name=st.text_input(label='Your Name',
+                #                         max_chars=100, type="default") #Collect user feedback
+                #     Email=st.text_input(label='Your Email', 
+                #                         max_chars=100,type="default") #Collect user feedback
+                #     Message=st.text_input(label='Your Message',
+                #                             max_chars=500, type="default") #Collect user feedback
+                #     submitted = st.form_submit_button('Submit')
+                #     if submitted:
+                #         st.write('Thanks for your contacting us. We will respond to your questions or inquiries as soon as possible!')
                 def create_database_and_table():
                     conn = sqlite3.connect('contact_form.db')
                     c = conn.cursor()
@@ -950,7 +868,8 @@ def home():
             with mid:
                 st.empty()
             with image_column:
-                st.image(img_ifg)
+                st_lottie(lottie_media, height=400, key="internet")
+                
     
     st.divider()
 
