@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 from streamlit_extras.echo_expander import echo_expander
 from custom import GITHUB_PROFILE,LINKEDIN_PROFILE
 import streamlit.components.v1 as components
-
+from streamlit_pdf_viewer import pdf_viewer
 def home():
     # Page configs (tab title, favicon)
    
@@ -752,7 +752,7 @@ def home():
         st.write("*In case your current browser cannot display the PDF documents, do refer to the hyperlink below!*")
 
         st.markdown(pdf_link(resume_url, "**Resume**"), unsafe_allow_html=True)
-        show_pdf("Resume-Dev.pdf")
+        pdf_viewer("Resume-Dev.pdf")
         with open("Resume-Dev.pdf", "rb") as file:
             btn = st.download_button(
                 label="Download Resume (1 page)",
