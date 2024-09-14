@@ -13,7 +13,8 @@ from streamlit_extras.app_logo import add_logo
 import sqlite3
 from bs4 import BeautifulSoup
 from streamlit_extras.echo_expander import echo_expander
-
+from custom import GITHUB_PROFILE,LINKEDIN_PROFILE
+import streamlit.components.v1 as components
 
 def home():
     # Page configs (tab title, favicon)
@@ -241,6 +242,9 @@ def home():
             "nav-link-selected": {"background-color": "#192538"},
         }
         )
+        components.html(LINKEDIN_PROFILE,height=400,width=900)
+        components.html(GITHUB_PROFILE)
+        
         linkedin_url = "https://www.linkedin.com/in/dev-kotak/"
         github_url = "https://github.com/dev856"
         email_url = "mailto:devhkotak@gmail.com"
@@ -265,7 +269,7 @@ def home():
             with left_column:
                 st.header("About Me")
                 st.subheader("Aspiring Software Engineer")
-                st.write("👋🏻 Hi, I'm Dev! I'm a student of Master of Engineering: Electrical and Computer Engineering with collaborative specialization in Data Science. Having prior relevant experiences in tech, I am constantly seeking unique internships to broaden my horizons before embarking on my data career upon graduation.")
+                st.write("👋🏻 Hi, I'm Dev! I'm a student of Master of Engineering: Electrical and Computer Engineering with collaborative specialization in Data Science at Carleton University. Having prior relevant experiences in tech, I am constantly seeking unique internships to broaden my horizons before embarking on my career upon graduation.")
                 st.write("💼 With the COVID-19 pandemic behind us, I believe there is potential for data science to be applied in the retail industry. In response to the increasing demand for data analytics from online, I am thus aiming to enter this industry for my first full-time job.")
                 st.write("🏋🏻 In addition, I like to run, write, watch movies and... enjoy eating good food in my free time!")
                 st.write("👨🏼‍💻 Academic interests: Data Visualization, Deep Learning, Recommendation Systems, Natural Language Processing")
