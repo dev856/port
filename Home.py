@@ -157,6 +157,7 @@ def home():
     img_linkedin = Image.open("images/linkedin.png")
     img_github = Image.open("images/github.png")
     img_email = Image.open("images/email.png")
+    img_codechef = Image.open("images/codechef.png")
 
     def social_icons(width=24, height=24, **kwargs):
             icon_template = '''
@@ -171,7 +172,8 @@ def home():
                    
                     "linkedin": "https://img.icons8.com/ios-filled/100/ff8c00/linkedin.png",
                     "github": "https://img.icons8.com/ios-filled/100/ff8c00/github--v2.png",
-                    "email": "https://img.icons8.com/ios-filled/100/ff8c00/filled-message.png"
+                    "email": "https://img.icons8.com/ios-filled/100/ff8c00/filled-message.png",
+                    "codechef": "https://img.icons8.com/?size=100&id=eqDiO9L02aEu&format=png&color=000000"
                 }.get(name.lower())
 
                 if icon_src:
