@@ -173,7 +173,7 @@ def home():
                     "linkedin": "https://img.icons8.com/ios-filled/100/ff8c00/linkedin.png",
                     "github": "https://img.icons8.com/ios-filled/100/ff8c00/github--v2.png",
                     "email": "https://img.icons8.com/ios-filled/100/ff8c00/filled-message.png",
-                    "codechef": "https://img.icons8.com/?size=100&id=eqDiO9L02aEu&format=png&color=000000"
+                    "codechef": "https://img.icons8.com/?size=100&id=LnZMjt9rZC3d&format=png&color=000000"
                 }.get(name.lower())
 
                 if icon_src:
@@ -254,13 +254,14 @@ def home():
         linkedin_url = "https://www.linkedin.com/in/dev-kotak/"
         github_url = "https://github.com/dev856"
         email_url = "mailto:devhkotak@gmail.com"
+        codechef_url = "https://www.codechef.com"
         with st.container():
             l, m, r = st.columns((0.11,2,0.1))
             with l:
                 st.empty()
             with m:
                 st.markdown(
-                    social_icons(30, 30, LinkedIn=linkedin_url, GitHub=github_url, Email=email_url)
+                    social_icons(30, 30, LinkedIn=linkedin_url, GitHub=github_url, Email=email_url, Codechef=codechef_url)
                     ,unsafe_allow_html=True)
             with r:
                 st.empty()
