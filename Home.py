@@ -128,7 +128,7 @@ def home():
     img_utown = Image.open("images/lh.jpeg")
     img_lh = Image.open("images/lh.jpeg")
     img_ifg = Image.open("images/lh.jpeg")
-    sidebar_logo = Image.open("images/lh.jpeg")
+    sidebar_logo = Image.open("images/logog.png")
     #Assets for internship
     img_bitmetrix = Image.open("images/isro1.jpeg")
     img_scor = Image.open("images/jupiter.png")
@@ -254,7 +254,7 @@ def home():
         linkedin_url = "https://www.linkedin.com/in/dev-kotak/"
         github_url = "https://github.com/dev856"
         email_url = "mailto:devhkotak@gmail.com"
-        codechef_url = "https://www.codechef.com"
+        codechef_url = "https://www.codechef.com/users/god_001"
         with st.container():
             l, m, r = st.columns((0.11,2,0.1))
             with l:
@@ -296,8 +296,6 @@ def home():
                                 """)
                 with right_column:
                     st_lottie(lottie_internet, height=400, key="internet")
-        st.markdown(""" 
-        """)
 # Create section for Work Experience
     elif choose == "Experience":
         #st.write("---")
@@ -305,7 +303,7 @@ def home():
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
-                st.image(img_bitmetrix)
+                st.image(img_bitmetrix,output_format="auto",width=200, use_column_width=200)
             with text_column:
                 st.subheader("Research Intern, [Space Application Center, ISRO](https://www.isro.gov.in/)")
                 st.write("*December 2022 to May 2023*")
@@ -321,7 +319,7 @@ def home():
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
-                st.image(img_scor)
+                st.image(img_scor, width=200,use_column_width=250)
             with text_column:
                 st.subheader("Machine Learning Intern, [Jupiter AI Labs Pvt. Ltd.](https://juppiterailabs.com/)")
                 st.write("*Dec 2022 to Feb 2023* | [*Certificate*](https://drive.google.com/file/d/1VYHlbY-K7cDr96Mv-6pRR6ev3idHyPeA/view?usp=sharing)")
@@ -337,7 +335,7 @@ def home():
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
-                st.image(img_zummit)
+                st.image(img_zummit, output_format="auto",width=200, use_column_width=200)
             with text_column:
                 st.subheader("Data Science Intern, [Zummit Infolabs Pvt. Ltd.](https://zummitlabs.com/)")
                 st.write("*June 2022 to Sept 2022*")
@@ -353,7 +351,7 @@ def home():
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
-                st.image(img_dep)
+                st.image(img_dep, output_format="auto",width=200, use_column_width=200)
             with text_column:
                 st.subheader("Machine Learning Intern, [Devang Patel Institute of Advance Technology and Research(CHARUSAT)](https://charusat.ac.in/)")
                 st.write("*May 2022 to June 2022* | [*Certificate*]()")
@@ -368,7 +366,7 @@ def home():
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
-                st.image(img_kintu)
+                st.image(img_kintu, output_format="auto",width=200, use_column_width=200)
             with text_column:
                 st.subheader("NodeJS and Botpress.io Intern, [Kintu Designs Pvt. Ltd.](https://kintudesigns.com/public/)")
                 st.write("*June 2021 to September 2021*")
@@ -384,7 +382,7 @@ def home():
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
-                st.image(img_spark)
+                st.image(img_spark, output_format="auto",width=200, use_column_width=200)
             with text_column:
                 st.subheader("Data Science and Business Analytics Intern, [The Sparks Foundation](https://www.thesparksfoundationsingapore.org/)")
                 st.write("*Jan 2021 to Feb 2021* | [*Testimonial*](https://drive.google.com/file/d/1O6Yu0P65dU8LCSDuXkf9BvlQJoz_5mRW/view?usp=sharing)")
@@ -880,7 +878,7 @@ def home():
 
     st.write("##")
     
-    st.write(f"""<div class="subtitle" style="text-align: center;">⬅️ Check out my other details in the navigation menu!</div>""", unsafe_allow_html=True)
+    st.write(f"""<div class="subtitle" style="text-align: center;">⬅️ Check out my other details in the  n menu!</div>""", unsafe_allow_html=True)
 
 
 if __name__=="__main__":
