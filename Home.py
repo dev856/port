@@ -757,12 +757,14 @@ def home():
         st.markdown(pdf_link(resume_url, "**Resume**"), unsafe_allow_html=True)
         show_pdf("Resume-Dev.pdf")
         with open("Resume-Dev.pdf", "rb") as file:
-            btn = st.download_button(
-                label="Download Resume (1 page)",
-                data=file,
-                file_name="Resume-Dev.pdf",
-                mime="application/pdf"
-            )
+            PDFbyte = file.read()
+
+        st.download_button(
+            label="Download Resume (1 page)",
+            data=PDFbyte,
+            file_name="Resume-Dev.pdf",
+            mime="application/pdf"
+        )
     elif choose == "Contact":
     # Create section for Contact
         #st.write("---")
