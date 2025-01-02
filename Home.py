@@ -649,7 +649,7 @@ def home():
     elif choose == "Projects":
         # Create section for Projects
         #st.write("---")
-        st.header("📚 Projects",divider='rainbow')
+        st.header("📁 Projects",divider='rainbow')
         with st.container():
             text_column, image_column = st.columns((3,1))
             with text_column:
