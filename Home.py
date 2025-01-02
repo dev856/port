@@ -303,7 +303,7 @@ def home():
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
-                st.image(img_bitmetrix,output_format="auto",width=200, use_column_width=200)
+                st.image(img_bitmetrix,output_format="auto",width=200, use_container_width=200)
             with text_column:
                 st.subheader("Research Intern, [Space Application Center, ISRO](https://www.isro.gov.in/)")
                 st.write("*December 2022 to May 2023*")
@@ -319,7 +319,7 @@ def home():
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
-                st.image(img_scor, width=200,use_column_width=250)
+                st.image(img_scor, width=200,use_container_width=250)
             with text_column:
                 st.subheader("Machine Learning Intern, [Jupiter AI Labs Pvt. Ltd.](https://juppiterailabs.com/)")
                 st.write("*Dec 2022 to Feb 2023* | [*Certificate*](https://drive.google.com/file/d/1VYHlbY-K7cDr96Mv-6pRR6ev3idHyPeA/view?usp=sharing)")
@@ -335,7 +335,7 @@ def home():
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
-                st.image(img_zummit, output_format="auto",width=200, use_column_width=200)
+                st.image(img_zummit, output_format="auto",width=200, use_container_width=200)
             with text_column:
                 st.subheader("Data Science Intern, [Zummit Infolabs Pvt. Ltd.](https://zummitlabs.com/)")
                 st.write("*June 2022 to Sept 2022*")
@@ -351,7 +351,7 @@ def home():
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
-                st.image(img_dep, output_format="auto",width=200, use_column_width=200)
+                st.image(img_dep, output_format="auto",width=200, use_container_width=200)
             with text_column:
                 st.subheader("Machine Learning Intern, [Devang Patel Institute of Advance Technology and Research(CHARUSAT)](https://charusat.ac.in/)")
                 st.write("*May 2022 to June 2022* | [*Certificate*]()")
@@ -366,7 +366,7 @@ def home():
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
-                st.image(img_kintu, output_format="auto",width=200, use_column_width=200)
+                st.image(img_kintu, output_format="auto",width=200, use_container_width=200)
             with text_column:
                 st.subheader("NodeJS and Botpress.io Intern, [Kintu Designs Pvt. Ltd.](https://kintudesigns.com/public/)")
                 st.write("*June 2021 to September 2021*")
@@ -382,7 +382,7 @@ def home():
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
-                st.image(img_spark, output_format="auto",width=200, use_column_width=200)
+                st.image(img_spark, output_format="auto",width=200, use_container_width=200)
             with text_column:
                 st.subheader("Data Science and Business Analytics Intern, [The Sparks Foundation](https://www.thesparksfoundationsingapore.org/)")
                 st.write("*Jan 2021 to Feb 2021* | [*Testimonial*](https://drive.google.com/file/d/1O6Yu0P65dU8LCSDuXkf9BvlQJoz_5mRW/view?usp=sharing)")
