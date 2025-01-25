@@ -119,8 +119,15 @@ def home():
     def show_pdf(file_path):
         with open(file_path,"rb") as f:
             base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-        pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="400" height="600" type="application/pdf">'
-        st.markdown(pdf_display, unsafe_allow_html=True)
+        iframe_code = f'''
+            <iframe
+                src="data:application/pdf;base64,{base64_pdf}"
+                width="450"
+                height="650"
+                type="application/pdf"
+            ></iframe>
+        '''
+        st.markdown(iframe_code, unsafe_allow_html=True)
 
     def pdf_link(pdf_url, link_text="Click here to view PDF"):
         href = f'<a href="{pdf_url}" target="_blank">{link_text}</a>'
@@ -328,7 +335,7 @@ def home():
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
-                st.image(img_bitmetrix,output_format="auto",width=200, use_container_width=200)
+                st.image(img_bitmetrix,output_format="auto",width=250)
             with text_column:
                 st.subheader("Research Intern, [Space Application Center, ISRO](https://www.isro.gov.in/)")
                 st.write("*December 2022 to May 2023*")
@@ -344,7 +351,7 @@ def home():
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
-                st.image(img_scor, width=200,use_container_width=250)
+                st.image(img_scor, output_format="auto",width=250)
             with text_column:
                 st.subheader("Machine Learning Intern, [Jupiter AI Labs Pvt. Ltd.](https://juppiterailabs.com/)")
                 st.write("*Dec 2022 to Feb 2023* | [*Certificate*](https://drive.google.com/file/d/1VYHlbY-K7cDr96Mv-6pRR6ev3idHyPeA/view?usp=sharing)")
@@ -360,7 +367,7 @@ def home():
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
-                st.image(img_zummit, output_format="auto",width=200, use_container_width=200)
+                st.image(img_zummit, output_format="auto",width=250)
             with text_column:
                 st.subheader("Data Science Intern, [Zummit Infolabs Pvt. Ltd.](https://zummitlabs.com/)")
                 st.write("*June 2022 to Sept 2022*")
@@ -376,7 +383,7 @@ def home():
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
-                st.image(img_dep, output_format="auto",width=200, use_container_width=200)
+                st.image(img_dep, output_format="auto",width=250)
             with text_column:
                 st.subheader("Machine Learning Intern, [Devang Patel Institute of Advance Technology and Research(CHARUSAT)](https://charusat.ac.in/)")
                 st.write("*May 2022 to June 2022* | [*Certificate*]()")
@@ -391,7 +398,7 @@ def home():
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
-                st.image(img_kintu, output_format="auto",width=200, use_container_width=200)
+                st.image(img_kintu, output_format="auto",width=250)
             with text_column:
                 st.subheader("NodeJS and Botpress.io Intern, [Kintu Designs Pvt. Ltd.](https://kintudesigns.com/public/)")
                 st.write("*June 2021 to September 2021*")
@@ -407,7 +414,7 @@ def home():
         with st.container():
             image_column, text_column = st.columns((1,5))
             with image_column:
-                st.image(img_spark, output_format="auto",width=200, use_container_width=200)
+                st.image(img_spark, output_format="auto",width=250)
             with text_column:
                 st.subheader("Data Science and Business Analytics Intern, [The Sparks Foundation](https://www.thesparksfoundationsingapore.org/)")
                 st.write("*Jan 2021 to Feb 2021* | [*Testimonial*](https://drive.google.com/file/d/1O6Yu0P65dU8LCSDuXkf9BvlQJoz_5mRW/view?usp=sharing)")
@@ -469,17 +476,17 @@ def home():
             with st.container():
                 image_column, text_column = st.columns((1,2.5))
                 with image_column:
-                    st.image(img_carleton)
+                    st.image(img_carleton,output_format="auto",width=200)
                 with text_column:
                     st.subheader("Master of Engineering - [Electrical and Computer Engineering with collaborative specialization in Data Science], [Carleton University](https://carleton.ca/discover/) (2023-2025)")
-                    st.write("Relevant Coursework: Pattern Classification and Experiment design , Applied Programming , Design Secure Network and Computer System, Interactive networked system and Telemedicine, Data Science Seminar, Cryptographic Implementations")
+                    st.write("Relevant Coursework: Pattern Classification and Experiment design , Applied Programming , Design Secure Network and Computer System, Interactive networked system and Telemedicine, Data Science Seminar, Cryptographic Implementations, Advanced Data Visualization")
                     st.markdown("""
-                    
+                    - CGPA - 10.5/12.0
                     """)
             with st.container():
                 image_column, text_column = st.columns((1,2.5))
                 with image_column:
-                    st.image(img_nus)
+                    st.image(img_nus, output_format="auto",width=200)
                 with text_column:
                     st.subheader("Bachelor of Technology - [Computer Science and Engineering], [Charotar University of Science and Technology ](https://www.charusat.ac.in/) (2019-2023)")
                     st.write("Relevant Coursework: Java Programming, Object-oriented Programming with C++, Programming in Python, Data Structure & Algorithms, Design & Analysis of algorithms, Machine learning, Artificial Intelligence, Software Engineering, Theory of Computation, Data Communication & Networking, Computer Networks, Modern Networks")
@@ -491,7 +498,7 @@ def home():
             with st.container():
                 image_column, text_column = st.columns((1,2.5))
                 with image_column:
-                    st.image(img_poc)
+                    st.image(img_poc, output_format="auto",width=200)
                 with text_column:
                     st.subheader("Higher Secondary Education (Class- XI,XII) [Hiramohan Vidhyalaya](https://schools.org.in/surendranagar/24080503891/hira-mohan-vidhyalaya.html) (2017-2019)")
                     st.write("Coursework: Physics, Chemistry, Mathematics")
@@ -501,7 +508,7 @@ def home():
             with st.container():
                 image_column, text_column = st.columns((1,2.5))
                 with image_column:
-                    st.image(img_tpjc)
+                    st.image(img_tpjc, output_format="auto", width=200)
                 with text_column:
                     st.subheader("Secondary Education (Class- X) [Ultravision Academy](http://www.ultravisionschool.com/) (2016 - 2017)")
                     st.write("Coursework: ")
@@ -737,7 +744,7 @@ def home():
             with mid:
                 st.empty()
             with image_column:
-                st.image(images_vol[0])
+                st.image(images_vol[0], output_format="auto", width=200)
         with st.container():
             text_column, mid, image_column = st.columns((3,0.4,1))
             with text_column:
@@ -750,7 +757,7 @@ def home():
             with mid:
                 st.empty()
             with image_column:
-                st.image(images_vol[1])
+                st.image(images_vol[1], output_format="auto", width=200)
         with st.container():
             text_column, mid, image_column = st.columns((3,0.4,1))
             with text_column:
@@ -763,7 +770,7 @@ def home():
             with mid:
                 st.empty()
             with image_column:
-                st.image(images_vol[2])
+                st.image(images_vol[2], output_format="auto", width=200)
         with st.container():
             text_column, mid, image_column = st.columns((3,0.4,1))
             with text_column:
@@ -777,7 +784,7 @@ def home():
             with mid:
                 st.empty()
             with image_column:
-                st.image(images_vol[3])
+                st.image(images_vol[3], output_format="auto", width=200)
     elif choose == "Resume":   
         resume_url = "https://drive.google.com/file/d/1UnSVLegQIbSE_GQ-K-DzA1JQQtHb4aNx/view?usp=sharing"
         st.header("📄 Resume",divider='rainbow')
@@ -787,7 +794,6 @@ def home():
         show_pdf("Resume-Dev.pdf")
         with open("Resume-Dev.pdf", "rb") as file:
             PDFbyte = file.read()
-
         st.download_button(
             label="Download Resume (1 page)",
             data=PDFbyte,
