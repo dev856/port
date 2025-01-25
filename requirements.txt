@@ -76,6 +76,7 @@ streamlit-on-Hover-tabs
 streamlit-option-menu
 streamlit-toggle-switch
 streamlit-vertical-slider
+streamlit-pdf-viewer
 tenacity
 toml
 toolz
