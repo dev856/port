@@ -32,7 +32,7 @@ def mapping_demo():
 
     try:
         ALL_LAYERS = {
-            "Bike Rentals": pdk.Layer(
+            "Bike rentals": pdk.Layer(
                 "HexagonLayer",
                 data=from_data_file("bike_rental_stats.json"),
                 get_position=["lon", "lat"],
@@ -41,7 +41,7 @@ def mapping_demo():
                 elevation_range=[0, 1000],
                 extruded=True,
             ),
-            "Bart Stop Exits": pdk.Layer(
+            "Bart stop exits": pdk.Layer(
                 "ScatterplotLayer",
                 data=from_data_file("bart_stop_stats.json"),
                 get_position=["lon", "lat"],
@@ -49,7 +49,7 @@ def mapping_demo():
                 get_radius="[exits]",
                 radius_scale=0.05,
             ),
-            "Bart Stop Names": pdk.Layer(
+            "Bart stop names": pdk.Layer(
                 "TextLayer",
                 data=from_data_file("bart_stop_stats.json"),
                 get_position=["lon", "lat"],
@@ -58,7 +58,7 @@ def mapping_demo():
                 get_size=10,
                 get_alignment_baseline="'bottom'",
             ),
-            "Outbound Flow": pdk.Layer(
+            "Outbound flow": pdk.Layer(
                 "ArcLayer",
                 data=from_data_file("bart_path_stats.json"),
                 get_source_position=["lon", "lat"],
@@ -72,7 +72,7 @@ def mapping_demo():
                 width_max_pixels=30,
             ),
         }
-        st.sidebar.markdown("### Map Layers")
+        st.sidebar.subheader("Map layers")
         selected_layers = [
             layer
             for layer_name, layer in ALL_LAYERS.items()
@@ -103,15 +103,12 @@ def mapping_demo():
         )
 
 
-st.set_page_config(page_title="Mapping Demo", page_icon=":material/public:")
-st.markdown("# Mapping Demo")
-st.sidebar.header("Mapping Demo")
+st.set_page_config(page_title="Mapping demo", page_icon=":material/public:")
+st.title("Mapping demo")
 st.write(
-    """This demo shows how to use
-[`st.pydeck_chart`](https://docs.streamlit.io/develop/api-reference/charts/st.pydeck_chart)
-to display geospatial data."""
+    """
+    This demo shows how to use `st.pydeck_chart` to display geospatial data.
+    """
 )
-
 mapping_demo()
-
 show_code(mapping_demo)

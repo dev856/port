@@ -57,6 +57,7 @@ class MetricMixin:
         delta_color: DeltaColor = "normal",
         help: str | None = None,
         label_visibility: LabelVisibility = "visible",
+        border: bool = False,
     ) -> DeltaGenerator:
         r"""Display a metric in big bold font, with an optional indicator of how the metric changed.
 
@@ -70,7 +71,8 @@ class MetricMixin:
         label : str
             The header or title for the metric. The label can optionally
             contain GitHub-flavored Markdown of the following types: Bold, Italics,
-            Strikethroughs, Inline Code, and Links.
+            Strikethroughs, Inline Code, Links, and Images. Images display like
+            icons, with a max height equal to the font height.
 
             Unsupported Markdown elements are unwrapped so only their children
             (text contents) render. Display unsupported elements as literal
@@ -102,15 +104,25 @@ class MetricMixin:
 
         help : str
             An optional tooltip that gets displayed next to the metric label.
+            Streamlit only displays the tooltip when
+            ``label_visibility="visible"``.
 
         label_visibility : "visible", "hidden", or "collapsed"
-            The visibility of the label. If "hidden", the label doesn't show but there
-            is still empty space for it (equivalent to label="").
-            If "collapsed", both the label and the space are removed. Default is
-            "visible".
+            The visibility of the label. The default is ``"visible"``. If this
+            is ``"hidden"``, Streamlit displays an empty spacer instead of the
+            label, which can help keep the widget alligned with other widgets.
+            If this is ``"collapsed"``, Streamlit displays no label or spacer.
 
-        Example
-        -------
+        border : bool
+            Whether to show a border around the metric container. If this is
+            ``False`` (default), no border is shown. If this is ``True``, a
+            border is shown.
+
+        Examples
+        --------
+
+        **Example 1: Show a metric**
+
         >>> import streamlit as st
         >>>
         >>> st.metric(label="Temperature", value="70 °F", delta="1.2 °F")
@@ -119,7 +131,9 @@ class MetricMixin:
             https://doc-metric-example1.streamlit.app/
             height: 210px
 
-        ``st.metric`` looks especially nice in combination with ``st.columns``:
+        **Example 2: Create a row of metrics**
+
+        ``st.metric`` looks especially nice in combination with ``st.columns``.
 
         >>> import streamlit as st
         >>>
@@ -132,7 +146,9 @@ class MetricMixin:
             https://doc-metric-example2.streamlit.app/
             height: 210px
 
-        The delta indicator color can also be inverted or turned off:
+        **Example 3: Modify the delta indicator**
+
+        The delta indicator color can also be inverted or turned off.
 
         >>> import streamlit as st
         >>>
@@ -146,6 +162,25 @@ class MetricMixin:
             https://doc-metric-example3.streamlit.app/
             height: 320px
 
+        **Example 4: Create a grid of metric cards**
+
+        Add borders to your metrics to create a dashboard look.
+
+        >>> import streamlit as st
+        >>>
+        >>> a, b = st.columns(2)
+        >>> c, d = st.columns(2)
+        >>>
+        >>> a.metric("Temperature", "30°F", "-9°F", border=True)
+        >>> b.metric("Wind", "4 mph", "2 mph", border=True)
+        >>>
+        >>> c.metric("Humidity", "77%", "5%", border=True)
+        >>> d.metric("Pressure", "30.34 inHg", "-2 inHg", border=True)
+
+        .. output::
+            https://doc-metric-example4.streamlit.app/
+            height: 350px
+
         """
         maybe_raise_label_warnings(label, label_visibility)
 
@@ -153,6 +188,7 @@ class MetricMixin:
         metric_proto.body = _parse_value(value)
         metric_proto.label = _parse_label(label)
         metric_proto.delta = _parse_delta(delta)
+        metric_proto.show_border = border
         if help is not None:
             metric_proto.help = dedent(help)
 

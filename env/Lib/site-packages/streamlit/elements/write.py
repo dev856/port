@@ -23,6 +23,7 @@ from io import StringIO
 from typing import (
     TYPE_CHECKING,
     Any,
+    AsyncGenerator,
     Callable,
     Final,
     Generator,
@@ -55,7 +56,7 @@ HELP_TYPES: Final[tuple[type[Any], ...]] = (
 
 _LOGGER: Final = get_logger(__name__)
 
-_TEXT_CURSOR: Final = "▕"
+_TEXT_CURSOR: Final = " ▏"
 
 
 class StreamingOutput(List[Any]):
@@ -65,7 +66,11 @@ class StreamingOutput(List[Any]):
 class WriteMixin:
     @gather_metrics("write_stream")
     def write_stream(
-        self, stream: Callable[..., Any] | Generator[Any, Any, Any] | Iterable[Any]
+        self,
+        stream: Callable[..., Any]
+        | Generator[Any, Any, Any]
+        | Iterable[Any]
+        | AsyncGenerator[Any, Any],
     ) -> list[Any] | str:
         """Stream a generator, iterable, or stream-like sequence to the app.
 
@@ -77,6 +82,9 @@ class WriteMixin:
         ----------
         stream : Callable, Generator, Iterable, OpenAI Stream, or LangChain Stream
             The generator or iterable to stream.
+
+            If you pass an async generator, Streamlit will internally convert
+            it to a sync generator.
 
             .. note::
                 To use additional LLM libraries, you can create a wrapper to
@@ -159,7 +167,12 @@ class WriteMixin:
                 streamed_response = ""
 
         # Make sure we have a generator and not just a generator function.
-        stream = stream() if inspect.isgeneratorfunction(stream) else stream
+        if inspect.isgeneratorfunction(stream) or inspect.isasyncgenfunction(stream):
+            stream = stream()
+
+        # If the stream is an async generator, convert it to a sync generator:
+        if inspect.isasyncgen(stream):
+            stream = type_util.async_generator_to_sync(stream)
 
         try:
             iter(stream)  # type: ignore
@@ -264,8 +277,9 @@ class WriteMixin:
             - write(list)           : Displays list-like in an interactive viewer.
             - write(error)          : Prints an exception specially.
             - write(func)           : Displays information about a function.
-            - write(module)         : Displays information about the module.
+            - write(module)         : Displays information about a module.
             - write(class)          : Displays information about a class.
+            - write(DeltaGenerator) : Displays information about a DeltaGenerator.
             - write(mpl_fig)        : Displays a Matplotlib figure.
             - write(generator)      : Streams the output of a generator.
             - write(openai.Stream)  : Streams the output of an OpenAI stream.
@@ -418,6 +432,9 @@ class WriteMixin:
             elif isinstance(arg, Exception):
                 flush_buffer()
                 self.dg.exception(arg)
+            elif type_util.is_delta_generator(arg):
+                flush_buffer()
+                self.dg.help(arg)
             elif dataframe_util.is_dataframe_like(arg):
                 flush_buffer()
                 self.dg.dataframe(arg)
@@ -480,6 +497,8 @@ class WriteMixin:
             elif (
                 inspect.isgenerator(arg)
                 or inspect.isgeneratorfunction(arg)
+                or inspect.isasyncgenfunction(arg)
+                or inspect.isasyncgen(arg)
                 or type_util.is_type(arg, "openai.Stream")
             ):
                 flush_buffer()

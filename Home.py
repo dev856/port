@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 from streamlit_extras.echo_expander import echo_expander
 from custom import GITHUB_PROFILE,LINKEDIN_PROFILE
 import streamlit.components.v1 as components
-#from streamlit_pdf_viewer import pdf_viewer
+from streamlit_pdf_viewer import pdf_viewer
 def home():
     # Page configs (tab title, favicon)
    
@@ -25,7 +25,7 @@ def home():
         layout="wide",
         initial_sidebar_state="collapsed"
     )
-    #st.sidebar.success("Select a page above.")
+    st.sidebar.success("Select a page below.")
 
     def load_lottieurl(url):
         r = requests.get(url)
@@ -53,7 +53,7 @@ def home():
                     preserveAspectRatio: 'xMidYMid slice',
                     clearCanvas: true,
                     progressiveLoad: false,
-                    hideOnTransparent: true
+                    hideOnTransparent: false
                 }});
             </script>
         </body>
@@ -68,7 +68,7 @@ def home():
             return None
     # return the json data of the lottie animation
         return r.json()
-    lottie_coding= load_lottieurl("https://lottie.host/d407ea79-a951-4986-9ee6-d1d91f071918/YNhQKOD8BR.json")
+    lottie_coding= load_lottieurl("https://lottie.host/68d3c014-d4f6-4c56-91e4-9bf2097244d3/0sOZZzTYjD.json")
     lottie_python = load_lottieurl("https://assets6.lottiefiles.com/packages/lf20_2znxgjyt.json")
     lottie_media = load_lottieurl("https://assets9.lottiefiles.com/packages/lf20_osdxlbqq.json")
     lottie_github = load_lottieurl("https://assets8.lottiefiles.com/packages/lf20_6HFXXE.json")
@@ -125,6 +125,18 @@ def home():
     def pdf_link(pdf_url, link_text="Click here to view PDF"):
         href = f'<a href="{pdf_url}" target="_blank">{link_text}</a>'
         return href
+    
+    custom_css1 = f"""
+    <style>
+    .stApp {{
+            background-image: url("https://cdn.svgator.com/images/2022/06/use-svg-as-background-image-particle-strokes.svg");
+            background-size: cover;
+        }}
+    </style>
+    """
+
+    # Display the custom CSS with the SVG background
+    st.markdown(custom_css1, unsafe_allow_html=True)
     img_utown = Image.open("images/lh.jpeg")
     img_lh = Image.open("images/lh.jpeg")
     img_ifg = Image.open("images/lh.jpeg")
@@ -276,13 +288,20 @@ def home():
             with left_column:
                 st.header("🙋 :blue[About Me]",divider='rainbow')
                 st.subheader("Aspiring Software Engineer")
-                st.write("👋🏻 Hi, I'm Dev! I'm a student of Master of Engineering: Electrical and Computer Engineering with collaborative specialization in Data Science at Carleton University. Having prior relevant experiences in tech, I am constantly seeking unique internships to broaden my horizons before embarking on my career upon graduation.")
-                st.write("💼 With the COVID-19 pandemic behind us, I believe there is potential for data science to be applied in the retail industry. In response to the increasing demand for data analytics from online, I am thus aiming to enter this industry for my first full-time job.")
-                st.write("🏋🏻 In addition, I like to run, write, watch movies and... enjoy eating good food in my free time!")
-                st.write("👨🏼‍💻 Academic interests: Data Visualization, Deep Learning, Recommendation Systems, Natural Language Processing")
-                st.write("💭 Ideal Career Prospects: Data Analyst, Data Scientist, Data Engineer , Machine Learning Engineer, Software Engineer")
+                st.info("👋🏻 Hi, I'm Dev! I'm a student of Master of Engineering: Electrical and Computer Engineering with collaborative specialization in Data Science at Carleton University. Having prior relevant experiences in tech, I am constantly seeking unique internships to broaden my horizons before embarking on my career upon graduation.")
+                st.info("💼 With the COVID-19 pandemic behind us, I believe there is potential for data science to be applied in the retail industry. In response to the increasing demand for data analytics from online, I am thus aiming to enter this industry for my first full-time job.")
+                st.info("🏋🏻 In addition, I like to run, write, watch movies and... enjoy eating good food in my free time!")
+                st.info("👨🏼‍💻 Academic interests: Data Visualization, Deep Learning, Recommendation Systems, Natural Language Processing")
+                st.info("💭 Ideal Career Prospects: Data Analyst, Data Scientist, Data Engineer , Machine Learning Engineer, Software Engineer")
             with right_column:
-                st_lottie(lottie_coding, height=500, key="coding")
+                #st_lottie(lottie_coding, height=500, key="coding")
+                components.html(
+                """
+                <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+                <dotlottie-player src="https://lottie.host/d407ea79-a951-4986-9ee6-d1d91f071918/YNhQKOD8BR.json" background="transparent" speed="1" style="width: 350px; height: 500px" direction="1" mode="normal" loop autoplay></dotlottie-player>
+                """,
+                height=500,
+                ) 
             
     elif choose == "Site Overview":   
         #overview.createPage()
@@ -295,7 +314,13 @@ def home():
                                 - Originally, I started working this website as a portfolio, essentially an extended resume. The distinctive qualities of Streamlit compared to traditional front-end frameworks is that it it primarily used for creating web application dashboards, its extensive features make it more visually appealing to explore than alternatives such as Plotly and Shiny.
                                 """)
                 with right_column:
-                    st_lottie(lottie_internet, height=400, key="internet")
+                    components.html(
+                    """
+                    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+                    <dotlottie-player src="https://lottie.host/6f966033-0640-4492-aba8-e069b551b6f4/LtF2FH3ttk.json" background="transparent" speed="1" style="width: 350px; height: 500px" direction="1" mode="normal" loop autoplay></dotlottie-player>
+                    """,
+                    height=500,
+                    )
 # Create section for Work Experience
     elif choose == "Experience":
         #st.write("---")
@@ -422,7 +447,13 @@ def home():
                     txt3("Task Management Tools", "`Notion`, `ClickUp`, `Slack`, `Jira`")
                     txt3("Miscellaneous", "`Microsoft Office`, `Libre Officce`")
                 with right_column:
-                    st_lottie(lottie_python, height=400, key="internet")
+                    components.html(
+                    """
+                    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+                    <dotlottie-player src="https://assets6.lottiefiles.com/packages/lf20_2znxgjyt.json" background="transparent" speed="1" style="width: 350px; height: 500px" direction="1" mode="normal" loop autoplay></dotlottie-player>
+                    """,
+                    height=500,
+                    )
        
 
 # Create section for Education
@@ -871,7 +902,13 @@ def home():
             with mid:
                 st.empty()
             with image_column:
-                st_lottie(lottie_media, height=400, key="internet")
+                components.html(
+                """
+                <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+                <dotlottie-player src="https://assets9.lottiefiles.com/packages/lf20_osdxlbqq.json" background="transparent" speed="1" style="width: 350px; height: 500px" direction="1" mode="normal" loop autoplay></dotlottie-player>
+                """,
+                height=500,
+                )
                 
     
     st.divider()

@@ -48,8 +48,8 @@ class MemorySessionStorage(SessionStorage):
             The maximum number of sessions we allow to be stored in this
             MemorySessionStorage. If an entry needs to be removed because we have
             exceeded this number, either
-              * an expired entry is removed, or
-              * the least recently used entry is removed (if no entries have expired).
+            - an expired entry is removed, or
+            - the least recently used entry is removed (if no entries have expired).
 
         ttl_seconds
             The time in seconds for an entry added to a MemorySessionStorage to live.

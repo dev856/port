@@ -53,10 +53,10 @@ class UserInfoProxy(Mapping[str, Union[str, None]]):
         If running on Streamlit Community Cloud, this
         property returns one of two values:
 
-        * ``None`` if the user is not logged in or not a member of the app's\
+        - ``None`` if the user is not logged in or not a member of the app's\
         workspace. Such users appear under anonymous pseudonyms in the app's\
         analytics.
-        * The user's email if the the user is logged in and a member of the\
+        - The user's email if the the user is logged in and a member of the\
         app's workspace. Such users are identified by their email in the app's\
         analytics.
 

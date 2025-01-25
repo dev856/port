@@ -17,8 +17,9 @@ from __future__ import annotations
 from typing import Final
 
 import streamlit
+import streamlit.elements.exception as exception
 from streamlit import config
-from streamlit.errors import UncaughtAppException
+from streamlit.delta_generator_singletons import get_dg_singleton_instance
 from streamlit.logger import get_logger
 
 _LOGGER: Final = get_logger(__name__)
@@ -70,7 +71,8 @@ def _print_rich_exception(e: BaseException) -> None:
 
 def _show_exception(ex: BaseException) -> None:
     """Show the exception on the frontend."""
-    streamlit.exception(ex)
+    main_delta_generator = get_dg_singleton_instance().main_dg
+    exception._exception(main_delta_generator, ex, is_uncaught_app_exception=True)
 
 
 def handle_uncaught_app_exception(ex: BaseException) -> None:
@@ -81,28 +83,17 @@ def handle_uncaught_app_exception(ex: BaseException) -> None:
     warning in the frontend instead.
     """
 
-    error_logged = False
-
     if config.get_option("logger.enableRich"):
         try:
             # Print exception via rich
             # Rich is only a soft dependency
             # -> if not installed, we will use the default traceback formatting
             _print_rich_exception(ex)
-            error_logged = True
         except Exception:
             # Rich is not installed or not compatible to our config
             # -> Use normal traceback formatting as fallback
             # Catching all exceptions because we don't want to leave any possibility of breaking here.
-            error_logged = False
+            pass
 
-    if config.get_option("client.showErrorDetails"):
-        if not error_logged:
-            _LOGGER.warning("Uncaught app exception", exc_info=ex)
-        _show_exception(ex)
-    else:
-        if not error_logged:
-            # Use LOGGER.error, rather than LOGGER.debug, since we don't
-            # show debug logs by default.
-            _LOGGER.error("Uncaught app exception", exc_info=ex)
-        _show_exception(UncaughtAppException(ex))
+    _LOGGER.warning("Uncaught app execution", exc_info=ex)
+    _show_exception(ex)

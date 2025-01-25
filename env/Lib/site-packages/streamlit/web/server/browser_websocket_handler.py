@@ -78,11 +78,11 @@ class BrowserWebSocketHandler(WebSocketHandler, SessionClient):
         server as the *third* value in the list.
 
         The reason why the auth token is set as the third value is that:
-          * when Sec-WebSocket-Protocol is set, many clients expect the server to
+          - when Sec-WebSocket-Protocol is set, many clients expect the server to
             respond with a selected subprotocol to use. We don't want that reply to be
             the session token, so we by convention have the client always set the first
             protocol to "streamlit" and select that.
-          * the second protocol in the list is reserved in some deployment environments
+          - the second protocol in the list is reserved in some deployment environments
             for an auth token that we currently don't use
         """
         if subprotocols:

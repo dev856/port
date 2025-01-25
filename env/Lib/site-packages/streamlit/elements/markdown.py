@@ -42,32 +42,43 @@ class MarkdownMixin:
 
         Parameters
         ----------
-        body : str
-            The string to display as GitHub-flavored Markdown. Syntax
+        body : any
+            The text to display as GitHub-flavored Markdown. Syntax
             information can be found at: https://github.github.com/gfm.
+            If anything other than a string is passed, it will be converted
+            into a string behind the scenes using ``str(body)``.
 
             This also supports:
 
-            * Emoji shortcodes, such as ``:+1:``  and ``:sunglasses:``.
+            - Emoji shortcodes, such as ``:+1:``  and ``:sunglasses:``.
               For a list of all supported codes,
               see https://share.streamlit.io/streamlit/emoji-shortcodes.
 
-            * Google Material Symbols (rounded style), using the syntax
+            - Streamlit logo shortcode. Use ``:streamlit:`` to add a little
+              Streamlit flair to your text.
+
+            - A limited set of typographical symbols. ``"<- -> <-> -- >= <= ~="``
+              becomes "← → ↔ — ≥ ≤ ≈" when parsed as Markdown.
+
+            - Google Material Symbols (rounded style), using the syntax
               ``:material/icon_name:``, where "icon_name" is the name of the
               icon in snake case. For a complete list of icons, see Google's
               `Material Symbols <https://fonts.google.com/icons?icon.set=Material+Symbols&icon.style=Rounded>`_
               font library.
 
-            * LaTeX expressions, by wrapping them in "$" or "$$" (the "$$"
+            - LaTeX expressions, by wrapping them in "$" or "$$" (the "$$"
               must be on their own lines). Supported LaTeX functions are listed
               at https://katex.org/docs/supported.html.
 
-            * Colored text and background colors for text, using the syntax
+            - Colored text and background colors for text, using the syntax
               ``:color[text to be colored]`` and ``:color-background[text to be colored]``,
               respectively. ``color`` must be replaced with any of the following
-              supported colors: blue, green, orange, red, violet, gray/grey, rainbow.
-              For example, you can use ``:orange[your text here]`` or
-              ``:blue-background[your text here]``.
+              supported colors: blue, green, orange, red, violet, gray/grey,
+              rainbow, or primary. For example, you can use
+              ``:orange[your text here]`` or ``:blue-background[your text here]``.
+              If you use "primary" for color, Streamlit will use the default
+              primary accent color unless you set the ``theme.primaryColor``
+              configuration option.
 
         unsafe_allow_html : bool
             Whether to render HTML within ``body``. If this is ``False``

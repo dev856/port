@@ -49,6 +49,10 @@ class BokehMixin:
         To show Bokeh charts in Streamlit, call ``st.bokeh_chart``
         wherever you would call Bokeh's ``show``.
 
+        .. Important::
+            You must install ``bokeh==2.4.3`` and ``numpy<2`` to use this
+            command.
+
         Parameters
         ----------
         figure : bokeh.plotting.figure.Figure

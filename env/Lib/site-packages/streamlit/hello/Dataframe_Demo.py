@@ -38,7 +38,8 @@ def data_frame_demo():
         else:
             data = df.loc[countries]
             data /= 1000000.0
-            st.write("### Gross Agricultural Production ($B)", data.sort_index())
+            st.subheader("Gross agricultural production ($B)")
+            st.dataframe(data.sort_index())
 
             data = data.T.reset_index()
             data = pd.melt(data, id_vars=["index"]).rename(
@@ -55,23 +56,16 @@ def data_frame_demo():
             )
             st.altair_chart(chart, use_container_width=True)
     except URLError as e:
-        st.error(
-            """
-            **This demo requires internet access.**
-            Connection error: %s
-        """
-            % e.reason
-        )
+        st.error(f"This demo requires internet access. Connection error: {e.reason}")
 
 
-st.set_page_config(page_title="DataFrame Demo", page_icon=":material/table:")
-st.markdown("# DataFrame Demo")
-st.sidebar.header("DataFrame Demo")
+st.set_page_config(page_title="DataFrame demo", page_icon=":material/table:")
+st.title("DataFrame demo")
 st.write(
-    """This demo shows how to use `st.write` to visualize Pandas DataFrames.
-(Data courtesy of the [UN Data Explorer](http://data.un.org/Explorer.aspx).)"""
+    """
+    This demo shows how to use `st.dataframe` to visualize a Pandas DataFrame.
+    Data courtesy of the [UN Data Explorer](http://data.un.org/Explorer.aspx).
+    """
 )
-
 data_frame_demo()
-
 show_code(data_frame_demo)

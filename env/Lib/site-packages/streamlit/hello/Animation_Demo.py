@@ -57,7 +57,7 @@ def animation_demo() -> None:
             N[M] = i
 
         # Update the image placeholder by calling the image() function on it.
-        image.image(1.0 - (N / N.max()), use_column_width=True)
+        image.image(1.0 - (N / N.max()), use_container_width=True)
 
     # We clear elements by calling empty on them.
     progress_bar.empty()
@@ -66,18 +66,17 @@ def animation_demo() -> None:
     # Streamlit widgets automatically run the script from top to bottom. Since
     # this button is not connected to any other logic, it just causes a plain
     # rerun.
-    st.button("Re-run")
+    st.button("Rerun")
 
 
-st.set_page_config(page_title="Animation Demo", page_icon=":material/animation:")
-st.markdown("# Animation Demo")
-st.sidebar.header("Animation Demo")
+st.set_page_config(page_title="Animation demo", page_icon=":material/animation:")
+st.title("Animation demo")
 st.write(
-    """This app shows how you can use Streamlit to build cool animations.
-It displays an animated fractal based on the the Julia Set. Use the slider
-to tune different parameters."""
+    """
+    This app shows how you can use Streamlit to build cool animations.
+    It displays an animated fractal based on the the Julia Set. Use the slider
+    to tune different parameters.
+    """
 )
-
 animation_demo()
-
 show_code(animation_demo)

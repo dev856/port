@@ -99,6 +99,12 @@ class AddSlashHandler(tornado.web.RequestHandler):
         pass
 
 
+class RemoveSlashHandler(tornado.web.RequestHandler):
+    @tornado.web.removeslash
+    def get(self):
+        pass
+
+
 class _SpecialRequestHandler(tornado.web.RequestHandler):
     """Superclass for "special" endpoints, like /healthz."""
 
@@ -224,6 +230,7 @@ class HostConfigHandler(_SpecialRequestHandler):
                 # Default host configuration settings.
                 "enableCustomParentMessages": False,
                 "enforceDownloadInNewTab": False,
+                "metricsUrl": "",
             }
         )
         self.set_status(200)

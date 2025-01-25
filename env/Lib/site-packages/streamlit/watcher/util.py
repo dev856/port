@@ -123,10 +123,10 @@ def _stable_dir_identifier(dir_path: str, glob_pattern: str) -> str:
 
     This is a bit of an unfortunate situation, but the approach we take here is
     most likely fine as:
-      * The worst thing that can happen taking this approach is a false
+      - The worst thing that can happen taking this approach is a false
         positive page added/removed notification, which isn't too disastrous
         and can just be ignored.
-      * It is impossible (that is, I'm fairly certain that the problem is
+      - It is impossible (that is, I'm fairly certain that the problem is
         undecidable) to know whether a file created/deleted/moved event
         corresponds to a legitimate file creation/deletion/move or is part of
         some sequence of events that results in what the user sees as a file

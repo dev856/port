@@ -135,8 +135,8 @@ class SessionStorage(Protocol):
         it.
 
         Note that:
-          * Calling delete on an ID corresponding to a nonexistent session is a no-op.
-          * Calling delete on an ID should cause the given session to no longer be
+          - Calling delete on an ID corresponding to a nonexistent session is a no-op.
+          - Calling delete on an ID should cause the given session to no longer be
             tracked by this SessionStorage, but exactly when and how the session's data
             is eventually cleaned up is a detail left up to the implementation.
 
@@ -173,11 +173,11 @@ class SessionManager(Protocol):
     that the Streamlit Runtime may care about.
 
     A SessionManager must define the following required methods:
-      * __init__
-      * connect_session
-      * close_session
-      * get_session_info
-      * list_sessions
+      - __init__
+      - connect_session
+      - close_session
+      - get_session_info
+      - list_sessions
 
     SessionManager implementations may also choose to define the notions of active and
     inactive sessions. The precise definitions of active/inactive are left to the
@@ -185,10 +185,10 @@ class SessionManager(Protocol):
     and inactive sessions should have the required methods listed above operate on *all*
     sessions. Additionally, they should define the following methods for working with
     active sessions:
-      * disconnect_session
-      * get_active_session_info
-      * is_active_session
-      * list_active_sessions
+      - disconnect_session
+      - get_active_session_info
+      - is_active_session
+      - list_active_sessions
 
     When active session-related methods are left undefined, their default
     implementations are the naturally corresponding required methods.
