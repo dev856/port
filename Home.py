@@ -119,15 +119,8 @@ def home():
     def show_pdf(file_path):
         with open(file_path,"rb") as f:
             base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-        iframe_code = f'''
-            <iframe
-                src="data:application/pdf;base64,{base64_pdf}"
-                width="450"
-                height="650"
-                type="application/pdf"
-            ></iframe>
-        '''
-        st.markdown(iframe_code, unsafe_allow_html=True)
+        pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="400" height="600" type="application/pdf">'
+        st.markdown(pdf_display, unsafe_allow_html=True)
 
     def pdf_link(pdf_url, link_text="Click here to view PDF"):
         href = f'<a href="{pdf_url}" target="_blank">{link_text}</a>'
@@ -789,7 +782,10 @@ def home():
         resume_url = "https://drive.google.com/file/d/1UnSVLegQIbSE_GQ-K-DzA1JQQtHb4aNx/view?usp=sharing"
         st.header("📄 Resume",divider='rainbow')
         st.write("*In case your current browser cannot display the PDF documents, do refer to the hyperlink below!*")
+        #google_viewer_url = f"https://drive.google.com/file/d/1UnSVLegQIbSE_GQ-K-DzA1JQQtHb4aNx/view?usp=sharing"
 
+        #st.markdown(f'<iframe src="{google_viewer_url}" width="100%" height="800px"></iframe>', unsafe_allow_html=True)
+        #st.markdown(f"[Open Resume in Google Drive Viewer]({resume_url})", unsafe_allow_html=True)
         st.markdown(pdf_link(resume_url, "**Resume**"), unsafe_allow_html=True)
         show_pdf("Resume-Dev.pdf")
         with open("Resume-Dev.pdf", "rb") as file:
