@@ -901,7 +901,7 @@ def home():
                     unsafe_allow_html=True)
                 st.markdown("")
                 
-            with mid:
+            with mid: 
                 st.empty()
             with image_column:
                 components.html(
