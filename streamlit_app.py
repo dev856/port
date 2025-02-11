@@ -1,5 +1,5 @@
 # List of Streamlit App URLs
 
 STREAMLIT_APPS = [
-    "https://devkotak.streamlit.app/",
+    "https://www.devkotak.streamlit.app/",
 ]
