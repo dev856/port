@@ -179,97 +179,6 @@ def tag_html(items: list[str]) -> str:
     return " ".join(f'<span class="tag">{safe(item)}</span>' for item in items)
 
 
-GIF_METADATA = {
-    "topic-modeling": {
-        "title": "Tone Topic · Semantic NLP",
-        "badge": "LDA Model",
-        "tech": "NLTK · Gensim · Streamlit",
-        "icon": "message",
-    },
-    "pose-estimation": {
-        "title": "Digital Yoga · Posture Vision",
-        "badge": "31 FPS Biomechanics",
-        "tech": "MediaPipe · OpenCV · Real-Time",
-        "icon": "eye",
-    },
-    "data-pulse": {
-        "title": "InsightSync · Data Workbench",
-        "badge": "Streaming EDA",
-        "tech": "Plotly · Pandas · Multi-Variate",
-        "icon": "activity",
-    },
-    "neural-network": {
-        "title": "Neural Stacking · Meta-Learner",
-        "badge": "75% Acc Benchmark",
-        "tech": "Scikit-Learn · Ensembles · K-Fold",
-        "icon": "cpu",
-    },
-    "fabric-scan": {
-        "title": "FabriSense · Anomaly Detection",
-        "badge": "Automated Vision",
-        "tech": "OpenCV · Defect Classification",
-        "icon": "shield_check",
-    },
-    "satellite-vision": {
-        "title": "ISRO · Satellite Hydrology",
-        "badge": "MODIS Discharge Model",
-        "tech": "Google Earth Engine · XGBoost · LSTM",
-        "icon": "satellite_dish",
-    },
-}
-
-
-def render_gif_strip() -> None:
-    """Render animated demo GIFs as an interactive glass 'Studio in Motion' gallery."""
-    gif_dir = ROOT / "images" / "gifs"
-    if not gif_dir.exists():
-        return
-    gifs = sorted(p for p in gif_dir.iterdir() if p.suffix.lower() in {".gif", ".webp"})
-    if not gifs:
-        return
-    cards_html = []
-    for p in gifs:
-        stem = p.stem
-        meta = GIF_METADATA.get(stem, {
-            "title": stem.replace("-", " ").title(),
-            "badge": "Interactive Demo",
-            "tech": "Python · Machine Learning",
-            "icon": "sparkles",
-        })
-        uri = as_data_uri(p)
-        if not uri:
-            continue
-        cards_html.append(
-            f'<div class="gif-glass-card">'
-            f'<div class="gif-media-box">'
-            f'<img src="{uri}" alt="{safe(meta["title"])}" loading="lazy" />'
-            f'<span class="gif-live-pill"><span class="livedot"></span>{safe(meta["badge"])}</span>'
-            f'</div>'
-            f'<div class="gif-info">'
-            f'<div class="gif-title-row">'
-            f'<span class="gif-icon">{svg_icon(meta["icon"], 14)}</span>'
-            f'<h4>{safe(meta["title"])}</h4>'
-            f'</div>'
-            f'<p class="gif-tech-line">{safe(meta["tech"])}</p>'
-            f'</div>'
-            f'</div>'
-        )
-
-    st.markdown(
-        f"""
-        <div class="motion-header">
-          <div class="motion-title-group">
-            <p class="section-kicker">{svg_icon('sparkles', 13)} Interactive Visual Intelligence</p>
-            <h2 class="h2-icon">{svg_icon('zap', 20)} Studio in Motion</h2>
-          </div>
-          <span class="motion-badge">{svg_icon('activity', 12)} 6 Real-Time Machine Learning Demos</span>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-    st.markdown('<div class="gif-strip">' + "".join(cards_html) + "</div>", unsafe_allow_html=True)
-
-
 def terminal_widget() -> None:
     """Animated interactive live-console glass card with quick commands, status logs, and audio visualizer."""
     if "terminal_cmd" not in st.session_state:
@@ -531,7 +440,16 @@ def render_interactive_ml_workbench() -> None:
               </svg>
             </div>
             """
-            st.markdown(svg_markup, unsafe_allow_html=True)
+            # Rendered in an isolated iframe: Streamlit sanitizes inline <svg>
+            # in markdown/html blocks, but components.html passes it through.
+            components.html(
+                "<style>"
+                ".posture-viz-box{display:flex;flex-direction:column;align-items:center;"
+                "justify-content:center;background:#0a0d0b;border:1px solid #263027;"
+                "border-radius:6px;padding:12px;}"
+                "</style>" + svg_markup,
+                height=215,
+            )
 
             # Telemetry Metrics HUD
             st.markdown(
@@ -955,10 +873,11 @@ def project_card(project: dict[str, object], image_path: str | None = None) -> N
 # Initialize Database
 init_db()
 
-# Inject Modern CSS Stylesheet
-css_file = ROOT / "styles" / "main.css"
-if css_file.exists():
-    st.markdown(f"<style>{css_file.read_text(encoding='utf-8')}</style>", unsafe_allow_html=True)
+# Inject theme stylesheets: dark glass base + dark editorial override (this branch).
+for _stylesheet in ("main.css", "dark-editorial.css"):
+    css_file = ROOT / "styles" / _stylesheet
+    if css_file.exists():
+        st.markdown(f"<style>{css_file.read_text(encoding='utf-8')}</style>", unsafe_allow_html=True)
 
 # Inject Interactive Layer (cursor spotlight + scroll reveal)
 js_file = ROOT / "styles" / "interactive.js"
@@ -1296,8 +1215,6 @@ if page == "Overview":
     if st.button("Explore All Projects & Applications →", type="primary", key="overview_all_projects_btn"):
         set_page("Projects")
 
-    render_gif_strip()
-
     st.markdown(
         """
         <div class="marquee"><div class="marquee-track">
@@ -1372,9 +1289,6 @@ elif page == "About":
             st.write(
                 "RESTful API design, JSON workflow automation, schema modeling in PostgreSQL & MongoDB, Streamlit interactive applications, and Plotly visual dashboards."
             )
-
-    st.write("")
-    render_gif_strip()
 
     st.write("")
     about_btn1, about_btn2 = st.columns(2)
@@ -1805,8 +1719,6 @@ elif page == "Skills":
             )
             tag_row(["REST Architecture", "JSON Schemas", "Authentication Flows", "Asynchronous Processing"])
 
-    st.write("")
-    render_gif_strip()
     st.write("")
     skills_btn1, skills_btn2 = st.columns(2)
     with skills_btn1:
