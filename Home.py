@@ -2,15 +2,11 @@ from __future__ import annotations
 
 import base64
 import html
-import math
-import re
 import sqlite3
 from datetime import datetime
 from pathlib import Path
 
-import plotly.graph_objects as go
 import streamlit as st
-import streamlit.components.v1 as components
 
 ROOT = Path(__file__).resolve().parent
 EMAIL = "devhkotak@gmail.com"
@@ -179,552 +175,6 @@ def tag_html(items: list[str]) -> str:
     return " ".join(f'<span class="tag">{safe(item)}</span>' for item in items)
 
 
-def terminal_widget() -> None:
-    """Animated interactive live-console glass card with quick commands, status logs, and audio visualizer."""
-    if "terminal_cmd" not in st.session_state:
-        st.session_state.terminal_cmd = "status"
-
-    cmd_data = {
-        "status": {
-            "cmd": "python run dev_kotak --mode=production --telemetry=live",
-            "lines": [
-                '<span class="tok-ok">✔ [pipeline]</span> computer vision · transformers · ensemble stack initialized',
-                '<span class="tok-info">ℹ [runtime]</span> serving responsive glassmorphic interface at 60 FPS',
-                '<span class="tok-ok">⚡ [telemetry]</span> latency: 12.4ms (p95) · memory: nominal · 0 active faults',
-            ],
-            "footer": "System Health: 100% Operational &bull; Low Latency Inference &bull; Python Core",
-        },
-        "models": {
-            "cmd": "python -m models --list-active --benchmark",
-            "lines": [
-                '<span class="tok-ok">✔ [model-1]</span> Tone Topic: Latent Dirichlet Allocation (Cv: 0.652)',
-                '<span class="tok-ok">✔ [model-2]</span> Yoga Trainer: MediaPipe Landmark Biomechanics (31.4 FPS)',
-                '<span class="tok-ok">✔ [model-3]</span> Meta-Stacking: RF + XGBoost + Logistic Meta-Classifier (75% Acc)',
-                '<span class="tok-ok">✔ [model-4]</span> FabriSense: Spatial Defect Inspection & Segmentation',
-                '<span class="tok-ok">✔ [model-5]</span> ISRO Hydrology: Multi-Sensor MODIS/ERA5 Discharge LSTM',
-            ],
-            "footer": "5 Core Production Architectures &bull; PyTorch &bull; Scikit-Learn &bull; OpenCV",
-        },
-        "stack": {
-            "cmd": "cat ~/dev_kotak/skills_matrix.json | jq '.core'",
-            "lines": [
-                '<span class="tok-info">ℹ [languages]</span> Python (Expert), SQL, JavaScript, C++',
-                '<span class="tok-info">ℹ [frameworks]</span> PyTorch, Scikit-Learn, OpenCV, MediaPipe, NLTK, Gensim',
-                '<span class="tok-info">ℹ [cloud/web]</span> Streamlit, FastAPI, Flask, Docker, PostgreSQL, MongoDB, Git',
-            ],
-            "footer": "M.Eng Carleton University (Data Science 10.5/12) &bull; Software & ML",
-        },
-        "contact": {
-            "cmd": "curl -s https://api.devkotak.com/v1/ping",
-            "lines": [
-                '<span class="tok-ok">✔ [email]</span> devhkotak@gmail.com',
-                '<span class="tok-ok">✔ [location]</span> Ottawa, Ontario, Canada (M.Eng Carleton \'25)',
-                '<span class="tok-ok">⚡ [status]</span> Actively exploring SWE & Applied ML opportunities',
-            ],
-            "footer": "Direct Ping Ready &bull; Fast Response &bull; Let\'s Connect",
-        },
-    }
-
-    active_key = st.session_state.terminal_cmd if st.session_state.terminal_cmd in cmd_data else "status"
-    current = cmd_data[active_key]
-    eq_bars = "".join("<span></span>" for _ in range(16))
-    lines_html = "".join(f'<span class="tline">{line}</span>' for line in current["lines"])
-
-    st.markdown(
-        f"""
-        <div class="terminal-card">
-          <div class="terminal-bar">
-            <div class="terminal-dots">
-              <span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span>
-            </div>
-            <span class="terminal-title">{svg_icon('terminal', 13)} dev@quantum-engine: ~/production/models</span>
-            <span class="terminal-live"><span class="livedot"></span>SYSTEM ONLINE</span>
-          </div>
-          <pre class="terminal-body"><span class="tline"><span class="tprompt">❯</span> <span class="typing">{current["cmd"]}</span></span>{lines_html}<span class="tline"><span class="tok-info">ℹ [ready]</span> execution completed successfully <span class="cursor">▊</span></span></pre>
-          <div class="terminal-footer">
-            <span class="terminal-meta">{svg_icon('cpu', 12)} {current["footer"]}</span>
-            <div class="terminal-eq">{eq_bars}</div>
-          </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    t_cols = st.columns([1, 1, 1, 1, 2])
-    commands = [
-        ("status", "❯ status"),
-        ("models", "❯ models"),
-        ("stack", "❯ stack"),
-        ("contact", "❯ contact"),
-    ]
-    for i, (key, label) in enumerate(commands):
-        with t_cols[i]:
-            btn_type = "primary" if active_key == key else "secondary"
-            if st.button(label, key=f"term_btn_{key}", type=btn_type, width="stretch"):
-                st.session_state.terminal_cmd = key
-                st.rerun()
-    with t_cols[4]:
-        st.caption("⚡ Interactive Console: execute real-time terminal queries")
-
-
-def render_telemetry_hud() -> None:
-    """Render real-time telemetry KPI status cards across pipeline health, vision, and benchmarks."""
-    st.markdown(
-        f"""
-        <div class="telemetry-grid">
-          <div class="telemetry-card">
-            <div class="telemetry-header">
-              <span class="telemetry-label">{svg_icon('activity', 13)} Pipeline Health</span>
-              <span class="telemetry-beacon"><span class="livedot"></span>ONLINE</span>
-            </div>
-            <div class="telemetry-value">60 FPS</div>
-            <p class="telemetry-subtext">Sub-15ms inference latency &amp; zero-flicker glassmorphic runtime</p>
-          </div>
-          <div class="telemetry-card cyan">
-            <div class="telemetry-header">
-              <span class="telemetry-label">{svg_icon('eye', 13)} Vision Biomechanics</span>
-              <span class="telemetry-beacon cyan"><span class="livedot"></span>31.4 FPS</span>
-            </div>
-            <div class="telemetry-value">33 Joints</div>
-            <p class="telemetry-subtext">MediaPipe BlazePose angular vector &amp; posture alignment tracking</p>
-          </div>
-          <div class="telemetry-card violet">
-            <div class="telemetry-header">
-              <span class="telemetry-label">{svg_icon('target', 13)} Meta-Stacking</span>
-              <span class="telemetry-beacon violet"><span class="livedot"></span>BENCHMARK</span>
-            </div>
-            <div class="telemetry-value">75.0% Acc</div>
-            <p class="telemetry-subtext">Stratified k-fold tree ensemble with +4.2% lift over baseline</p>
-          </div>
-          <div class="telemetry-card amber">
-            <div class="telemetry-header">
-              <span class="telemetry-label">{svg_icon('satellite_dish', 13)} Research Telemetry</span>
-              <span class="telemetry-beacon amber"><span class="livedot"></span>ISRO LAB</span>
-            </div>
-            <div class="telemetry-value">MODIS / ERA5</div>
-            <p class="telemetry-subtext">Temporal LSTM &amp; XGBoost hydrological basin runoff estimation</p>
-          </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-
-def render_interactive_ml_workbench() -> None:
-    """Render a live interactive machine learning laboratory showcasing vision biomechanics, NLP, and model stacking."""
-    st.markdown(
-        f"""
-        <div class="workbench-card">
-          <div class="workbench-header">
-            <div class="workbench-title-box">
-              <p class="section-kicker">{svg_icon('sparkles', 13)} Interactive Engineering Laboratory</p>
-              <h3>{svg_icon('cpu', 20)} Live ML Inference &amp; Telemetry Workbench</h3>
-              <p class="section-description">Test Dev's deployed machine learning pipelines, computer vision biomechanics, and topic modeling models live in this browser session.</p>
-            </div>
-            <span class="workbench-status-pill"><span class="livedot"></span>INTERACTIVE LAB READY</span>
-          </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    wb_tab1, wb_tab2, wb_tab3 = st.tabs([
-        "👁️ Vision Biomechanics (Digital Yoga)",
-        "🧠 Semantic Topic Modeling (Tone Topic)",
-        "📊 Meta-Stacking & Decision Tuner",
-    ])
-
-    # -------------------------------------------------------------
-    # TAB 1: COMPUTER VISION BIOMECHANICS SIMULATOR
-    # -------------------------------------------------------------
-    with wb_tab1:
-        st.write("")
-        st.markdown(
-            "Simulate MediaPipe BlazePose landmark extraction and OpenCV angular vector calculations for real-time postural alignment evaluation."
-        )
-
-        pose_presets = {
-            "Warrior II (Right Knee Flexion)": {"target": 90, "tol": 5, "joint": "Right Knee", "canon": "Knee stacked directly over ankle at 90°"},
-            "Tree Pose (Axial Spine Linearity)": {"target": 180, "tol": 6, "joint": "Spinal Column", "canon": "Vertical axial extension from pelvis through crown at 180°"},
-            "Plank Pose (Core-Spine Linearity)": {"target": 180, "tol": 4, "joint": "Torso Linearity", "canon": "Rigid straight line from cervical spine to heels at 180°"},
-            "Downward Dog (Shoulder-Lumbar Angle)": {"target": 70, "tol": 7, "joint": "Shoulder-Pelvis", "canon": "Inverted V angle between torso and legs at ~70°"},
-        }
-
-        v_col1, v_col2 = st.columns([1.1, 1.2], vertical_alignment="top")
-        with v_col1:
-            chosen_pose = st.selectbox("Select Target Posture / Asana", list(pose_presets.keys()), key="wb_pose_select")
-            preset = pose_presets[chosen_pose]
-            target_deg = preset["target"]
-            tol_deg = preset["tol"]
-
-            sim_angle = st.slider(
-                f"Simulate Measured {preset['joint']} Angle (°)",
-                min_value=40,
-                max_value=180,
-                value=target_deg,
-                step=1,
-                key="wb_angle_slider",
-                help="Slide to test how the MediaPipe + OpenCV biomechanics engine assesses posture deviation in real time."
-            )
-            sim_conf = st.slider(
-                "Landmark Detection Confidence Threshold",
-                min_value=0.50,
-                max_value=0.99,
-                value=0.88,
-                step=0.01,
-                key="wb_conf_slider",
-            )
-
-            st.caption(f"**Canonical Standard:** {preset['canon']} (Acceptable tolerance: ±{tol_deg}°)")
-
-        with v_col2:
-            delta = sim_angle - target_deg
-            abs_delta = abs(delta)
-
-            if abs_delta <= tol_deg:
-                status_cls = "ok"
-                status_title = "OPTIMAL ALIGNMENT"
-                status_msg = f"Perfect biomechanical form! Measured angle ({sim_angle}°) matches canonical target ({target_deg}°) within tolerance."
-                color_hex = "#10b981"
-            elif abs_delta <= 18:
-                status_cls = "warn"
-                status_title = "MINOR DEVIATION"
-                direction = "Open / extend joint" if delta < 0 else "Reduce flexion / contract"
-                status_msg = f"Form adjustment required: {direction} by {abs_delta}° (Target: {target_deg}°, Current: {sim_angle}°). Corrective cue triggered."
-                color_hex = "#fbbf24"
-            else:
-                status_cls = "crit"
-                status_title = "POSTURAL MISALIGNMENT"
-                direction = "Extend joint" if delta < 0 else "Contract joint"
-                status_msg = f"High deviation warning: Joint is {abs_delta}° off canonical alignment! Risk of compensatory shear stress."
-                color_hex = "#f43f5e"
-
-            # Dynamic SVG Visualizer for Joint Angle
-            rad_active = math.radians(sim_angle)
-            rad_target = math.radians(target_deg)
-            cx, cy, r = 140, 140, 75
-            ax = cx + r * math.cos(rad_active)
-            ay = cy - r * math.sin(rad_active)
-            tx = cx + r * math.cos(rad_target)
-            ty = cy - r * math.sin(rad_target)
-            
-            arc_r = 40
-            arc_ax = cx + arc_r * math.cos(rad_active)
-            arc_ay = cy - arc_r * math.sin(rad_active)
-            large_arc = 1 if sim_angle > 180 else 0
-
-            svg_markup = f"""
-            <div class="posture-viz-box">
-              <svg width="280" height="170" viewBox="0 0 280 170" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Baseline segment -->
-                <line x1="{cx}" y1="{cy}" x2="{cx + r}" y2="{cy}" stroke="rgba(255,255,255,0.4)" stroke-width="3" stroke-linecap="round" />
-                <circle cx="{cx + r}" cy="{cy}" r="4" fill="#c9cbe8" />
-                
-                <!-- Target reference ray (dashed) -->
-                <line x1="{cx}" y1="{cy}" x2="{tx:.1f}" y2="{ty:.1f}" stroke="rgba(34, 211, 238, 0.45)" stroke-width="2" stroke-dasharray="4 4" stroke-linecap="round" />
-                <circle cx="{tx:.1f}" cy="{ty:.1f}" r="3" fill="#22d3ee" />
-                
-                <!-- Active measured vector ray -->
-                <line x1="{cx}" y1="{cy}" x2="{ax:.1f}" y2="{ay:.1f}" stroke="{color_hex}" stroke-width="4" stroke-linecap="round" />
-                <circle cx="{ax:.1f}" cy="{ay:.1f}" r="5" fill="{color_hex}" />
-                
-                <!-- Angle arc -->
-                <path d="M {cx + arc_r} {cy} A {arc_r} {arc_r} 0 {large_arc} 0 {arc_ax:.1f} {arc_ay:.1f}" fill="none" stroke="{color_hex}" stroke-width="2.5" stroke-dasharray="2 2" />
-                
-                <!-- Vertex Joint Hub -->
-                <circle cx="{cx}" cy="{cy}" r="7" fill="{color_hex}" stroke="#ffffff" stroke-width="2" />
-                
-                <!-- Labels -->
-                <text x="{cx}" y="{cy + 22}" text-anchor="middle" fill="#8b8ea8" font-family="monospace" font-size="10">VERTEX ({preset['joint']})</text>
-                <text x="140" y="24" text-anchor="middle" fill="{color_hex}" font-family="monospace" font-size="13" font-weight="bold">{sim_angle}° (Δ {delta:+d}°)</text>
-                <text x="260" y="24" text-anchor="end" fill="#22d3ee" font-family="monospace" font-size="10">TARGET: {target_deg}°</text>
-              </svg>
-            </div>
-            """
-            # Rendered in an isolated iframe: Streamlit sanitizes inline <svg>
-            # in markdown/html blocks, but components.html passes it through.
-            components.html(
-                "<style>"
-                ".posture-viz-box{display:flex;flex-direction:column;align-items:center;"
-                "justify-content:center;background:#0a0d0b;border:1px solid #263027;"
-                "border-radius:6px;padding:12px;}"
-                "</style>" + svg_markup,
-                height=215,
-            )
-
-            # Telemetry Metrics HUD
-            st.markdown(
-                f"""
-                <div class="hud-pill-row">
-                  <div class="hud-box">
-                    <div class="hud-lbl">Target Angle</div>
-                    <div class="hud-val cyan">{target_deg}°</div>
-                  </div>
-                  <div class="hud-box">
-                    <div class="hud-lbl">Measured Angle</div>
-                    <div class="hud-val {status_cls}">{sim_angle}°</div>
-                  </div>
-                  <div class="hud-box">
-                    <div class="hud-lbl">Framerate</div>
-                    <div class="hud-val ok">31.4 FPS</div>
-                  </div>
-                  <div class="hud-box">
-                    <div class="hud-lbl">Confidence</div>
-                    <div class="hud-val ok">{int(sim_conf * 100)}%</div>
-                  </div>
-                </div>
-                <div class="status-alert-box {status_cls}">
-                  <div>
-                    <strong>{status_title}:</strong> {status_msg}
-                  </div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-
-    # -------------------------------------------------------------
-    # TAB 2: NLP SEMANTIC TOPIC MODELING PLAYGROUND
-    # -------------------------------------------------------------
-    with wb_tab2:
-        st.write("")
-        st.markdown(
-            "Explore Latent Dirichlet Allocation (LDA) keyword vector spaces and semantic topic decomposition for unstructured text in real time."
-        )
-
-        nlp_presets = {
-            "Computer Vision & Biomechanics": "Real-time computer vision pipelines analyze human pose landmarks at 31 FPS with sub-millimeter precision using MediaPipe and OpenCV.",
-            "Ensemble Machine Learning": "Multi-label ensemble stacking model achieved 75% accuracy benchmark using Random Forest and Logistic Regression meta-learners with stratified k-fold validation.",
-            "ISRO Satellite Hydrology": "Hydrological river basin runoff estimation using Google Earth Engine satellite telemetry, XGBoost, and recurrent LSTM networks for discharge forecasting.",
-            "Full-Stack Systems & APIs": "High-throughput RESTful microservices and streaming data pipelines deployed with Docker, FastAPI, PostgreSQL, and responsive Streamlit interfaces.",
-            "Custom text...": "",
-        }
-
-        nlp_left, nlp_right = st.columns([1.1, 1.2], vertical_alignment="top")
-        with nlp_left:
-            chosen_nlp_preset = st.selectbox("Select Sample Text Corpus or Custom Input", list(nlp_presets.keys()), key="wb_nlp_select")
-            default_val = nlp_presets[chosen_nlp_preset] if chosen_nlp_preset != "Custom text..." else "Enter your own technical text here to test the LDA semantic classifier..."
-            user_text = st.text_area("Input Document Text", value=default_val, height=110, key="wb_nlp_textarea")
-            
-            k_topics = st.slider("Number of Latent Topics (k)", min_value=2, max_value=4, value=3, key="wb_k_slider")
-            st.caption("🔬 Model Engine: Unsupervised Latent Dirichlet Allocation (LDA) with NLTK tokenization & TF-IDF weighting.")
-
-        with nlp_right:
-            # Word extraction
-            tokens = re.findall(r"\b[a-zA-Z]{3,}\b", user_text.lower())
-            stop_words = {"the", "and", "for", "with", "that", "this", "from", "using", "your", "are", "have", "been", "was", "were", "into", "over", "such", "text", "here", "enter"}
-            meaningful_tokens = [t for t in tokens if t not in stop_words]
-
-            # Domain keyword weights
-            topic_lexicons = {
-                "Computer Vision & Biomechanics": {"vision", "pose", "mediapipe", "opencv", "fps", "landmark", "landmarks", "image", "defect", "inspection", "camera", "real-time", "realtime", "frame", "frames", "tracking", "detection", "biomechanics"},
-                "Ensemble Machine Learning": {"ensemble", "stacking", "model", "models", "accuracy", "benchmark", "classifier", "classification", "forest", "random", "logistic", "regression", "meta", "k-fold", "stratified", "learning", "scikit-learn", "features"},
-                "Geospatial Telemetry (ISRO)": {"satellite", "isro", "hydrological", "hydrology", "discharge", "modis", "era5", "earth", "engine", "xgboost", "lstm", "recurrent", "basin", "river", "precipitation", "telemetry", "runoff"},
-                "Full-Stack Systems & APIs": {"rest", "api", "restful", "pipeline", "pipelines", "docker", "fastapi", "flask", "postgresql", "sql", "mongodb", "streamlit", "microservices", "streaming", "full-stack", "backend", "database"},
-            }
-
-            topic_scores = {}
-            for t_name, words in topic_lexicons.items():
-                match_count = sum(1 for tok in meaningful_tokens if tok in words)
-                topic_scores[t_name] = match_count * 2.5 + 0.5
-
-            tot_score = sum(topic_scores.values()) or 1.0
-            sorted_topics = sorted(
-                [(k, (v / tot_score) * 100) for k, v in topic_scores.items()],
-                key=lambda x: x[1],
-                reverse=True
-            )[:k_topics]
-
-            k_sum = sum(pct for _, pct in sorted_topics) or 1.0
-            normalized_top = [(name, (pct / k_sum) * 100) for name, pct in sorted_topics]
-
-            st.markdown("#### Estimated Latent Topic Distribution")
-            for t_name, t_pct in normalized_top:
-                st.markdown(
-                    f"""
-                    <div class="topic-meter-row">
-                      <div class="topic-meter-header">
-                        <span><strong>{t_name}</strong></span>
-                        <span>{t_pct:.1f}%</span>
-                      </div>
-                      <div class="topic-meter-bar">
-                        <div class="topic-meter-fill" style="width: {t_pct:.1f}%;"></div>
-                      </div>
-                    </div>
-                    """,
-                    unsafe_allow_html=True,
-                )
-
-            vocab_counts = {}
-            for tok in meaningful_tokens:
-                vocab_counts[tok] = vocab_counts.get(tok, 0) + 1
-            top_kws = sorted(vocab_counts.items(), key=lambda x: x[1], reverse=True)[:6]
-
-            if top_kws:
-                kw_tags = " ".join(f'<span class="tag">{safe(k)} ({v})</span>' for k, v in top_kws)
-                st.markdown(f'<div style="margin-top: 0.8rem;"><span style="font-size:0.78rem; color:var(--muted); font-family:var(--font-mono);">TOP SALIENT KEYWORDS:</span><div class="tag-row" style="margin-top:0.3rem;">{kw_tags}</div></div>', unsafe_allow_html=True)
-
-            st.markdown(
-                f"""
-                <div class="hud-pill-row" style="margin-top: 0.9rem;">
-                  <div class="hud-box">
-                    <div class="hud-lbl">Document Tokens</div>
-                    <div class="hud-val cyan">{len(meaningful_tokens)}</div>
-                  </div>
-                  <div class="hud-box">
-                    <div class="hud-lbl">Unique Vocab</div>
-                    <div class="hud-val ok">{len(vocab_counts)}</div>
-                  </div>
-                  <div class="hud-box">
-                    <div class="hud-lbl">Topic Coherence</div>
-                    <div class="hud-val ok">0.652 Cv</div>
-                  </div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-
-    # -------------------------------------------------------------
-    # TAB 3: NEURAL STACKING & DECISION THRESHOLD TUNER
-    # -------------------------------------------------------------
-    with wb_tab3:
-        st.write("")
-        st.markdown(
-            "Tune classification decision thresholds (τ) on Dev's meta-learning ensemble stack and observe live Precision, Recall, and F1 trade-offs."
-        )
-
-        st_left, st_right = st.columns([1.1, 1.2], vertical_alignment="top")
-        with st_left:
-            sim_tau = st.slider(
-                "Classification Decision Threshold (τ)",
-                min_value=0.05,
-                max_value=0.95,
-                value=0.50,
-                step=0.05,
-                key="wb_tau_slider",
-                help="Higher threshold minimizes false positives (High Precision). Lower threshold maximizes sensitivity (High Recall)."
-            )
-
-            active_estimators = st.multiselect(
-                "Active Ensemble Estimators",
-                [
-                    "Random Forest (Depth: 12)",
-                    "XGBoost Gradient Boost",
-                    "Logistic Meta-Learner",
-                    "Support Vector Classifier (RBF)",
-                ],
-                default=[
-                    "Random Forest (Depth: 12)",
-                    "XGBoost Gradient Boost",
-                    "Logistic Meta-Learner",
-                ],
-                key="wb_estimators_select",
-            )
-
-            n_models = max(1, len(active_estimators))
-            boost = (n_models - 1) * 0.014
-
-            precision_val = min(0.965, max(0.52, 0.50 + 0.44 / (1.0 + math.exp(-7.5 * (sim_tau - 0.36))) + boost))
-            recall_val = min(0.985, max(0.40, 0.98 - 0.55 / (1.0 + math.exp(-7.5 * (sim_tau - 0.64))) + boost * 0.5))
-            f1_val = 2 * (precision_val * recall_val) / (precision_val + recall_val)
-            acc_val = 70.8 + (boost * 100) + (1.2 if "XGBoost Gradient Boost" in active_estimators else 0)
-
-            if sim_tau >= 0.65:
-                prof_cls = "cyan"
-                prof_name = "🎯 HIGH PRECISION PROFILE"
-                prof_desc = "Conservative threshold: Minimizes false alarms. Best suited for high-cost false positive operations."
-            elif sim_tau <= 0.35:
-                prof_cls = "warn"
-                prof_name = "📡 HIGH RECALL PROFILE"
-                prof_desc = "Sensitive threshold: Maximizes detection coverage. Ideal for anomaly detection and fault screening."
-            else:
-                prof_cls = "ok"
-                prof_name = "⚖️ BALANCED PRODUCTION PROFILE"
-                prof_desc = "Optimal F1 harmonic mean: Balanced trade-off for multi-label competitive benchmark datasets."
-
-            st.markdown(
-                f"""
-                <div class="status-alert-box {prof_cls}" style="margin-top: 1rem;">
-                  <div>
-                    <strong>{prof_name}</strong><br>
-                    <span style="font-size:0.8rem;">{prof_desc}</span>
-                  </div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-
-        with st_right:
-            thresh_range = [i / 100.0 for i in range(5, 96, 2)]
-            recalls_curve = [min(0.985, max(0.40, 0.98 - 0.55 / (1.0 + math.exp(-7.5 * (t - 0.64))) + boost * 0.5)) for t in thresh_range]
-            precisions_curve = [min(0.965, max(0.52, 0.50 + 0.44 / (1.0 + math.exp(-7.5 * (t - 0.36))) + boost)) for t in thresh_range]
-
-            fig = go.Figure()
-            fig.add_trace(go.Scatter(
-                x=[r * 100 for r in recalls_curve],
-                y=[p * 100 for p in precisions_curve],
-                mode="lines",
-                name="Ensemble PR Curve",
-                line=dict(color="#8b5cf6", width=3, shape="spline"),
-                hoverinfo="skip",
-            ))
-            fig.add_trace(go.Scatter(
-                x=[recall_val * 100],
-                y=[precision_val * 100],
-                mode="markers+text",
-                name="Operating Point",
-                marker=dict(size=14, color="#10b981", line=dict(color="#ffffff", width=2)),
-                text=[f"  τ={sim_tau:.2f}"],
-                textposition="top left",
-                textfont=dict(color="#f4f5fb", size=12, family="JetBrains Mono"),
-                hovertemplate="Recall: %{x:.1f}%<br>Precision: %{y:.1f}%<extra></extra>",
-            ))
-            fig.update_layout(
-                margin=dict(l=35, r=20, t=20, b=35),
-                paper_bgcolor="rgba(0,0,0,0)",
-                plot_bgcolor="rgba(6, 5, 12, 0.6)",
-                height=220,
-                xaxis=dict(
-                    title=dict(text="Recall (%)", font=dict(color="#8b8ea8", size=11)),
-                    range=[35, 102],
-                    gridcolor="rgba(255,255,255,0.06)",
-                    tickfont=dict(color="#8b8ea8", size=10),
-                ),
-                yaxis=dict(
-                    title=dict(text="Precision (%)", font=dict(color="#8b8ea8", size=11)),
-                    range=[48, 102],
-                    gridcolor="rgba(255,255,255,0.06)",
-                    tickfont=dict(color="#8b8ea8", size=10),
-                ),
-                showlegend=False,
-            )
-            st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
-
-            st.markdown(
-                f"""
-                <div class="hud-pill-row">
-                  <div class="hud-box">
-                    <div class="hud-lbl">Precision</div>
-                    <div class="hud-val cyan">{precision_val * 100:.1f}%</div>
-                  </div>
-                  <div class="hud-box">
-                    <div class="hud-lbl">Recall</div>
-                    <div class="hud-val ok">{recall_val * 100:.1f}%</div>
-                  </div>
-                  <div class="hud-box">
-                    <div class="hud-lbl">F1-Score</div>
-                    <div class="hud-val ok">{f1_val * 100:.1f}%</div>
-                  </div>
-                  <div class="hud-box">
-                    <div class="hud-lbl">Accuracy</div>
-                    <div class="hud-val ok">{acc_val:.1f}%</div>
-                  </div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-
-    st.markdown("</div>", unsafe_allow_html=True)
-
-
 # Safe navigation state handler to avoid widget modification exception
 if "target_nav" in st.session_state and st.session_state.target_nav:
     st.session_state.nav = st.session_state.target_nav
@@ -802,93 +252,91 @@ def timeline_item(role: dict[str, object]) -> None:
     )
 
 
-GIF_BY_PROJECT = {
-    "Tone Topic": "topic-modeling.gif",
-    "Digital Yoga Trainer": "pose-estimation.gif",
-    "InsightSync": "data-pulse.gif",
-    "Multi-label Dataset Prediction": "neural-network.gif",
-    "FabriSense": "fabric-scan.gif",
-    "Hydrological Basin Flux Estimator": "satellite-vision.gif",
+POSTER_BY_PROJECT = {
+    "Tone Topic": "graphic-topics.png",
+    "Digital Yoga Trainer": "graphic-pose.png",
+    "InsightSync": "graphic-data.png",
+    "Multi-label Dataset Prediction": "graphic-ensemble.png",
+    "FabriSense": "graphic-fabric.png",
+    "Hydrological Basin Flux Estimator": "graphic-basin.png",
 }
 
 
-def project_gif_uri(project: dict[str, object]) -> str | None:
-    """Return a data-URI for the matching animated demo GIF of a project."""
-    gif_name = GIF_BY_PROJECT.get(str(project.get("title")))
-    if not gif_name:
-        return None
-    path = ROOT / "images" / "gifs" / gif_name
-    return as_data_uri(path) if path.exists() else None
+def project_media_html(title: str) -> str:
+    """Share project illustrations and reduced-motion posters across both pages."""
+    poster_name = POSTER_BY_PROJECT.get(title)
+    if not poster_name:
+        return ""
+    path = ROOT / "images" / "gifs" / poster_name
+    poster_uri = as_data_uri(path)
+    if not poster_uri:
+        return ""
+    image_uri = poster_uri
+    if st.session_state.get("animate_previews", True):
+        image_uri = as_data_uri(path.with_suffix(".gif")) or poster_uri
+    return (
+        '<picture class="project-media">'
+        f'<source media="(prefers-reduced-motion: reduce)" srcset="{poster_uri}" />'
+        f'<img src="{image_uri}" alt="{safe(title)} — conceptual illustration, not a live demo" '
+        'width="640" height="360" loading="lazy" />'
+        '</picture>'
+    )
 
 
 def project_card(project: dict[str, object], image_path: str | None = None) -> None:
-    with st.container(border=True):
-        gif_uri = project_gif_uri(project)
-        badge_text = project.get("badge", "Live Demo")
-        if gif_uri:
+    with st.container(border=True, key=f"project_card_{initials(str(project['title']))}"):
+        preview, content = st.columns([1, 2], gap="medium")
+        with preview:
+            media_html = project_media_html(str(project["title"]))
+            if media_html:
+                st.markdown(f'<div class="card-gif">{media_html}</div>', unsafe_allow_html=True)
+            elif image_path and (ROOT / image_path).exists():
+                img_uri = as_data_uri(ROOT / image_path)
+                if img_uri:
+                    st.markdown(
+                        f'<div class="card-gif"><img src="{img_uri}" alt="{safe(project["title"])}" loading="lazy" /></div>',
+                        unsafe_allow_html=True,
+                    )
+            tag_row(project["tags"])
+        with content:
+            st.markdown(f'<p class="project-type">{svg_icon("sparkles", 12)} {safe(project["type"])}</p>', unsafe_allow_html=True)
+            st.subheader(str(project["title"]))
+            st.write(str(project["description"]))
             st.markdown(
-                f"""
-                <div class="card-gif">
-                  <img src="{gif_uri}" alt="{safe(project['title'])} animated demo" loading="lazy" />
-                  <span class="card-live-pill"><span class="livedot"></span>{safe(badge_text)}</span>
-                </div>
-                """,
+                f'<div class="project-outcome-box"><span class="outcome-icon">{svg_icon("target", 14)}</span> <span><strong>{safe(project["outcome_label"])}:</strong> {safe(project["outcome"])}</span></div>',
                 unsafe_allow_html=True,
             )
-        elif image_path and (ROOT / image_path).exists():
-            img_uri = as_data_uri(ROOT / image_path)
-            if img_uri:
-                st.markdown(
-                    f"""
-                    <div class="card-gif">
-                      <img src="{img_uri}" alt="{safe(project['title'])}" loading="lazy" />
-                    </div>
-                    """,
-                    unsafe_allow_html=True,
-                )
-        st.markdown(f'<p class="project-type">{svg_icon("sparkles", 12)} {safe(project["type"])}</p>', unsafe_allow_html=True)
-        st.subheader(str(project["title"]))
-        st.write(str(project["description"]))
-        st.markdown(
-            f'<div class="project-outcome-box"><span class="outcome-icon">{svg_icon("target", 14)}</span> <span><strong>{safe(project["outcome_label"])}:</strong> {safe(project["outcome"])}</span></div>',
-            unsafe_allow_html=True,
-        )
-        tag_row(project["tags"])
-
-        deep_dive = project.get("deep_dive")
-        if deep_dive:
-            with st.expander("Technical Architecture & System Details"):
-                st.write(deep_dive)
-
-        btn_cols = st.columns(2)
-        if project.get("demo"):
-            with btn_cols[0]:
-                st.link_button("Open Live App ↗", str(project["demo"]), width="stretch")
-        if project.get("repo"):
-            col_target = btn_cols[1] if project.get("demo") else btn_cols[0]
-            with col_target:
-                st.link_button(str(project.get("repo_label", "View GitHub ↗")), str(project["repo"]), width="stretch")
+            btn_cols = st.columns(2)
+            if project.get("demo"):
+                with btn_cols[0]:
+                    st.link_button("Open Live App ↗", str(project["demo"]), width="stretch")
+            if project.get("repo") and project.get("repo") != project.get("demo"):
+                col_target = btn_cols[1] if project.get("demo") else btn_cols[0]
+                with col_target:
+                    st.link_button(str(project.get("repo_label", "View GitHub ↗")), str(project["repo"]), width="stretch")
+            deep_dive = project.get("deep_dive")
+            if deep_dive:
+                with st.expander("Technical Architecture & System Details"):
+                    st.write(deep_dive)
 
 
 # Initialize Database
 init_db()
 
-# Inject theme stylesheets: dark glass base + dark editorial override (this branch).
-for _stylesheet in ("main.css", "dark-editorial.css"):
-    css_file = ROOT / "styles" / _stylesheet
-    if css_file.exists():
-        st.markdown(f"<style>{css_file.read_text(encoding='utf-8')}</style>", unsafe_allow_html=True)
-
-# Inject Interactive Layer (cursor spotlight + scroll reveal)
-js_file = ROOT / "styles" / "interactive.js"
-if js_file.exists():
-    components.html(
-        f"<script>{js_file.read_text(encoding='utf-8')}</script>",
-        height=0,
-    )
-
-# Aurora scroll progress bar (progressive enhancement; follows page scroll in modern browsers)
-st.markdown('<div class="scroll-progress"></div>', unsafe_allow_html=True)
+# Keep the theme switch mounted on every page so the choice survives navigation.
+dark_mode = st.sidebar.toggle("Dark mode", value=True, key="dark_mode")
+st.sidebar.toggle(
+    "Animate previews", value=True, key="animate_previews",
+    help="Turn off for static illustrations. Your system's reduced-motion preference always takes priority.",
+)
+stylesheets = ["graphic.css"]
+if dark_mode:
+    stylesheets.append("graphic-dark.css")
+style_text = "\n".join(
+    (ROOT / "styles" / stylesheet).read_text(encoding="utf-8-sig")
+    for stylesheet in stylesheets
+)
+st.markdown(f"<style>{style_text}</style>", unsafe_allow_html=True)
 
 # Prepare Assets
 profile_path = ROOT / "assets" / "phot.jpeg"
@@ -901,44 +349,11 @@ resume_uri = as_data_uri(resume_path)
 
 # Sidebar Branded Navigation with Vector Icons
 with st.sidebar:
-    if profile_uri:
-        st.markdown(
-            f"""
-            <div class="brand">
-              <div class="portrait sm">
-                <div class="portrait-frame"><img src="{profile_uri}" alt="Dev Kotak" /></div>
-              </div>
-              <p class="brand-kicker">Studio · Portfolio</p>
-              <h2 class="brand-name">Dev Kotak</h2>
-              <p class="brand-role">Software &amp; Machine Learning Engineer</p>
-              <div class="status-pill"><span class="status-dot"></span>Open to opportunities</div>
-              <div class="side-social">
-                <a href="{LINKEDIN}" target="_blank" rel="noreferrer" title="LinkedIn">{svg_icon("linkedin", 15)}</a>
-                <a href="{GITHUB}" target="_blank" rel="noreferrer" title="GitHub">{svg_icon("github", 15)}</a>
-                <a href="mailto:{EMAIL}" title="Email">{svg_icon("mail", 15)}</a>
-              </div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-    else:
-        st.markdown(
-            f"""
-            <div class="brand">
-              <div class="monogram">DK</div>
-              <p class="brand-kicker">Studio · Portfolio</p>
-              <h2 class="brand-name">Dev Kotak</h2>
-              <p class="brand-role">Software &amp; Machine Learning Engineer</p>
-              <div class="status-pill"><span class="status-dot"></span>Open to opportunities</div>
-              <div class="side-social">
-                <a href="{LINKEDIN}" target="_blank" rel="noreferrer" title="LinkedIn">{svg_icon("linkedin", 15)}</a>
-                <a href="{GITHUB}" target="_blank" rel="noreferrer" title="GitHub">{svg_icon("github", 15)}</a>
-                <a href="mailto:{EMAIL}" title="Email">{svg_icon("mail", 15)}</a>
-              </div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+    st.markdown(
+        '<p class="wordmark">Dev Kotak<b>.</b></p>'
+        '<p class="sidebar-role">Software &amp; Machine Learning Engineer</p>',
+        unsafe_allow_html=True,
+    )
     st.divider()
     page = st.radio("Navigation", NAV_ITEMS, label_visibility="collapsed", key="nav")
     st.divider()
@@ -951,280 +366,78 @@ with st.sidebar:
             width="stretch",
             key="sidebar_resume_download",
         )
-    st.markdown(
-        f"""
-        <div class="sidebar-dock-footer">
-          <span>{svg_icon('map_pin', 11)} Ottawa, Canada</span>
-          <span>© 2026 Dev Kotak</span>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    st.markdown('<p class="sidebar-note">BASED IN OTTAWA, CANADA</p>', unsafe_allow_html=True)
 
 
 # =========================================================================
 # 1. OVERVIEW / HERO
 # =========================================================================
 if page == "Overview":
+    portrait_html = (
+        f'<img src="{profile_uri}" alt="Portrait of Dev Kotak" />'
+        if profile_uri
+        else '<div class="portrait-placeholder">DK</div>'
+    )
     st.markdown(
         f"""
-        <div class="hero">
-          <div class="hero-particles"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-          <p class="section-kicker">{svg_icon('rocket', 14)} Software &amp; Applied Machine Learning</p>
-          <h1>I build <span class="gold-accent">intelligent software</span> from data, models &amp; modern web systems.</h1>
-          <p class="section-subtitle">
-            {svg_icon('terminal', 15)} Dev Kotak ·
-            <span class="role-rotator" aria-label="Roles">
-              <span class="role-track">
-                <span>Software Engineer</span>
-                <span>Machine Learning Engineer</span>
-                <span>Data Scientist</span>
-                <span>Applied AI Developer</span>
-                <span>Software Engineer</span>
-              </span>
-            </span>
-          </p>
-          <p class="section-description">Master of Engineering graduate in Electrical &amp; Computer Engineering (Data Science Specialization) at Carleton University. Experienced across production REST APIs, computer vision, natural language processing, and interactive data workbenches.</p>
-          <div class="hero-chips">
-            <span class="hero-chip">{svg_icon('map_pin', 12)} Ottawa, Ontario, Canada</span>
-            <span class="hero-chip">{svg_icon('graduation', 12)} M.Eng · Data Science · Carleton '25</span>
-            <span class="hero-chip">{svg_icon('zap', 12)} Open to SWE / ML Roles</span>
+        <div class="graphic-masthead"><span>Independent thinking. Applied engineering.</span><span>Portfolio / 2026</span></div>
+        <section class="graphic-hero">
+          <div>
+            <p class="section-kicker">Dev Kotak / Software &amp; ML</p>
+            <h1>Complex data.<br><span>Useful software.</span></h1>
+            <p class="hero-intro">I turn data and machine learning models into applications people can actually use. M.Eng graduate from Carleton University, working across software systems, computer vision, and natural language processing.</p>
           </div>
-        </div>
+          <figure class="hero-art">{portrait_html}<figcaption><span>Dev Kotak</span><span>Ottawa, Canada</span></figcaption></figure>
+        </section>
         """,
         unsafe_allow_html=True,
     )
-
-    hero_left, hero_right = st.columns([1.3, 0.7], vertical_alignment="center")
-    with hero_left:
-        st.markdown(
-            """
-            <div class="practice">
-              <h3>Engineered for Precision &amp; Real-World Impact</h3>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-        st.write(
-            "I operate across the entire software lifecycle—transforming complex datasets into production-grade predictive models, high-throughput REST APIs, and responsive, interactive applications."
-        )
-        st.write("")
-        h_btn1, h_btn2, h_btn3 = st.columns(3)
-        with h_btn1:
-            if st.button("Explore Work →", key="hero_explore_btn", type="primary", width="stretch"):
-                set_page("Projects")
-        with h_btn2:
-            if st.button("Contact Me", key="hero_contact_btn", width="stretch"):
-                set_page("Contact")
-        with h_btn3:
-            if resume_path.exists():
-                st.download_button(
-                    "Download CV ⤓",
-                    resume_path.read_bytes(),
-                    "Dev-Kotak-Resume.pdf",
-                    "application/pdf",
-                    key="hero_cv_btn",
-                    width="stretch",
-                )
-
-    with hero_right:
-        if profile_uri:
-            st.markdown(
-                f"""
-                <figure class="portrait hero-media">
-                  <div class="orbit-wrap">
-                    <span class="orbit-ring" aria-hidden="true"></span>
-                    <div class="portrait-frame"><img src="{profile_uri}" alt="Portrait of Dev Kotak" /></div>
-                  </div>
-                  <figcaption class="portrait-caption"><strong>Dev Kotak</strong><span>{svg_icon('map_pin', 12)} Ottawa, Canada</span></figcaption>
-                </figure>
-                """,
-                unsafe_allow_html=True,
-            )
-        hero_gif = as_data_uri(ROOT / "images" / "gifs" / "topic-modeling.gif")
-        if hero_gif:
-            st.markdown(
-                f"""
-                <figure class="hero-gif-mini">
-                  <img src="{hero_gif}" alt="Tone Topic live topic-modeling demo" loading="lazy" />
-                  <figcaption>{svg_icon('sparkles', 12)} Tone Topic · Live Demo <span class="live-tag">Running</span></figcaption>
-                </figure>
-                """,
-                unsafe_allow_html=True,
-            )
-
-    st.divider()
-
-    # Executive Stats Grid with Precision Vector Icons
-    st.markdown(
-        f"""
-        <div class="stat-grid">
-          <div class="stat-card">
-            <div class="stat-head">
-              <span class="stat-index">01</span>
-              {icon_box('briefcase', 16, sm=True)}
-            </div>
-            <p class="stat-value">7</p>
-            <p class="stat-label">Industry &amp; Research Roles</p>
-          </div>
-          <div class="stat-card">
-            <div class="stat-head">
-              <span class="stat-index">02</span>
-              {icon_box('graduation', 16, sm=True)}
-            </div>
-            <p class="stat-value">M.Eng</p>
-            <p class="stat-label">Carleton Data Science (10.5/12)</p>
-          </div>
-          <div class="stat-card">
-            <div class="stat-head">
-              <span class="stat-index">03</span>
-              {icon_box('cpu', 16, sm=True)}
-            </div>
-            <p class="stat-value">5+</p>
-            <p class="stat-label">Deployed ML &amp; Web Apps</p>
-          </div>
-          <div class="stat-card">
-            <div class="stat-head">
-              <span class="stat-index">04</span>
-              {icon_box('target', 16, sm=True)}
-            </div>
-            <p class="stat-value">75%</p>
-            <p class="stat-label">Predictive Benchmark Accuracy</p>
-          </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    # Mission Control Telemetry HUD
-    render_telemetry_hud()
-
-    st.markdown(
-        f"""
-        <div class="now-strip">
-          <div class="now-item">
-            {icon_box('rocket', 18, sm=True)}
-            <div><h5>Currently Building</h5><p>Production NLP topic-modeling apps &amp; interactive ML dashboards deployed on Streamlit Cloud.</p></div>
-          </div>
-          <div class="now-item">
-            {icon_box('brain', 18, sm=True)}
-            <div><h5>Sharpening</h5><p>Real-time inference pipelines, MLOps fundamentals, and production LLM workflow patterns.</p></div>
-          </div>
-          <div class="now-item">
-            {icon_box('briefcase', 18, sm=True)}
-            <div><h5>Open To</h5><p>Software engineering &amp; applied ML roles — Ottawa, anywhere in Canada, and remote teams.</p></div>
-          </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    # Live animated console widget
-    terminal_widget()
-
-    st.markdown('<span id="selected-work"></span>', unsafe_allow_html=True)
-    st.write("")
-    st.markdown("## Core Engineering Pillars")
-    st.markdown(
-        f"""
-        <div class="pillars-grid">
-          <div class="pillar-card">
-            {icon_box('brain', 22)}
-            <h4>Applied Machine Learning</h4>
-            <p>Developing end-to-end predictive systems, ensemble meta-classifiers, and topic modeling pipelines with rigorous cross-validation and benchmark tuning.</p>
-          </div>
-          <div class="pillar-card">
-            {icon_box('eye', 22)}
-            <h4>Computer Vision &amp; AI</h4>
-            <p>Deploying real-time pose estimation (MediaPipe), automated visual defect inspection, facial landmark detectors, and OpenCV image processing pipelines.</p>
-          </div>
-          <div class="pillar-card">
-            {icon_box('layers', 22)}
-            <h4>Full-Stack &amp; Systems</h4>
-            <p>Designing robust RESTful architectures, low-latency JSON data workflows, relational &amp; NoSQL schemas (SQL, MongoDB), and responsive Streamlit/Web UIs.</p>
-          </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    # Live Interactive ML & Telemetry Laboratory
-    render_interactive_ml_workbench()
-
-    st.write("")
-    st.markdown("## Selected Work")
-    st.write("A concise showcase of production applications and applied AI solutions with real-time motion previews.")
-
-    tone_thumb = as_data_uri(ROOT / "images" / "gifs" / "topic-modeling.gif") or ""
-    yoga_thumb = as_data_uri(ROOT / "images" / "gifs" / "pose-estimation.gif") or ""
-    ml_thumb = as_data_uri(ROOT / "images" / "gifs" / "neural-network.gif") or ""
-
-    st.markdown(
-        f"""
-        <div class="mini-grid">
-          <div class="mini-card">
-            <div class="mini-media">
-              <img src="{tone_thumb}" alt="Tone Topic preview" loading="lazy" />
-              <span class="mini-live-tag"><span class="livedot"></span>NLP LIVE</span>
-            </div>
-            <div class="mini-content">
-              <div class="mini-top">
-                <span class="mini-index">01</span>
-                <span class="pill-chip">{svg_icon('message', 12)} Topic Modeling</span>
-              </div>
-              <h3>Tone Topic</h3>
-              <p>Topic modeling and document categorization for unstructured text and CSV datasets using Latent Dirichlet Allocation (LDA) and NLTK.</p>
-              <div class="tag-row">{tag_html(["Streamlit", "NLTK", "LDA", "Gensim"])}</div>
-            </div>
-          </div>
-          <div class="mini-card">
-            <div class="mini-media">
-              <img src="{yoga_thumb}" alt="Digital Yoga Trainer preview" loading="lazy" />
-              <span class="mini-live-tag"><span class="livedot"></span>31 FPS VISION</span>
-            </div>
-            <div class="mini-content">
-              <div class="mini-top">
-                <span class="mini-index">02</span>
-                <span class="pill-chip">{svg_icon('eye', 12)} Vision &amp; Pose</span>
-              </div>
-              <h3>Digital Yoga Trainer</h3>
-              <p>Real-time pose estimation and corrective posture feedback using MediaPipe landmark coordinates and OpenCV geometry calculations.</p>
-              <div class="tag-row">{tag_html(["MediaPipe", "OpenCV", "Real-Time"])}</div>
-            </div>
-          </div>
-          <div class="mini-card">
-            <div class="mini-media">
-              <img src="{ml_thumb}" alt="Multi-label Prediction preview" loading="lazy" />
-              <span class="mini-live-tag"><span class="livedot"></span>75% ACCURACY</span>
-            </div>
-            <div class="mini-content">
-              <div class="mini-top">
-                <span class="mini-index">03</span>
-                <span class="pill-chip">{svg_icon('cpu', 12)} Meta-Learner</span>
-              </div>
-              <h3>Multi-label Prediction</h3>
-              <p>Ensemble model stacking combining Random Forests with a Logistic Regression meta-learner for complex multi-label classification.</p>
-              <div class="tag-row">{tag_html(["Scikit-Learn", "Ensembles", "Stacking"])}</div>
-            </div>
-          </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    if st.button("Explore All Projects & Applications →", type="primary", key="overview_all_projects_btn"):
+    if st.button("Explore projects ↗", key="hero_explore_btn", type="primary"):
         set_page("Projects")
 
+    st.markdown('<div class="graphic-section-head"><h2>Selected work</h2><span>01 — 03 / Software in practice</span></div>', unsafe_allow_html=True)
+    selected_work = [
+        ("01", "NLP · Web application", "Tone Topic",
+         "Making unstructured text easier to explore through topic modeling and document categorization.",
+         "https://tonetopic.streamlit.app/", "Open application"),
+        ("02", "Computer vision", "Digital Yoga Trainer",
+         "Turning pose landmarks into real-time posture feedback with MediaPipe and OpenCV.",
+         "https://github.com/dev856/Yoga-Pose-Estimation", "Explore repository"),
+        ("03", "Machine learning", "Multi-label Dataset Prediction",
+         "Combining Random Forest estimators and a logistic meta-learner for multi-label classification.",
+         None, None),
+    ]
+    for index, category, title, description, url, link_label in selected_work:
+        image_html = project_media_html(title)
+        link_html = f'<a class="text-link" href="{safe(url)}" target="_blank" rel="noreferrer">{safe(link_label)} ↗</a>' if url else ""
+        row_class = "work-row reverse" if index == "02" else "work-row"
+        st.markdown(
+            f'<article class="{row_class}"><figure class="work-image">{image_html}</figure>'
+            f'<div class="work-copy"><span class="work-number">{index} / {safe(category)}</span>'
+            f'<h3>{safe(title)}</h3><p>{safe(description)}</p>{link_html}</div></article>',
+            unsafe_allow_html=True,
+        )
+
     st.markdown(
-        """
-        <div class="marquee"><div class="marquee-track">
-        <span>Python</span><span>SQL</span><span>REST APIs</span><span>JSON</span><span>TensorFlow</span><span>PyTorch</span>
-        <span>Streamlit</span><span>Plotly</span><span>OpenCV</span><span>MediaPipe</span><span>Google Cloud</span><span>Pandas</span>
-        <span>NumPy</span><span>Git</span><span>Node.js</span><span>MongoDB</span><span>Scikit-Learn</span><span>NLTK</span><span>XGBoost</span>
-        <span>Python</span><span>SQL</span><span>REST APIs</span><span>JSON</span><span>TensorFlow</span><span>PyTorch</span>
-        <span>Streamlit</span><span>Plotly</span><span>OpenCV</span><span>MediaPipe</span><span>Google Cloud</span><span>Pandas</span>
-        <span>NumPy</span><span>Git</span><span>Node.js</span><span>MongoDB</span><span>Scikit-Learn</span><span>NLTK</span><span>XGBoost</span>
-        </div></div>
+        '<div class="graphic-section-head"><h2>Research meets delivery.</h2><span>The short version</span></div>'
+        '<section class="career-strip"><div><p>From satellite hydrology to backend integrations, my work pairs analytical modeling with dependable software delivery.</p></div>'
+        '<div>'
+        '<div class="career-entry"><strong>Ottawa Centre for Cognitive Therapy</strong><span>Software integration &amp; automated data workflows</span></div>'
+        '<div class="career-entry"><strong>Space Applications Centre, ISRO</strong><span>Geospatial machine learning research</span></div>'
+        '<div class="career-entry"><strong>Carleton University</strong><span>M.Eng · Electrical &amp; Computer Engineering · Data Science</span></div>'
+        '</div></section>',
+        unsafe_allow_html=True,
+    )
+    if st.button("Full experience →", key="overview_experience_btn"):
+        set_page("Experience")
+    st.markdown(
+        f"""
+        <section class="contact-banner">
+          <p class="section-kicker">Have something in mind?</p>
+          <h2>Let's build something useful.</h2>
+          <p>Open to software engineering and applied machine learning opportunities.</p>
+          <a href="mailto:{EMAIL}">Start a conversation ↗</a>
+        </section>
         """,
         unsafe_allow_html=True,
     )
@@ -1290,16 +503,6 @@ elif page == "About":
                 "RESTful API design, JSON workflow automation, schema modeling in PostgreSQL & MongoDB, Streamlit interactive applications, and Plotly visual dashboards."
             )
 
-    st.write("")
-    about_btn1, about_btn2 = st.columns(2)
-    with about_btn1:
-        if st.button("View Career & Research Timeline →", key="about_exp_btn", type="primary", width="stretch"):
-            set_page("Experience")
-    with about_btn2:
-        if st.button("Get in Touch / Contact", key="about_contact_btn", width="stretch"):
-            set_page("Contact")
-
-
 # =========================================================================
 # 3. PROJECTS SECTION
 # =========================================================================
@@ -1327,7 +530,6 @@ elif page == "Projects":
             "repo_label": "Open Live Application ↗",
             "image": "images/screen06.jpg",
             "deep_dive": "1. Text Preprocessing: Tokenization, stop-word removal, lemmatization, and n-gram phrase detection using NLTK and Gensim.\n2. Vector Space Modeling: Bag-of-Words (BoW) corpus mapping with TF-IDF filtering.\n3. Inference & Visualization: Multithreaded LDA model fitting with coherence score optimization (C_v).",
-            "flagship": True,
         },
         {
             "category": "Computer Vision",
@@ -1398,6 +600,11 @@ elif page == "Projects":
     if "project_filter" not in st.session_state:
         st.session_state.project_filter = "All"
 
+    def reset_project_filters() -> None:
+        """Reset widget state before Streamlit renders the search controls."""
+        st.session_state.proj_search_input = ""
+        st.session_state.project_filter = "All"
+
     search_col, reset_col = st.columns([3.2, 0.8], vertical_alignment="bottom")
     with search_col:
         search_query = st.text_input(
@@ -1406,10 +613,7 @@ elif page == "Projects":
             key="proj_search_input",
         ).strip().lower()
     with reset_col:
-        if st.button("Clear Search", key="clear_search_btn", width="stretch"):
-            st.session_state.proj_search_input = ""
-            st.session_state.project_filter = "All"
-            st.rerun()
+        st.button("Clear Search", key="clear_search_btn", width="stretch", on_click=reset_project_filters)
 
     def matches_project(p: dict[str, object], q: str) -> bool:
         if not q:
@@ -1469,72 +673,10 @@ elif page == "Projects":
 
     if not filtered_projects:
         st.warning(f'No projects found matching query "{search_query}" in category "{current_filter}".')
-        if st.button("Reset Search Filters", key="reset_empty_search", type="primary"):
-            st.session_state.proj_search_input = ""
-            st.session_state.project_filter = "All"
-            st.rerun()
+        st.button("Reset Search Filters", key="reset_empty_search", type="primary", on_click=reset_project_filters)
     else:
-        # Flagship view for Tone Topic when in All or NLP without active search
-        tone_proj = next((p for p in filtered_projects if p.get("title") == "Tone Topic"), None)
-        other_projects = [p for p in filtered_projects if p.get("title") != "Tone Topic"]
-
-        if tone_proj and not search_query and current_filter in ["All", "NLP"]:
-            st.write("")
-            with st.container(border=True):
-                left, right = st.columns([1.2, 1], vertical_alignment="center")
-                with left:
-                    tone_img = ROOT / "images" / "screen06.jpg"
-                    tone_gif = ROOT / "images" / "gifs" / "topic-modeling.gif"
-                    if tone_gif.exists():
-                        st.markdown(
-                            f'<figure class="featured-gif"><img src="{as_data_uri(tone_gif)}" alt="Tone Topic topic-modeling demo" /></figure>',
-                            unsafe_allow_html=True,
-                        )
-                    elif tone_img.exists():
-                        st.image(str(tone_img), width="stretch")
-                with right:
-                    st.markdown(f'<p class="project-type">{svg_icon("star", 13)} Featured Flagship Project · Natural Language Processing</p>', unsafe_allow_html=True)
-                    st.markdown("### Tone Topic")
-                    st.write(
-                        "An interactive NLP application that transforms raw unstructured text or uploaded CSV documents into explorable semantic topic models using Latent Dirichlet Allocation (LDA) and NLTK tokenization."
-                    )
-                    st.markdown(
-                        "<strong>Key Outcome:</strong> Real-time semantic topic distribution &amp; token extraction<br><strong>Contribution:</strong> End-to-end NLP pipeline, LDA modeling, and responsive Streamlit UI",
-                        unsafe_allow_html=True,
-                    )
-                    tag_row(["Python", "Streamlit", "NLTK", "Gensim", "Pandas", "Topic Modeling", "LDA"])
-
-                    with st.expander("Technical Architecture & Pipeline Details"):
-                        st.write(
-                            "1. **Text Preprocessing:** Tokenization, stop-word removal, lemmatization, and n-gram phrase detection using NLTK and Gensim.\n"
-                            "2. **Vector Space Modeling:** Dictionary creation and Bag-of-Words (BoW) corpus mapping with TF-IDF filtering.\n"
-                            "3. **Inference & Visualization:** Multithreaded LDA model fitting with coherence score optimization (C_v) and interactive topic distribution matrices."
-                        )
-
-                    st.link_button("Open Live Application ↗", "https://tonetopic.streamlit.app/", width="stretch")
-            st.write("")
-            display_grid_projects = other_projects
-        else:
-            display_grid_projects = filtered_projects
-
-        if display_grid_projects:
-            grid_cols = st.columns(2)
-            for index, proj in enumerate(display_grid_projects):
-                col = grid_cols[index % 2]
-                with col:
-                    img = proj.get("image")
-                    project_card(proj, image_path=img)
-
-    st.write("")
-    with st.container(border=True):
-        p_cta_col1, p_cta_col2 = st.columns([1.5, 1], vertical_alignment="center")
-        with p_cta_col1:
-            st.markdown("### Looking to build or deploy a custom AI/ML system?")
-            st.write("I am available for engineering roles and technical collaborations across predictive modeling, computer vision, and high-performance backend systems.")
-        with p_cta_col2:
-            if st.button("Start a Conversation", key="proj_contact_btn", type="primary", width="stretch"):
-                set_page("Contact")
-
+        for proj in filtered_projects:
+            project_card(proj, image_path=proj.get("image"))
 
 # =========================================================================
 # 4. EXPERIENCE SECTION
@@ -1642,16 +784,6 @@ elif page == "Experience":
         timeline_item(role)
     st.markdown("</div>", unsafe_allow_html=True)
 
-    st.write("")
-    exp_btn1, exp_btn2 = st.columns(2)
-    with exp_btn1:
-        if st.button("Explore Technical Skills & Capabilities →", key="exp_skills_btn", type="primary", width="stretch"):
-            set_page("Skills")
-    with exp_btn2:
-        if st.button("Review Academic Credentials & Education →", key="exp_edu_btn", width="stretch"):
-            set_page("Education")
-
-
 # =========================================================================
 # 5. SKILLS SECTION
 # =========================================================================
@@ -1688,14 +820,15 @@ elif page == "Skills":
     ]
 
     cards = "".join(
-        '<div class="skill-card">'
-        f'<div class="skill-card-top"><span class="skill-index">{index}</span>{icon_box(icon_n, 16, sm=True)}</div>'
+        f'<section class="skill-card skill-domain-{index}">'
+        f'<div class="skill-card-top"><span class="skill-emblem">{svg_icon(icon_n, 30)}</span><span class="skill-index">{index}</span></div>'
         f"<div>"
         f"<h3>{safe(title)}</h3>"
         f"<p>{safe(summary)}</p>"
         f"</div>"
-        f'<div class="tag-row">{tag_html(skills)}</div>'
-        "</div>"
+        '<ul class="skill-tools">'
+        + ''.join(f'<li>{safe(skill)}</li>' for skill in skills)
+        + '</ul></section>'
         for index, icon_n, title, summary, skills in groups
     )
     st.markdown(f'<div class="skill-grid">{cards}</div>', unsafe_allow_html=True)
@@ -1704,7 +837,7 @@ elif page == "Skills":
     st.markdown("### Engineering Methodologies")
     meth_left, meth_right = st.columns(2)
     with meth_left:
-        with st.container(border=True):
+        with st.container(border=False, key="skill_method_evaluation"):
             st.markdown(f'{icon_box("atom", 18, sm=True)} &nbsp; **Applied Machine Learning & Evaluation**', unsafe_allow_html=True)
             st.write(
                 "Experience selecting appropriate model architectures (tree ensembles, neural networks, linear meta-models), conducting stratified cross-validation, and optimizing metrics beyond basic accuracy (precision, recall, ROC-AUC, F1-score)."
@@ -1712,22 +845,12 @@ elif page == "Skills":
             tag_row(["Cross-Validation", "Hyperparameter Tuning", "Ensemble Stacking", "Feature Importance"])
 
     with meth_right:
-        with st.container(border=True):
+        with st.container(border=False, key="skill_method_integration"):
             st.markdown(f'{icon_box("workflow", 18, sm=True)} &nbsp; **Systems Integration & API Design**', unsafe_allow_html=True)
             st.write(
                 "Experience connecting disparate software systems via structured RESTful APIs, designing deterministic JSON schema contracts, and automating repetitive data synchronization tasks with high reliability."
             )
             tag_row(["REST Architecture", "JSON Schemas", "Authentication Flows", "Asynchronous Processing"])
-
-    st.write("")
-    skills_btn1, skills_btn2 = st.columns(2)
-    with skills_btn1:
-        if st.button("Explore Applications Built with this Stack →", key="skills_proj_btn", type="primary", width="stretch"):
-            set_page("Projects")
-    with skills_btn2:
-        if st.button("Get in Touch / Discuss Collaboration", key="skills_contact_btn", width="stretch"):
-            set_page("Contact")
-
 
 # =========================================================================
 # 6. EDUCATION SECTION
@@ -1816,23 +939,6 @@ elif page == "Education":
         unsafe_allow_html=True,
     )
 
-    st.write("")
-    edu_btn1, edu_btn2 = st.columns(2)
-    with edu_btn1:
-        if st.button("Explore Research & Industry Roles →", key="edu_exp_btn", type="primary", width="stretch"):
-            set_page("Experience")
-    with edu_btn2:
-        if resume_path.exists():
-            st.download_button(
-                "Download Official Résumé PDF ⤓",
-                resume_path.read_bytes(),
-                "Dev-Kotak-Resume.pdf",
-                "application/pdf",
-                key="edu_cv_btn",
-                width="stretch",
-            )
-
-
 # =========================================================================
 # 7. TESTIMONIALS SECTION
 # =========================================================================
@@ -1875,17 +981,6 @@ elif page == "Testimonials":
         """,
         unsafe_allow_html=True,
     )
-
-    st.write("")
-    with st.container(border=True):
-        t_cta_col1, t_cta_col2 = st.columns([1.5, 1], vertical_alignment="center")
-        with t_cta_col1:
-            st.markdown("### Ready to connect or discuss an opportunity?")
-            st.write("Whether for full-time engineering roles, technical advisory, or project collaboration, I look forward to hearing from you.")
-        with t_cta_col2:
-            if st.button("Get in Touch", key="testim_contact_btn", type="primary", width="stretch"):
-                set_page("Contact")
-
 
 # =========================================================================
 # 8. RÉSUMÉ SECTION
@@ -1974,15 +1069,6 @@ elif page == "Contact":
         """,
         unsafe_allow_html=True,
     )
-
-    st.write("")
-    email_col, linkedin_col, github_col = st.columns(3)
-    with email_col:
-        st.link_button("Write an Email ↗", f"mailto:{EMAIL}", width="stretch")
-    with linkedin_col:
-        st.link_button("LinkedIn Profile ↗", LINKEDIN, width="stretch")
-    with github_col:
-        st.link_button("GitHub Profile ↗", GITHUB, width="stretch")
 
     st.write("")
     st.markdown(f'<h3 class="h3-icon">{svg_icon("send", 19)} Send a Direct Message</h3>', unsafe_allow_html=True)

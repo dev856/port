@@ -1,0 +1,56 @@
+/* Loaded after graphic.css only when the viewer enables dark mode. */
+:root {
+    color-scheme: dark;
+    --paper: #14171d;
+    --ink: #f1eee6;
+    --muted: #b7bac4;
+    --accent: #9baeff;
+    --accent-block: #304fcb;
+    --line: #434955;
+    --surface: #1d222b;
+    --field-bg: #252c37;
+    --media-bg-1: #252e40;
+    --media-bg-2: #37392d;
+    --grid: rgba(241, 238, 230, 0.035);
+}
+/* Streamlit still uses its configured light palette for native widgets.
+   Scope these overrides to the app; never change another viewer's config. */
+.stApp, [data-testid='stMain'], [data-testid='stMarkdownContainer'],
+[data-testid='stWidgetLabel'], [data-testid='stCaptionContainer'],
+[data-testid='stSidebar'] { color: var(--ink); }
+[data-testid='stMarkdownContainer'] p, [data-testid='stMarkdownContainer'] li { color: inherit; }
+[data-testid='stMarkdownContainer'] a { color: var(--accent); }
+[data-testid='stMarkdownContainer'] .contact-banner a { color: white; }
+[data-testid='stMarkdownContainer'] .hero-intro,
+[data-testid='stMarkdownContainer'] .section-description,
+[data-testid='stMarkdownContainer'] .sidebar-role,
+[data-testid='stMarkdownContainer'] .work-copy p { color: var(--muted); }
+[data-testid='stSidebar'] [role='radiogroup'] label { color: var(--ink); }
+[data-testid='stSidebar'] [role='radiogroup'] label:has(input:checked) p { color: var(--paper); }
+[data-testid='stTextInput'] input, [data-testid='stTextArea'] textarea {
+    background: var(--field-bg); color: var(--ink); caret-color: var(--accent);
+}
+[data-testid='stTextInput'] input::placeholder,
+[data-testid='stTextArea'] textarea::placeholder { color: var(--muted); opacity: 1; }
+[data-testid='stExpander'] details, [data-testid='stExpander'] summary,
+[data-testid='stForm'], [data-testid='stVerticalBlockBorderWrapper'],
+[data-testid='stVerticalBlock'][data-border='true'] {
+    background: var(--surface); color: var(--ink); border-color: var(--line);
+}
+[data-testid='stExpander'] summary:hover { background: var(--field-bg); }
+[data-testid='stButton'] button[kind='secondary'],
+[data-testid='stDownloadButton'] button[kind='secondary'],
+[data-testid='stLinkButton'] a { background: var(--surface); color: var(--ink); }
+[data-testid='stButton'] button[kind='primary'] p,
+[data-testid='stDownloadButton'] button[kind='primary'] p,
+[data-testid='stFormSubmitButton'] button[kind='primary'] p { color: white; }
+[data-testid='stAlert'] { background: #302c1e; color: #f2dfaa; border: 1px solid #756639; }
+[data-testid='stAlert'] p { color: inherit; }
+[data-testid='stHeader'] button { color: var(--ink); }
+.timeline-logo-box, .edu-logo-frame { background: #f6f3eb; }
+.skill-card { border-color: var(--line); }
+.skill-tools li { background: var(--field-bg); color: var(--ink); border-color: var(--line); }
+.skill-emblem { color: white; }
+.skill-domain-01 { --domain: #7d9bff; }
+.skill-domain-03 { --domain: #e0894f; }
+::selection { background: #9baeff; color: #14171d; }
